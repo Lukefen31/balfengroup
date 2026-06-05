@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Balfen Group — Concreting Malta</title>
+  <meta name="description" content="Malta's concreting specialists. Slabs, driveways, foundations, decorative concrete. Australian standards, Maltese ground.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:      #0A0A08;
+      --grey-900:   #131310;
+      --grey-800:   #1E1E1A;
+      --grey-700:   #2C2C28;
+      --grey-500:   #4A4A46;
+      --grey-400:   #6C6C68;
+      --grey-200:   #B0ADA6;
+      --cream:      #F4F0E8;
+      --white:      #FAFAF6;
+      --orange:     #E8520A;
+      --orange-hot: #FF6520;
+      --orange-dim: rgba(232,82,10,0.12);
+      --font-display: 'Big Shoulders Display', sans-serif;
+      --font-body:    'Fraunces', serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      --t: 0.35s var(--ease);
+      --t-slow: 0.7s var(--ease);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.65;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    ::selection { background: var(--orange); color: var(--black); }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .announce {
+      background: var(--orange);
+      color: var(--black);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      position: relative;
+      z-index: 200;
+    }
+    .announce a { display: flex; align-items: center; gap: 0.4rem; }
+    .announce a:hover { opacity: 0.75; }
+    .announce-dot { width: 6px; height: 6px; background: var(--black); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10,10,8,0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--grey-800);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 3rem;
+      height: 64px;
+      transition: border-color var(--t);
+    }
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
+    .nav-links a {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey-200);
+      transition: color var(--t);
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color var(--t), border-color var(--t);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--cream); border-bottom-color: var(--orange); }
+    .nav-cta {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--orange);
+      color: var(--black);
+      padding: 0.5rem 1.25rem;
+      transition: background var(--t), transform var(--t);
+    }
+    .nav-cta:hover { background: var(--orange-hot); transform: translateY(-1px); }
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; padding: 8px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--cream); transition: var(--t); }
+
+    /* ── PAGE SECTIONS ── */
+    .page { display: none; animation: pagein 0.5s var(--ease) both; }
+    .page.active { display: block; }
+    @keyframes pagein { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+    /* ── HOME: HERO ── */
+    .hero {
+      min-height: calc(100vh - 102px);
+      display: grid;
+      grid-template-columns: 1fr 42%;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-text {
+      padding: 5rem 4rem 5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before { content: ''; display: block; width: 32px; height: 2px; background: var(--orange); }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(4.5rem, 8vw, 9rem);
+      line-height: 0.9;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.75rem;
+    }
+    .hero-headline em { color: var(--orange); font-style: normal; }
+    .hero-subhead {
+      font-size: 1.35rem;
+      color: var(--grey-200);
+      max-width: 480px;
+      margin-bottom: 0.75rem;
+      font-weight: 300;
+    }
+    .hero-wave {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--orange);
+      margin-bottom: 2.75rem;
+      font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--orange);
+      color: var(--black);
+      padding: 0.85rem 2rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+    }
+    .btn-primary:hover { background: var(--orange-hot); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(232,82,10,0.35); }
+    .btn-ghost {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1.5px solid var(--grey-600);
+      color: var(--cream);
+      padding: 0.85rem 2rem;
+      transition: border-color var(--t), color var(--t);
+    }
+    .btn-ghost:hover { border-color: var(--cream); }
+    .hero-photo {
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.82) contrast(1.05);
+      transition: transform 8s var(--ease);
+    }
+    .hero-photo:hover img { transform: scale(1.03); }
+    .hero-photo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, var(--black) 0%, transparent 30%);
+      z-index: 1;
+    }
+    .hero-stats {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 3rem;
+      display: flex;
+      gap: 3rem;
+      z-index: 3;
+    }
+    .hero-stat-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 2.5rem;
+      line-height: 1;
+      color: var(--white);
+    }
+    .hero-stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      font-family: var(--font-display);
+      font-weight: 700;
+    }
+
+    /* ── TICKER ── */
+    .ticker-wrap { background: var(--grey-900); border-top: 1px solid var(--grey-800); border-bottom: 1px solid var(--grey-800); overflow: hidden; padding: 0.75rem 0; }
+    .ticker-track { display: flex; gap: 0; white-space: nowrap; animation: ticker 28s linear infinite; }
+    .ticker-item {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey-400);
+      padding: 0 2rem;
+    }
+    .ticker-item strong { color: var(--orange); }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── HOME SECTIONS ── */
+    .section { padding: 6rem 3rem; }
+    .section-label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.5rem, 4vw, 4rem);
+      line-height: 0.95;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    .section-body { font-size: 1.05rem; color: var(--grey-200); max-width: 560px; line-height: 1.75; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-photo { position: relative; }
+    .about-photo img { width: 100%; aspect-ratio: 4/3; object-fit: cover; }
+    .about-badge {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--orange);
+      color: var(--black);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      line-height: 1.4;
+    }
+    .about-text { padding-left: 1rem; }
+    .about-text p { margin-bottom: 1.25rem; font-weight: 300; }
+    .about-text em { font-style: italic; color: var(--cream); }
+
+    /* SERVICES PREVIEW */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--grey-800); margin-top: 3rem; }
+    .service-card {
+      background: var(--grey-900);
+      padding: 2rem 1.75rem;
+      position: relative;
+      overflow: hidden;
+      transition: background var(--t);
+      cursor: pointer;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%; height: 3px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--t);
+    }
+    .service-card:hover { background: var(--grey-800); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-num {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 3.5rem;
+      color: var(--grey-800);
+      line-height: 1;
+      margin-bottom: 0.75rem;
+      transition: color var(--t);
+    }
+    .service-card:hover .service-num { color: var(--orange-dim); }
+    .service-name {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .service-desc { font-size: 0.9rem; color: var(--grey-400); line-height: 1.55; }
+
+    /* GALLERY STRIP */
+    .gallery-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin-top: 3rem; }
+    .gallery-thumb {
+      aspect-ratio: 3/4;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease), filter 0.4s; filter: brightness(0.85); }
+    .gallery-thumb:hover img { transform: scale(1.06); filter: brightness(1); }
+    .gallery-thumb-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,10,8,0.7) 0%, transparent 50%);
+      opacity: 0; transition: opacity var(--t);
+    }
+    .gallery-thumb:hover .gallery-thumb-overlay { opacity: 1; }
+
+    /* ── WORK PAGE ── */
+    .page-header {
+      padding: 5rem 3rem 3rem;
+      border-bottom: 1px solid var(--grey-800);
+    }
+    .page-header-tag { font-family: var(--font-display); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.6rem; }
+    .page-header-title { font-family: var(--font-display); font-weight: 900; font-size: clamp(4rem, 7vw, 8rem); line-height: 0.9; text-transform: uppercase; color: var(--white); }
+    .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; }
+    .work-item { position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
+    .work-item.featured { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+    .work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease), filter 0.4s; filter: brightness(0.8); }
+    .work-item:hover img { transform: scale(1.04); filter: brightness(1); }
+    .work-item-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(10,10,8,0.85) 0%, transparent 100%); transform: translateY(100%); transition: transform var(--t); }
+    .work-item:hover .work-item-info { transform: none; }
+    .work-item-title { font-family: var(--font-display); font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; }
+    .work-item-sub { font-size: 0.8rem; color: var(--orange); font-family: var(--font-display); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+
+    /* ── SERVICES PAGE ── */
+    .services-list { padding: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--grey-800); }
+    .service-detail { background: var(--black); padding: 2.5rem; }
+    .service-detail:hover { background: var(--grey-900); }
+    .service-detail-num { font-family: var(--font-display); font-weight: 900; font-size: 1rem; color: var(--orange); letter-spacing: 0.15em; margin-bottom: 1rem; }
+    .service-detail-name { font-family: var(--font-display); font-weight: 900; font-size: 1.6rem; text-transform: uppercase; line-height: 1; margin-bottom: 1rem; color: var(--white); }
+    .service-detail-body { font-size: 0.95rem; color: var(--grey-200); line-height: 1.7; font-weight: 300; }
+
+    /* ── CONTACT PAGE ── */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; min-height: 80vh; }
+    .contact-info { background: var(--grey-900); padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .contact-phone { font-family: var(--font-display); font-weight: 900; font-size: clamp(2.5rem, 4vw, 4.5rem); line-height: 1; color: var(--white); margin: 1.5rem 0; }
+    .contact-phone a:hover { color: var(--orange); }
+    .contact-detail { display: flex; align-items: flex-start; gap: 0.75rem; margin-bottom: 1rem; font-size: 0.95rem; color: var(--grey-200); }
+    .contact-detail strong { color: var(--cream); font-weight: 400; }
+    .contact-form { padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
+    .form-group label { font-family: var(--font-display); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey-400); }
+    .form-group input, .form-group textarea, .form-group select {
+      background: var(--grey-900); border: 1.5px solid var(--grey-700); color: var(--cream);
+      padding: 0.85rem 1rem; font-family: var(--font-body); font-size: 1rem; outline: none;
+      transition: border-color var(--t); resize: vertical;
+    }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--orange); }
+    .form-group select option { background: var(--grey-900); }
+
+    /* ── FOOTER ── */
+    footer { border-top: 1px solid var(--grey-800); padding: 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+    .footer-brand { font-family: var(--font-display); font-weight: 900; font-size: 1.25rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .footer-brand span { color: var(--orange); }
+    .footer-links { display: flex; gap: 2rem; }
+    .footer-links a { font-family: var(--font-display); font-weight: 700; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--grey-400); transition: color var(--t); }
+    .footer-links a:hover { color: var(--orange); }
+    .footer-copy { font-size: 0.8rem; color: var(--grey-500); }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s var(--ease), transform 0.7s var(--ease); }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero-photo { height: 45vw; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .services-list { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr 1fr; }
+      .work-item.featured { grid-column: span 1; grid-row: span 1; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--grey-900); padding: 2rem; border-bottom: 1px solid var(--grey-800); gap: 1.5rem; }
+      .hero-text { padding: 3.5rem 1.5rem; }
+      .hero-stats { left: 1.5rem; gap: 1.5rem; }
+      .section { padding: 4rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .gallery-strip { grid-template-columns: 1fr 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
+      .page-header { padding: 3rem 1.5rem 2rem; }
+      .services-list { padding: 1.5rem; }
+      .contact-info, .contact-form { padding: 3rem 1.5rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announce">
+    <span class="announce-dot"></span>
+    <a href="#" onclick="showPage('work'); return false;">
+      BALFEN LANDS IN MALTA — FIRST POUR COMPLETE · JUNE 2026 · SEE THE WORK →
+    </a>
+    <span class="announce-dot"></span>
+  </div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <div class="nav-logo" onclick="showPage('home')">BALFEN<span>.</span></div>
+    <div class="nav-links" id="nav-links">
+      <a href="#" onclick="showPage('work'); return false;" data-page="work">Work</a>
+      <a href="#" onclick="showPage('services'); return false;" data-page="services">Services</a>
+      <a href="#" onclick="showPage('contact'); return false;" data-page="contact">Contact</a>
+      <a href="#" class="nav-cta" onclick="showPage('contact'); return false;">Get a Quote</a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════ HOME PAGE -->
+  <section class="page active" id="page-home">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-text">
+        <div class="hero-eyebrow">Malta's Concreting Specialists</div>
+        <h1 class="hero-headline">
+          MALTESE<br>GROUND.<br><em>AUSTRALIAN</em><br>STANDARD.
+        </h1>
+        <p class="hero-subhead">
+          Balfen Group brings Australian-grade concreting expertise to Malta — 
+          every slab poured with precision, every finish built to last.
+        </p>
+        <p class="hero-wave">"The wave has started."</p>
+        <div class="hero-actions">
+          <a href="#" class="btn-primary" onclick="showPage('work'); return false;">Our Work →</a>
+          <a href="#" class="btn-ghost" onclick="showPage('contact'); return false;">Get a Quote</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <div class="hero-photo-overlay"></div>
+        <!-- REPLACE: ./images/pour-hero.jpg with your best first-pour photo -->
+        <img src="./images/pour-hero.jpg" alt="Balfen Group — first pour in Malta" onerror="this.parentElement.style.background='linear-gradient(135deg,#1E1E1A 0%,#2C2C28 100%)'">
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">10+</div>
+          <div class="hero-stat-label">Years Experience</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">Malta</div>
+          <div class="hero-stat-label">Now Serving</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Domestic Specialist</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TICKER -->
+    <div class="ticker-wrap">
+      <div class="ticker-track">
+        <span class="ticker-item"><strong>FIRST POUR ·</strong> MALTA · JUNE 2026</span>
+        <span class="ticker-item">HOUSE SLABS · DRIVEWAYS · FOUNDATIONS · DECORATIVE CONCRETE</span>
+        <span class="ticker-item"><strong>BALFEN GROUP ·</strong> BUILT ON AUSTRALIAN STANDARDS</span>
+        <span class="ticker-item">SERVING ALL OF MALTA · FREE QUOTES</span>
+        <span class="ticker-item"><strong>FIRST POUR ·</strong> MALTA · JUNE 2026</span>
+        <span class="ticker-item">HOUSE SLABS · DRIVEWAYS · FOUNDATIONS · DECORATIVE CONCRETE</span>
+        <span class="ticker-item"><strong>BALFEN GROUP ·</strong> BUILT ON AUSTRALIAN STANDARDS</span>
+        <span class="ticker-item">SERVING ALL OF MALTA · FREE QUOTES</span>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section" style="background: var(--grey-900);">
+      <div class="about-grid reveal">
+        <div class="about-photo">
+          <img src="./images/pour-2.jpg" alt="Balfen at work" onerror="this.style.background='#1E1E1A';this.style.height='300px'">
+          <div class="about-badge">FIRST POUR<br>MALTA 2026</div>
+        </div>
+        <div class="about-text">
+          <div class="section-label">Our Story</div>
+          <h2 class="section-title">FOUNDED<br>IN THE FIELD.</h2>
+          <p>Nathan Fenech has been pouring concrete in Melbourne, Australia for over a decade — house slabs, driveways, commercial hardstands, decorative finishes. <em>Jobs done right, the first time.</em></p>
+          <p>Now, Balfen Group has made its move to Malta. A new market, the same uncompromising standard. If you want concrete work that lasts a generation, we're the team to call.</p>
+          <a href="#" class="btn-primary" onclick="showPage('services'); return false;" style="margin-top:0.5rem;display:inline-flex">What We Do →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES PREVIEW -->
+    <div class="section">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">EVERY POUR.<br>DONE PROPERLY.</h2>
+      <div class="services-grid">
+        <div class="service-card reveal" onclick="showPage('services')"><div class="service-num">01</div><div class="service-name">Slabs &amp; Foundations</div><div class="service-desc">House slabs, structural footings and piers built to last.</div></div>
+        <div class="service-card reveal" onclick="showPage('services')"><div class="service-num">02</div><div class="service-name">Driveways &amp; Hardstands</div><div class="service-desc">Plain, coloured and exposed aggregate. Clean lines, quality finish.</div></div>
+        <div class="service-card reveal" onclick="showPage('services')"><div class="service-num">03</div><div class="service-name">Site Cuts &amp; Paving</div><div class="service-desc">Earthworks and paving for residential builds. Coordinated, on-schedule.</div></div>
+        <div class="service-card reveal" onclick="showPage('services')"><div class="service-num">04</div><div class="service-name">Decorative Concrete</div><div class="service-desc">Polished, honed and exposed aggregate for interior and exterior spaces.</div></div>
+        <div class="service-card reveal" onclick="showPage('services')"><div class="service-num">05</div><div class="service-name">Piers &amp; Footings</div><div class="service-desc">Structural piers and strip footings. The right foundation every time.</div></div>
+        <div class="service-card reveal" onclick="showPage('services')"><div class="service-num">06</div><div class="service-name">Paths &amp; Outdoor Areas</div><div class="service-desc">Foot paths, pool surrounds and outdoor areas across Malta.</div></div>
+      </div>
+    </div>
+
+    <!-- GALLERY PREVIEW -->
+    <div class="section" style="padding-bottom:0;background:var(--grey-900);">
+      <div class="section-label">The Work</div>
+      <h2 class="section-title">FIRST POUR.<br>MALTA.</h2>
+      <div class="gallery-strip">
+        <div class="gallery-thumb"><img src="./images/pour-1.jpg" alt="Pour 1" onerror="this.parentElement.style.background='#2C2C28'"></div>
+        <div class="gallery-thumb"><img src="./images/pour-2.jpg" alt="Pour 2" onerror="this.parentElement.style.background='#1E1E1A'"></div>
+        <div class="gallery-thumb"><img src="./images/pour-3.jpg" alt="Pour 3" onerror="this.parentElement.style.background='#2C2C28'"></div>
+        <div class="gallery-thumb"><img src="./images/pour-4.jpg" alt="Pour 4" onerror="this.parentElement.style.background='#1E1E1A'"></div>
+      </div>
+      <div style="padding:2.5rem 0;text-align:center;">
+        <a href="#" class="btn-ghost" onclick="showPage('work');return false;">View All Work →</a>
+      </div>
+    </div>
+
+    <!-- CTA BAND -->
+    <div style="background:var(--orange);padding:4rem 3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div>
+        <div style="font-family:var(--font-display);font-weight:900;font-size:clamp(2rem,4vw,3.5rem);line-height:1;text-transform:uppercase;color:var(--black);">READY TO POUR?</div>
+        <div style="font-size:1.05rem;color:rgba(10,10,8,0.65);margin-top:0.5rem;font-weight:300;">Free quotes. Serving all of Malta.</div>
+      </div>
+      <a href="#" class="btn-primary" onclick="showPage('contact');return false;" style="background:var(--black);color:var(--cream);">Get Your Free Quote →</a>
+    </div>
+
+  </section>
+
+  <!-- ═══════════════════════════════════════════ WORK PAGE -->
+  <section class="page" id="page-work">
+    <div class="page-header">
+      <div class="page-header-tag">Portfolio</div>
+      <h1 class="page-header-title">THE<br>WORK.</h1>
+    </div>
+    <div class="work-grid">
+      <div class="work-item featured">
+        <img src="./images/pour-1.jpg" alt="First pour Malta" onerror="this.parentElement.style.background='#1E1E1A'">
+        <div class="work-item-info">
+          <div class="work-item-sub">Malta · June 2026</div>
+          <div class="work-item-title">First Pour — Balfen Lands in Malta</div>
+        </div>
+      </div>
+      <div class="work-item">
+        <img src="./images/pour-2.jpg" alt="Pour detail" onerror="this.parentElement.style.background='#2C2C28'">
+        <div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Slab Detail</div></div>
+      </div>
+      <div class="work-item">
+        <img src="./images/pour-3.jpg" alt="Pour setup" onerror="this.parentElement.style.background='#1E1E1A'">
+        <div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Pour Setup</div></div>
+      </div>
+      <div class="work-item">
+        <img src="./images/pour-4.jpg" alt="Finished pour" onerror="this.parentElement.style.background='#2C2C28'">
+        <div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Finished Pour</div></div>
+      </div>
+    </div>
+    <div style="padding:3rem;text-align:center;border-top:1px solid var(--grey-800);color:var(--grey-400);font-size:0.9rem;font-style:italic;">
+      More projects coming soon — portfolio expanding as we get established in Malta.
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ SERVICES PAGE -->
+  <section class="page" id="page-services">
+    <div class="page-header">
+      <div class="page-header-tag">Services</div>
+      <h1 class="page-header-title">WHAT<br>WE DO.</h1>
+    </div>
+    <div class="services-list">
+      <div class="service-detail">
+        <div class="service-detail-num">01 —</div>
+        <div class="service-detail-name">House Slabs &amp;<br>Foundations</div>
+        <p class="service-detail-body">The most critical pour of any build. We set up, level, reinforce and pour concrete slabs for new homes, extensions and outbuildings. Every slab is vibrated, finished and cured to Australian residential standards — meaning they won't crack, sink or shift.</p>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-num">02 —</div>
+        <div class="service-detail-name">Driveways &amp;<br>Hardstands</div>
+        <p class="service-detail-body">Plain, broom-finished, coloured or exposed aggregate — we do them all. We form, reinforce and pour driveways that handle heavy vehicles, Mediterranean sun and decades of use. Carports, turning circles and hardstands also covered.</p>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-num">03 —</div>
+        <div class="service-detail-name">Site Cuts &amp;<br>Earthworks</div>
+        <p class="service-detail-body">Before any pour, the ground has to be right. We coordinate site cuts, subgrade preparation and compaction to ensure a stable base. Get us in early — it saves cost and headaches later.</p>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-num">04 —</div>
+        <div class="service-detail-name">Decorative &amp;<br>Polished Concrete</div>
+        <p class="service-detail-body">For interiors and feature exteriors. Honed, polished, stencilled and exposed aggregate finishes that look exceptional and last just as long. Transform a plain slab into a design feature — indoors or out.</p>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-num">05 —</div>
+        <div class="service-detail-name">Structural Piers &amp;<br>Footings</div>
+        <p class="service-detail-body">Strip footings, pad footings, bored piers and screw piles. Built to specification, reinforced correctly, poured clean. The foundation that everything else depends on — we don't cut corners here.</p>
+      </div>
+      <div class="service-detail">
+        <div class="service-detail-num">06 —</div>
+        <div class="service-detail-name">Paths, Paving &amp;<br>Outdoor Areas</div>
+        <p class="service-detail-body">Garden paths, pool surrounds, alfresco areas, front entries. Practical and precise. Whether it's a simple footpath or a large entertaining area, we'll form it correctly, pour it level and finish it cleanly.</p>
+      </div>
+    </div>
+    <div style="background:var(--orange);padding:4rem 3rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;">
+      <div style="font-family:var(--font-display);font-weight:900;font-size:clamp(2rem,4vw,3rem);line-height:1;text-transform:uppercase;color:var(--black);">GOT A JOB IN MIND?</div>
+      <a href="#" class="btn-primary" onclick="showPage('contact');return false;" style="background:var(--black);color:var(--cream);">Get a Free Quote →</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ CONTACT PAGE -->
+  <section class="page" id="page-contact">
+    <div class="page-header">
+      <div class="page-header-tag">Get in Touch</div>
+      <h1 class="page-header-title">LET'S<br>POUR.</h1>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label">Talk to Us</div>
+        <div class="contact-phone"><a href="tel:+35600000000">+356 XXXX XXXX</a></div>
+        <p style="color:var(--grey-400);font-size:0.9rem;margin-bottom:2rem;font-style:italic;">Malta number coming soon — use the form for now.</p>
+        <div class="contact-detail">
+          <span style="color:var(--orange);font-family:var(--font-display);font-weight:700;">✦</span>
+          <span><strong>Service Area:</strong> Serving all of Malta &amp; Gozo</span>
+        </div>
+        <div class="contact-detail">
+          <span style="color:var(--orange);font-family:var(--font-display);font-weight:700;">✦</span>
+          <span><strong>Hours:</strong> Mon–Sat, 7am–5pm</span>
+        </div>
+        <div class="contact-detail">
+          <span style="color:var(--orange);font-family:var(--font-display);font-weight:700;">✦</span>
+          <span><strong>Quotes:</strong> Free, no-obligation site visits</span>
+        </div>
+        <div class="contact-detail">
+          <span style="color:var(--orange);font-family:var(--font-display);font-weight:700;">✦</span>
+          <span><strong>Response:</strong> We aim to reply within 24 hours</span>
+        </div>
+        <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--grey-700);">
+          <div class="section-label" style="margin-bottom:0.75rem;">Follow the Work</div>
+          <div style="display:flex;gap:1rem;">
+            <a href="#" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">Facebook →</a>
+            <a href="#" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">Instagram →</a>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="section-label" style="margin-bottom:1.5rem;">Free Quote Request</div>
+        <form onsubmit="handleForm(event)">
+          <div class="form-row">
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="Nathan" required></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Fenech" required></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Phone</label><input type="tel" placeholder="+356 XXXX XXXX" required></div>
+            <div class="form-group"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+          </div>
+          <div class="form-group">
+            <label>Service Required</label>
+            <select required>
+              <option value="" disabled selected>Select a service</option>
+              <option>House Slab / Foundation</option>
+              <option>Driveway / Hardstand</option>
+              <option>Site Cut / Earthworks</option>
+              <option>Decorative / Polished Concrete</option>
+              <option>Piers / Footings</option>
+              <option>Paths / Paving / Outdoor Areas</option>
+              <option>Not sure — need advice</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Location / Area in Malta</label>
+            <input type="text" placeholder="e.g. Valletta, Sliema, Mosta…">
+          </div>
+          <div class="form-group">
+            <label>Tell Us About Your Job</label>
+            <textarea rows="4" placeholder="Brief description — size, timeline, any special requirements…"></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%;justify-content:center;">Send Quote Request →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-brand">BALFEN<span>.</span></div>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('work');return false;">Work</a>
+      <a href="#" onclick="showPage('services');return false;">Services</a>
+      <a href="#" onclick="showPage('contact');return false;">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Balfen Group. Malta.</div>
+  </footer>
+
+  <script>
+    // PAGE NAVIGATION
+    function showPage(name) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+        a.classList.toggle('active', a.dataset.page === name);
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      history.pushState(null, '', '#' + name);
+      triggerReveal();
+    }
+
+    // HANDLE HASH ON LOAD
+    function loadFromHash() {
+      const hash = location.hash.replace('#', '') || 'home';
+      const valid = ['home', 'work', 'services', 'contact'];
+      showPage(valid.includes(hash) ? hash : 'home');
+    }
+
+    // SCROLL REVEAL
+    function triggerReveal() {
+      setTimeout(() => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.12 });
+        document.querySelectorAll('.page.active .reveal').forEach(el => {
+          el.classList.remove('visible');
+          observer.observe(el);
+        });
+      }, 80);
+    }
+
+    // HAMBURGER MENU
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    hamburger.addEventListener('click', () => { navLinks.classList.toggle('open'); });
+
+    // CONTACT FORM HANDLER
+    function handleForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('[type=submit]');
+      btn.textContent = 'Sent! We\'ll be in touch. ✓';
+      btn.style.background = '#1E1E1A';
+      btn.style.color = 'var(--orange)';
+      btn.disabled = true;
+    }
+
+    // INIT
+    loadFromHash();
+    window.addEventListener('popstate', loadFromHash);
+  </script>
+</body>
+</html>
