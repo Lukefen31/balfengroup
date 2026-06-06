@@ -82,14 +82,7 @@
       height: 64px;
       transition: border-color var(--t);
     }
-    .nav-logo {
-      font-family: var(--font-display);
-      font-weight: 900;
-      font-size: 1.5rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
+    .nav-logo { cursor: pointer; display: flex; align-items: center; }
     .nav-logo span { color: var(--orange); }
     .nav-links { display: flex; gap: 2.5rem; align-items: center; }
     .nav-links a {
@@ -222,7 +215,7 @@
     .hero-photo-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, var(--black) 0%, transparent 30%);
+      background: linear-gradient(90deg, var(--black) 0%, rgba(10,10,8,0.5) 45%, transparent 65%);
       z-index: 1;
     }
     .hero-stats {
@@ -487,7 +480,7 @@
 
   <!-- NAV -->
   <nav id="main-nav">
-    <div class="nav-logo" onclick="showPage('home')">BALFEN<span>.</span></div>
+    <div class="nav-logo" onclick="showPage('home')"><img src="./images/logo-white.png" alt="Balfen Group" style="height:42px;display:block;cursor:pointer"></div>
     <div class="nav-links" id="nav-links">
       <a href="#" onclick="showPage('work'); return false;" data-page="work">Work</a>
       <a href="#" onclick="showPage('services'); return false;" data-page="services">Services</a>
@@ -521,8 +514,8 @@
       </div>
       <div class="hero-photo">
         <div class="hero-photo-overlay"></div>
-        <!-- REPLACE: ./images/pour-hero.jpg with your best first-pour photo -->
-        <img src="./images/pour-hero.jpg" alt="Balfen Group — first pour in Malta" onerror="this.parentElement.style.background='linear-gradient(135deg,#1E1E1A 0%,#2C2C28 100%)'">
+        <!-- REPLACE: ./images/hero-illustration.jpg with your best first-pour photo -->
+        <img src="./images/hero-illustration.jpg" alt="Balfen Group — Malta meets Australia" onerror="this.parentElement.style.background='linear-gradient(135deg,#1E1E1A 0%,#2C2C28 100%)'">
       </div>
       <div class="hero-stats">
         <div>
@@ -1288,7 +1281,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-brand">BALFEN<span>.</span></div>
+    <div class="footer-brand"><img src="./images/logo-white.png" alt="Balfen Group" style="height:32px;display:block"></div>
     <div class="footer-links">
       <a href="#" onclick="showPage('work');return false;">Work</a>
       <a href="#" onclick="showPage('services');return false;">Services</a>
