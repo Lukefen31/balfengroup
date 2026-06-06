@@ -378,6 +378,7 @@
     .work-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; }
     .work-item { position: relative; overflow: hidden; aspect-ratio: 4/3; cursor: pointer; }
     .work-item.featured { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+    .work-item[style*='display:none'] { display: none !important; }
     .work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease), filter 0.4s; filter: brightness(0.8); }
     .work-item:hover img { transform: scale(1.04); filter: brightness(1); }
     .work-item-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.5rem; background: linear-gradient(to top, rgba(10,10,8,0.85) 0%, transparent 100%); transform: translateY(100%); transition: transform var(--t); }
@@ -545,8 +546,8 @@
         <div class="about-text">
           <div class="section-label">Our Story</div>
           <h2 class="section-title">FOUNDED<br>IN THE FIELD.</h2>
-          <p>Nathan Fenech has been pouring concrete in Melbourne, Australia for over a decade — house slabs, driveways, commercial hardstands, decorative finishes. <em>Jobs done right, the first time.</em></p>
-          <p>Now, Balfen Group has made its move to Malta. A new market, the same uncompromising standard. If you want concrete work that lasts a generation, we're the team to call.</p>
+          <p><em>Nathan Fenech</em> has spent over a decade pouring concrete across Melbourne — house slabs, driveways, commercial hardstands, decorative finishes. <em>Aaron Baldacchino</em> brings the business backbone, with roots in Malta and a sharp eye for what the local market needs.</p>
+          <p>Together they founded Balfen Group and made the move. Australian standards, Maltese ground. If you want concrete work that lasts a generation, we're the team to call.</p>
           <a href="#" class="btn-primary" onclick="showPage('services'); return false;" style="margin-top:0.5rem;display:inline-flex">What We Do →</a>
         </div>
       </div>
@@ -592,39 +593,96 @@
 
   </section>
 
-  <!-- ═══════════════════════════════════════════ WORK PAGE -->
+  <!-- WORK PAGE -->
   <section class="page" id="page-work">
     <div class="page-header">
       <div class="page-header-tag">Portfolio</div>
       <h1 class="page-header-title">THE<br>WORK.</h1>
     </div>
-    <div class="work-grid">
-      <div class="work-item featured">
-        <img src="./images/pour-1.jpg" alt="First pour Malta" onerror="this.parentElement.style.background='#1E1E1A'">
-        <div class="work-item-info">
-          <div class="work-item-sub">Malta · June 2026</div>
-          <div class="work-item-title">First Pour — Balfen Lands in Malta</div>
-        </div>
-      </div>
-      <div class="work-item">
-        <img src="./images/pour-2.jpg" alt="Pour detail" onerror="this.parentElement.style.background='#2C2C28'">
-        <div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Slab Detail</div></div>
-      </div>
-      <div class="work-item">
-        <img src="./images/pour-3.jpg" alt="Pour setup" onerror="this.parentElement.style.background='#1E1E1A'">
-        <div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Pour Setup</div></div>
-      </div>
-      <div class="work-item">
-        <img src="./images/pour-4.jpg" alt="Finished pour" onerror="this.parentElement.style.background='#2C2C28'">
-        <div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Finished Pour</div></div>
-      </div>
+    <!-- MALTA: FIRST POUR -->
+    <div style="padding:2rem 3rem 1rem;"><div class="section-label">Malta · June 2026</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">First Pour — Balfen Lands in Malta</div></div>
+    <div class="work-grid" style="margin-bottom:4px;">
+      <div class="work-item featured"><img src="./images/pour-1.jpg" alt="First pour Malta" onerror="this.parentElement.style.background='#1E1E1A'"><div class="work-item-info"><div class="work-item-sub">Malta · June 2026</div><div class="work-item-title">First Pour — The Wave Starts Here</div></div></div>
+      <div class="work-item"><img src="./images/pour-2.jpg" alt="Pour detail" onerror="this.parentElement.style.background='#2C2C28'"><div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Slab Detail</div></div></div>
+      <div class="work-item"><img src="./images/pour-3.jpg" alt="Pour setup" onerror="this.parentElement.style.background='#1E1E1A'"><div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Pour Setup</div></div></div>
+      <div class="work-item"><img src="./images/pour-4.jpg" alt="Finished pour" onerror="this.parentElement.style.background='#2C2C28'"><div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Finished Pour</div></div></div>
     </div>
-    <div style="padding:3rem;text-align:center;border-top:1px solid var(--grey-800);color:var(--grey-400);font-size:0.9rem;font-style:italic;">
-      More projects coming soon — portfolio expanding as we get established in Malta.
+    <!-- AU PORTFOLIO -->
+    <div style="padding:3rem 3rem 1rem;border-top:1px solid var(--grey-800);"><div class="section-label">Melbourne, Australia · Portfolio</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">10+ Years of Work</div></div>
+    <div class="work-grid" id="au-portfolio">
+      <div class="work-item"><img src="./images/au-work-001.jpg" alt="Balfen portfolio 001" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-002.jpg" alt="Balfen portfolio 002" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-003.jpg" alt="Balfen portfolio 003" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-004.jpg" alt="Balfen portfolio 004" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-005.jpg" alt="Balfen portfolio 005" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-006.jpg" alt="Balfen portfolio 006" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-007.jpg" alt="Balfen portfolio 007" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-008.jpg" alt="Balfen portfolio 008" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-009.jpg" alt="Balfen portfolio 009" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-010.jpg" alt="Balfen portfolio 010" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-011.jpg" alt="Balfen portfolio 011" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-012.jpg" alt="Balfen portfolio 012" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-013.jpg" alt="Balfen portfolio 013" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-014.jpg" alt="Balfen portfolio 014" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-015.jpg" alt="Balfen portfolio 015" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-016.jpg" alt="Balfen portfolio 016" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-017.jpg" alt="Balfen portfolio 017" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-018.jpg" alt="Balfen portfolio 018" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-019.jpg" alt="Balfen portfolio 019" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-020.jpg" alt="Balfen portfolio 020" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-021.jpg" alt="Balfen portfolio 021" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-022.jpg" alt="Balfen portfolio 022" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-023.jpg" alt="Balfen portfolio 023" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-024.jpg" alt="Balfen portfolio 024" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-025.jpg" alt="Balfen portfolio 025" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-026.jpg" alt="Balfen portfolio 026" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-027.jpg" alt="Balfen portfolio 027" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-028.jpg" alt="Balfen portfolio 028" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-029.jpg" alt="Balfen portfolio 029" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-030.jpg" alt="Balfen portfolio 030" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-031.jpg" alt="Balfen portfolio 031" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-032.jpg" alt="Balfen portfolio 032" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-033.jpg" alt="Balfen portfolio 033" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-034.jpg" alt="Balfen portfolio 034" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-035.jpg" alt="Balfen portfolio 035" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-036.jpg" alt="Balfen portfolio 036" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-037.jpg" alt="Balfen portfolio 037" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-038.jpg" alt="Balfen portfolio 038" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-039.jpg" alt="Balfen portfolio 039" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-040.jpg" alt="Balfen portfolio 040" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-041.jpg" alt="Balfen portfolio 041" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-042.jpg" alt="Balfen portfolio 042" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-043.jpg" alt="Balfen portfolio 043" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-044.jpg" alt="Balfen portfolio 044" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-045.jpg" alt="Balfen portfolio 045" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-046.jpg" alt="Balfen portfolio 046" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-047.jpg" alt="Balfen portfolio 047" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-048.jpg" alt="Balfen portfolio 048" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-049.jpg" alt="Balfen portfolio 049" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-050.jpg" alt="Balfen portfolio 050" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-051.jpg" alt="Balfen portfolio 051" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-052.jpg" alt="Balfen portfolio 052" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-053.jpg" alt="Balfen portfolio 053" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-054.jpg" alt="Balfen portfolio 054" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-055.jpg" alt="Balfen portfolio 055" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-056.jpg" alt="Balfen portfolio 056" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-057.jpg" alt="Balfen portfolio 057" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-058.jpg" alt="Balfen portfolio 058" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-059.jpg" alt="Balfen portfolio 059" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-060.jpg" alt="Balfen portfolio 060" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-061.jpg" alt="Balfen portfolio 061" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-062.jpg" alt="Balfen portfolio 062" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-063.jpg" alt="Balfen portfolio 063" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-064.jpg" alt="Balfen portfolio 064" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-065.jpg" alt="Balfen portfolio 065" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-066.jpg" alt="Balfen portfolio 066" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-067.jpg" alt="Balfen portfolio 067" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-068.jpg" alt="Balfen portfolio 068" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-069.jpg" alt="Balfen portfolio 069" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
+      <div class="work-item"><img src="./images/au-work-070.jpg" alt="Balfen portfolio 070" onerror="this.parentElement.style.display='none'"><div class="work-item-info"><div class="work-item-sub">Melbourne · AU</div><div class="work-item-title">Portfolio</div></div></div>
     </div>
   </section>
-
-  <!-- ═══════════════════════════════════════════ SERVICES PAGE -->
+    <!-- ═══════════════════════════════════════════ SERVICES PAGE -->
   <section class="page" id="page-services">
     <div class="page-header">
       <div class="page-header-tag">Services</div>
@@ -677,8 +735,7 @@
     <div class="contact-grid">
       <div class="contact-info">
         <div class="section-label">Talk to Us</div>
-        <div class="contact-phone"><a href="tel:+35600000000">+356 XXXX XXXX</a></div>
-        <p style="color:var(--grey-400);font-size:0.9rem;margin-bottom:2rem;font-style:italic;">Malta number coming soon — use the form for now.</p>
+        <div class="contact-phone"><a href="tel:+35679578778">+356 7957 8778</a></div>
         <div class="contact-detail">
           <span style="color:var(--orange);font-family:var(--font-display);font-weight:700;">✦</span>
           <span><strong>Service Area:</strong> Serving all of Malta &amp; Gozo</span>
@@ -695,10 +752,14 @@
           <span style="color:var(--orange);font-family:var(--font-display);font-weight:700;">✦</span>
           <span><strong>Response:</strong> We aim to reply within 24 hours</span>
         </div>
+        <div class="contact-detail">
+          <span style="color:var(--orange);font-family:var(--font-display);font-weight:700;">✦</span>
+          <span><strong>Email:</strong> <a href="mailto:info@balfen.com" style="color:var(--cream);">info@balfen.com</a></span>
+        </div>
         <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--grey-700);">
           <div class="section-label" style="margin-bottom:0.75rem;">Follow the Work</div>
           <div style="display:flex;gap:1rem;">
-            <a href="#" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">Facebook →</a>
+            <a href="https://www.facebook.com/profile.php?id=61572789267995" target="_blank" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">Facebook →</a>
             <a href="#" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">Instagram →</a>
           </div>
         </div>
