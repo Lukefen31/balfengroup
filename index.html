@@ -223,13 +223,14 @@
       z-index: 1;
     }
     .hero-stats {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 3rem;
       display: flex;
-      gap: 3rem;
-      z-index: 3;
+      align-items: center;
+      gap: 2.5rem;
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.12);
     }
+    .hero-stat-divider { width: 1px; height: 2.5rem; background: rgba(255,255,255,0.18); flex-shrink: 0; }
     .hero-stat-num {
       font-family: var(--font-display);
       font-weight: 900;
@@ -475,7 +476,9 @@
     .job-label { font-family: var(--font-display); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400); }
     .job-stages { font-family: var(--font-display); font-weight: 700; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
     @media (max-width: 900px) { .jobs-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .jobs-grid { grid-template-columns: 1fr; } }    .logo-wordmark { font-family: var(--font-display); font-weight: 900; font-size: 1.4rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream); cursor: pointer; }
+    @media (max-width: 480px) { .jobs-grid { grid-template-columns: 1fr; } }    .logo-img { height: 44px; display: block; cursor: pointer; filter: invert(1); transition: opacity 0.2s; }
+    .logo-img:hover { opacity: 0.8; }
+    .logo-wordmark { font-family: var(--font-display); font-weight: 900; font-size: 1.4rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream); cursor: pointer; }
     .logo-dot { color: var(--orange); margin: 0 0.2em; font-size: 0.7em; vertical-align: middle; }
     .nav-logo { display: flex; align-items: center; gap: 0; }
     .nav-logo img:not([src]) { display: none; }
@@ -494,7 +497,7 @@
 
   <!-- NAV -->
   <nav id="main-nav">
-    <div class="nav-logo" onclick="showPage('home')"><img src="./images/logo-white.png" alt="" style="height:42px;display:block;cursor:pointer" onerror="this.remove()"><span class="logo-wordmark">BALFEN<span class="logo-dot">·</span>GROUP</span></div>
+    <div class="nav-logo" onclick="showPage('home')"><img src="./images/logo-black.png" alt="Balfen Group" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-wordmark" style="display:none">BALFEN<span class="logo-dot">·</span>GROUP</span></div>
     <div class="nav-links" id="nav-links">
       <a href="#" onclick="showPage('work'); return false;" data-page="work">Work</a>
       <a href="#" onclick="showPage('services'); return false;" data-page="services">Services</a>
@@ -531,20 +534,7 @@
         <!-- REPLACE: ./images/hero-illustration.jpg with your best first-pour photo -->
         <img src="./images/hero-illustration.jpg" alt="Balfen Group — Malta meets Australia" onerror="this.parentElement.style.background='linear-gradient(135deg,#1E1E1A 0%,#2C2C28 100%)'">
       </div>
-      <div class="hero-stats">
-        <div>
-          <div class="hero-stat-num">10+</div>
-          <div class="hero-stat-label">Years Experience</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">Malta</div>
-          <div class="hero-stat-label">Now Serving</div>
-        </div>
-        <div>
-          <div class="hero-stat-num">100%</div>
-          <div class="hero-stat-label">Domestic Specialist</div>
-        </div>
-      </div>
+
     </div>
 
     <!-- TICKER -->
@@ -1456,7 +1446,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-brand"><img src="./images/logo-white.png" alt="" style="height:30px;display:block" onerror="this.remove()"><span class="logo-wordmark" style="font-size:1.1rem">BALFEN<span class="logo-dot">·</span>GROUP</span></div>
+    <div class="footer-brand"><img src="./images/logo-black.png" alt="Balfen Group" class="logo-img" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-wordmark" style="display:none;font-size:1.1rem">BALFEN<span class="logo-dot">·</span>GROUP</span></div>
     <div class="footer-links">
       <a href="#" onclick="showPage('work');return false;">Work</a>
       <a href="#" onclick="showPage('services');return false;">Services</a>
