@@ -11,10 +11,10 @@
         "group":  "grp-9",
         "count":  4,
         "images":  [
-                       "jobs/grp-9/img-01.jpg",
-                       "jobs/grp-9/img-02.jpg",
+                       "jobs/grp-9/img-04.jpg",
                        "jobs/grp-9/img-03.jpg",
-                       "jobs/grp-9/img-04.jpg"
+                       "jobs/grp-9/img-02.jpg",
+                       "jobs/grp-9/img-01.jpg"
                    ]
     },
     {
