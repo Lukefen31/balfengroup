@@ -489,6 +489,42 @@
     .logo-dot { color: var(--orange); margin: 0 0.2em; font-size: 0.7em; vertical-align: middle; }
     .nav-logo { display: flex; align-items: center; gap: 0; }
     .nav-logo img:not([src]) { display: none; }
+    /* ── WORK PAGE: GROUPS + SOLOS ── */
+    .work-malta-gallery {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 4px;
+      height: 600px;
+      margin: 0 4px 4rem;
+    }
+    .work-malta-gallery .work-item { overflow: hidden; position: relative; cursor: pointer; aspect-ratio: auto; }
+    .work-malta-gallery .work-item:first-child { grid-row: 1 / 4; }
+    .work-malta-gallery .work-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85); transition: transform 0.6s var(--ease), filter 0.4s; }
+    .work-malta-gallery .work-item:hover img { transform: scale(1.04); filter: brightness(1); }
+    .work-malta-gallery .work-item-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.25rem; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: var(--white); }
+    .work-malta-gallery .work-item-sub { font-family: var(--font-display); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); }
+    .work-malta-gallery .work-item-title { font-family: var(--font-display); font-weight: 900; font-size: 1rem; text-transform: uppercase; margin-top: 0.25rem; }
+
+    .work-groups { padding: 0 4px; margin-bottom: 4px; }
+    .job-group { width: 100%; margin-bottom: 4px; background: var(--grey-900); }
+    .job-group-meta { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border-bottom: 1px solid var(--grey-800); }
+    .job-group-hint { font-family: var(--font-display); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
+    .compare-slider { position: relative; overflow: hidden; aspect-ratio: 21/9; cursor: ew-resize; user-select: none; touch-action: none; width: 100%; }
+    .compare-before, .compare-after { position: absolute; inset: 0; }
+    .compare-after { clip-path: inset(0 50% 0 0); }
+    .compare-before img, .compare-after img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+    .compare-divider { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: rgba(255,255,255,0.9); transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 12px rgba(0,0,0,0.5); }
+    .compare-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 48px; height: 48px; border-radius: 50%; background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; color: #333; }
+    .job-group-stages { display: flex; gap: 2px; padding: 2px 0; background: var(--grey-800); }
+    .job-group-stages img { flex: 1; height: 140px; object-fit: cover; filter: brightness(0.85); transition: filter 0.3s; min-width: 0; }
+    .job-group-stages img:hover { filter: brightness(1); }
+
+    @media (max-width: 768px) {
+      .work-malta-gallery { height: 480px; }
+      .compare-slider { aspect-ratio: 16/9; }
+      .job-group-stages img { height: 80px; }
+    }
   </style>
 </head>
 <body>
@@ -617,717 +653,226 @@
 
   <!-- WORK PAGE -->
   <section class="page" id="page-work">
-    <div class="page-header">
-      <div class="page-header-tag">Portfolio</div>
-      <h1 class="page-header-title">THE<br>WORK.</h1>
+    <div style="padding:5rem 3rem 3rem;text-align:center;background:var(--black);">
+      <div class="section-label">The Portfolio</div>
+      <h1 style="font-family:var(--font-display);font-weight:900;font-size:clamp(2.5rem,6vw,5rem);line-height:0.95;text-transform:uppercase;color:var(--white);">EVERY SLAB.<br><span style="color:var(--orange);">EVERY POUR.</span></h1>
+      <p style="margin-top:1rem;color:var(--grey-200);max-width:600px;margin-left:auto;margin-right:auto;">A decade of concreting work in Melbourne, now serving Malta. Drag the sliders to see jobs progress from start to finish.</p>
     </div>
-    <!-- MALTA: FIRST POUR -->
-    <div style="padding:2rem 3rem 1rem;"><div class="section-label">Malta · June 2026</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">First Pour — Balfen Lands in Malta</div></div>
-    <div class="work-grid" style="margin-bottom:4px;">
-      <div class="work-item featured"><img src="./images/pour-1.jpg" alt="First pour Malta" onerror="this.parentElement.style.background='#1E1E1A'"><div class="work-item-info"><div class="work-item-sub">Malta · June 2026</div><div class="work-item-title">First Pour — The Wave Starts Here</div></div></div>
-      <div class="work-item"><img src="./images/pour-2.jpg" alt="Pour detail" onerror="this.parentElement.style.background='#2C2C28'"><div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Slab Detail</div></div></div>
-      <div class="work-item"><img src="./images/pour-3.jpg" alt="Pour setup" onerror="this.parentElement.style.background='#1E1E1A'"><div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Pour Setup</div></div></div>
-      <div class="work-item"><img src="./images/pour-4.jpg" alt="Finished pour" onerror="this.parentElement.style.background='#2C2C28'"><div class="work-item-info"><div class="work-item-sub">Malta · 2026</div><div class="work-item-title">Finished Pour</div></div></div>
+
+    <div style="padding:2rem 3rem 1rem;"><div class="section-label">Malta &middot; June 2026</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">First Pour &mdash; Balfen Lands in Malta</div></div>
+    <div class="work-malta-gallery">
+      <div class="work-item"><img src="./images/pour-1.jpg" alt="First pour Malta" onerror="this.parentElement.style.background='#1E1E1A'"><div class="work-item-info"><div class="work-item-sub">Malta &middot; June 2026</div><div class="work-item-title">First Pour &mdash; The Wave Starts Here</div></div></div>
+      <div class="work-item"><img src="./images/pour-2.jpg" alt="Pour detail" onerror="this.parentElement.style.background='#2C2C28'"></div>
+      <div class="work-item"><img src="./images/pour-3.jpg" alt="Pour setup" onerror="this.parentElement.style.background='#1E1E1A'"></div>
+      <div class="work-item"><img src="./images/pour-4.jpg" alt="Pour finished" onerror="this.parentElement.style.background='#2C2C28'"></div>
     </div>
-    <!-- AU PORTFOLIO -->
-    <div style="padding:3rem 3rem 1rem;border-top:1px solid var(--grey-800);"><div class="section-label">Melbourne, Australia · Portfolio</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">10+ Years of Work</div></div>
+
+    <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Australia &middot; 10+ years</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">Multi-Stage Jobs &mdash; Drag to Compare</div></div>
+    <div class="work-groups">
+      <div class="job-group reveal">
+        <div class="job-group-meta"><span class="section-label">grp-2 &middot; 2 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="compare-slider">
+          <div class="compare-before"><img src="./images/jobs/grp-2/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="compare-after"><img src="./images/jobs/grp-2/img-02.jpg" loading="lazy" alt="Final stage"></div>
+          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
+        </div>
+      </div>
+      <div class="job-group reveal">
+        <div class="job-group-meta"><span class="section-label">grp-9 &middot; 4 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="compare-slider">
+          <div class="compare-before"><img src="./images/jobs/grp-9/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="compare-after"><img src="./images/jobs/grp-9/img-04.jpg" loading="lazy" alt="Final stage"></div>
+          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
+        </div>
+        <div class="job-group-stages">
+          <img src="./images/jobs/grp-9/img-02.jpg" loading="lazy" alt="Stage 2">
+          <img src="./images/jobs/grp-9/img-03.jpg" loading="lazy" alt="Stage 3">
+        </div>
+      </div>
+      <div class="job-group reveal">
+        <div class="job-group-meta"><span class="section-label">grp-16 &middot; 3 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="compare-slider">
+          <div class="compare-before"><img src="./images/jobs/grp-16/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="compare-after"><img src="./images/jobs/grp-16/img-03.jpg" loading="lazy" alt="Final stage"></div>
+          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
+        </div>
+        <div class="job-group-stages">
+          <img src="./images/jobs/grp-16/img-02.jpg" loading="lazy" alt="Stage 2">
+        </div>
+      </div>
+      <div class="job-group reveal">
+        <div class="job-group-meta"><span class="section-label">grp-17 &middot; 3 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="compare-slider">
+          <div class="compare-before"><img src="./images/jobs/grp-17/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="compare-after"><img src="./images/jobs/grp-17/img-03.jpg" loading="lazy" alt="Final stage"></div>
+          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
+        </div>
+        <div class="job-group-stages">
+          <img src="./images/jobs/grp-17/img-02.jpg" loading="lazy" alt="Stage 2">
+        </div>
+      </div>
+      <div class="job-group reveal">
+        <div class="job-group-meta"><span class="section-label">grp-25 &middot; 3 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="compare-slider">
+          <div class="compare-before"><img src="./images/jobs/grp-25/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="compare-after"><img src="./images/jobs/grp-25/img-03.jpg" loading="lazy" alt="Final stage"></div>
+          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
+        </div>
+        <div class="job-group-stages">
+          <img src="./images/jobs/grp-25/img-02.jpg" loading="lazy" alt="Stage 2">
+        </div>
+      </div>
+      <div class="job-group reveal">
+        <div class="job-group-meta"><span class="section-label">grp-32 &middot; 2 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="compare-slider">
+          <div class="compare-before"><img src="./images/jobs/grp-32/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="compare-after"><img src="./images/jobs/grp-32/img-02.jpg" loading="lazy" alt="Final stage"></div>
+          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Australia &middot; The Archive</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">138 Individual Jobs</div></div>
     <div class="work-singles-grid" id="au-portfolio">
-      <div class="work-single reveal"><img src="./images/jobs/job-01/img-01.jpg" loading="lazy" alt="AU Portfolio 001"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-01/img-02.jpg" loading="lazy" alt="AU Portfolio 002"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-02/img-01.jpg" loading="lazy" alt="AU Portfolio 003"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-02/img-02.jpg" loading="lazy" alt="AU Portfolio 004"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-03/img-01.jpg" loading="lazy" alt="AU Portfolio 005"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-03/img-02.jpg" loading="lazy" alt="AU Portfolio 006"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-03/img-03.jpg" loading="lazy" alt="AU Portfolio 007"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-03/img-04.jpg" loading="lazy" alt="AU Portfolio 008"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-03/img-05.jpg" loading="lazy" alt="AU Portfolio 009"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-03/img-06.jpg" loading="lazy" alt="AU Portfolio 010"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-04/img-01.jpg" loading="lazy" alt="AU Portfolio 011"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-05/img-01.jpg" loading="lazy" alt="AU Portfolio 012"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-06/img-01.jpg" loading="lazy" alt="AU Portfolio 013"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-06/img-02.jpg" loading="lazy" alt="AU Portfolio 014"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-06/img-03.jpg" loading="lazy" alt="AU Portfolio 015"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-07/img-01.jpg" loading="lazy" alt="AU Portfolio 016"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-07/img-02.jpg" loading="lazy" alt="AU Portfolio 017"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-08/img-01.jpg" loading="lazy" alt="AU Portfolio 018"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-09/img-01.jpg" loading="lazy" alt="AU Portfolio 019"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-09/img-02.jpg" loading="lazy" alt="AU Portfolio 020"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-10/img-01.jpg" loading="lazy" alt="AU Portfolio 021"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-11/img-01.jpg" loading="lazy" alt="AU Portfolio 022"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-12/img-01.jpg" loading="lazy" alt="AU Portfolio 023"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-13/img-01.jpg" loading="lazy" alt="AU Portfolio 024"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-14/img-01.jpg" loading="lazy" alt="AU Portfolio 025"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-15/img-01.jpg" loading="lazy" alt="AU Portfolio 026"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-16/img-01.jpg" loading="lazy" alt="AU Portfolio 027"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-16/img-02.jpg" loading="lazy" alt="AU Portfolio 028"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-16/img-03.jpg" loading="lazy" alt="AU Portfolio 029"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-17/img-01.jpg" loading="lazy" alt="AU Portfolio 030"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-17/img-02.jpg" loading="lazy" alt="AU Portfolio 031"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-17/img-03.jpg" loading="lazy" alt="AU Portfolio 032"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-17/img-04.jpg" loading="lazy" alt="AU Portfolio 033"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-17/img-05.jpg" loading="lazy" alt="AU Portfolio 034"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-18/img-01.jpg" loading="lazy" alt="AU Portfolio 035"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-18/img-02.jpg" loading="lazy" alt="AU Portfolio 036"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-19/img-01.jpg" loading="lazy" alt="AU Portfolio 037"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-19/img-02.jpg" loading="lazy" alt="AU Portfolio 038"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-19/img-03.jpg" loading="lazy" alt="AU Portfolio 039"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-19/img-04.jpg" loading="lazy" alt="AU Portfolio 040"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-20/img-01.jpg" loading="lazy" alt="AU Portfolio 041"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-20/img-02.jpg" loading="lazy" alt="AU Portfolio 042"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-20/img-03.jpg" loading="lazy" alt="AU Portfolio 043"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-20/img-04.jpg" loading="lazy" alt="AU Portfolio 044"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-21/img-01.jpg" loading="lazy" alt="AU Portfolio 045"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-21/img-02.jpg" loading="lazy" alt="AU Portfolio 046"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-21/img-03.jpg" loading="lazy" alt="AU Portfolio 047"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-22/img-01.jpg" loading="lazy" alt="AU Portfolio 048"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-23/img-01.jpg" loading="lazy" alt="AU Portfolio 049"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-24/img-01.jpg" loading="lazy" alt="AU Portfolio 050"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-24/img-02.jpg" loading="lazy" alt="AU Portfolio 051"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-24/img-03.jpg" loading="lazy" alt="AU Portfolio 052"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-25/img-01.jpg" loading="lazy" alt="AU Portfolio 053"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-26/img-01.jpg" loading="lazy" alt="AU Portfolio 054"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-27/img-01.jpg" loading="lazy" alt="AU Portfolio 055"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-28/img-01.jpg" loading="lazy" alt="AU Portfolio 056"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-28/img-02.jpg" loading="lazy" alt="AU Portfolio 057"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-28/img-03.jpg" loading="lazy" alt="AU Portfolio 058"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-29/img-01.jpg" loading="lazy" alt="AU Portfolio 059"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-29/img-02.jpg" loading="lazy" alt="AU Portfolio 060"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-29/img-03.jpg" loading="lazy" alt="AU Portfolio 061"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-30/img-01.jpg" loading="lazy" alt="AU Portfolio 062"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-30/img-02.jpg" loading="lazy" alt="AU Portfolio 063"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-30/img-03.jpg" loading="lazy" alt="AU Portfolio 064"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-30/img-04.jpg" loading="lazy" alt="AU Portfolio 065"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-30/img-05.jpg" loading="lazy" alt="AU Portfolio 066"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-31/img-01.jpg" loading="lazy" alt="AU Portfolio 067"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-31/img-02.jpg" loading="lazy" alt="AU Portfolio 068"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-31/img-03.jpg" loading="lazy" alt="AU Portfolio 069"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-31/img-04.jpg" loading="lazy" alt="AU Portfolio 070"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-32/img-01.jpg" loading="lazy" alt="AU Portfolio 071"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-32/img-02.jpg" loading="lazy" alt="AU Portfolio 072"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-32/img-03.jpg" loading="lazy" alt="AU Portfolio 073"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-33/img-01.jpg" loading="lazy" alt="AU Portfolio 074"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-33/img-02.jpg" loading="lazy" alt="AU Portfolio 075"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-33/img-03.jpg" loading="lazy" alt="AU Portfolio 076"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-34/img-01.jpg" loading="lazy" alt="AU Portfolio 077"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-34/img-02.jpg" loading="lazy" alt="AU Portfolio 078"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-34/img-03.jpg" loading="lazy" alt="AU Portfolio 079"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-35/img-01.jpg" loading="lazy" alt="AU Portfolio 080"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-35/img-02.jpg" loading="lazy" alt="AU Portfolio 081"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-35/img-03.jpg" loading="lazy" alt="AU Portfolio 082"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-35/img-04.jpg" loading="lazy" alt="AU Portfolio 083"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-35/img-05.jpg" loading="lazy" alt="AU Portfolio 084"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-35/img-06.jpg" loading="lazy" alt="AU Portfolio 085"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-35/img-07.jpg" loading="lazy" alt="AU Portfolio 086"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-36/img-01.jpg" loading="lazy" alt="AU Portfolio 087"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-36/img-02.jpg" loading="lazy" alt="AU Portfolio 088"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-36/img-03.jpg" loading="lazy" alt="AU Portfolio 089"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-36/img-04.jpg" loading="lazy" alt="AU Portfolio 090"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-36/img-05.jpg" loading="lazy" alt="AU Portfolio 091"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-37/img-01.jpg" loading="lazy" alt="AU Portfolio 092"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-37/img-02.jpg" loading="lazy" alt="AU Portfolio 093"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-37/img-03.jpg" loading="lazy" alt="AU Portfolio 094"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-37/img-04.jpg" loading="lazy" alt="AU Portfolio 095"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-37/img-05.jpg" loading="lazy" alt="AU Portfolio 096"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-38/img-01.jpg" loading="lazy" alt="AU Portfolio 097"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-38/img-02.jpg" loading="lazy" alt="AU Portfolio 098"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-38/img-03.jpg" loading="lazy" alt="AU Portfolio 099"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-38/img-04.jpg" loading="lazy" alt="AU Portfolio 100"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-38/img-05.jpg" loading="lazy" alt="AU Portfolio 101"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-39/img-01.jpg" loading="lazy" alt="AU Portfolio 102"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-39/img-02.jpg" loading="lazy" alt="AU Portfolio 103"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-40/img-01.jpg" loading="lazy" alt="AU Portfolio 104"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-40/img-02.jpg" loading="lazy" alt="AU Portfolio 105"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-41/img-01.jpg" loading="lazy" alt="AU Portfolio 106"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-41/img-02.jpg" loading="lazy" alt="AU Portfolio 107"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-41/img-03.jpg" loading="lazy" alt="AU Portfolio 108"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-41/img-04.jpg" loading="lazy" alt="AU Portfolio 109"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-41/img-05.jpg" loading="lazy" alt="AU Portfolio 110"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-42/img-01.jpg" loading="lazy" alt="AU Portfolio 111"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-42/img-02.jpg" loading="lazy" alt="AU Portfolio 112"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-42/img-03.jpg" loading="lazy" alt="AU Portfolio 113"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-42/img-04.jpg" loading="lazy" alt="AU Portfolio 114"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-43/img-01.jpg" loading="lazy" alt="AU Portfolio 115"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-44/img-01.jpg" loading="lazy" alt="AU Portfolio 116"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-45/img-01.jpg" loading="lazy" alt="AU Portfolio 117"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-45/img-02.jpg" loading="lazy" alt="AU Portfolio 118"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-45/img-03.jpg" loading="lazy" alt="AU Portfolio 119"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-46/img-01.jpg" loading="lazy" alt="AU Portfolio 120"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-46/img-02.jpg" loading="lazy" alt="AU Portfolio 121"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-47/img-01.jpg" loading="lazy" alt="AU Portfolio 122"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-47/img-02.jpg" loading="lazy" alt="AU Portfolio 123"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-47/img-03.jpg" loading="lazy" alt="AU Portfolio 124"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-48/img-01.jpg" loading="lazy" alt="AU Portfolio 125"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-48/img-02.jpg" loading="lazy" alt="AU Portfolio 126"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-48/img-03.jpg" loading="lazy" alt="AU Portfolio 127"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-49/img-01.jpg" loading="lazy" alt="AU Portfolio 128"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-49/img-02.jpg" loading="lazy" alt="AU Portfolio 129"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-49/img-03.jpg" loading="lazy" alt="AU Portfolio 130"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-49/img-04.jpg" loading="lazy" alt="AU Portfolio 131"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-49/img-05.jpg" loading="lazy" alt="AU Portfolio 132"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-50/img-01.jpg" loading="lazy" alt="AU Portfolio 133"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-50/img-02.jpg" loading="lazy" alt="AU Portfolio 134"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-51/img-01.jpg" loading="lazy" alt="AU Portfolio 135"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-52/img-01.jpg" loading="lazy" alt="AU Portfolio 136"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-53/img-01.jpg" loading="lazy" alt="AU Portfolio 137"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-53/img-02.jpg" loading="lazy" alt="AU Portfolio 138"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-53/img-03.jpg" loading="lazy" alt="AU Portfolio 139"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-53/img-04.jpg" loading="lazy" alt="AU Portfolio 140"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-54/img-01.jpg" loading="lazy" alt="AU Portfolio 141"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-55/img-01.jpg" loading="lazy" alt="AU Portfolio 142"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-55/img-02.jpg" loading="lazy" alt="AU Portfolio 143"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-55/img-03.jpg" loading="lazy" alt="AU Portfolio 144"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-56/img-01.jpg" loading="lazy" alt="AU Portfolio 145"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-56/img-02.jpg" loading="lazy" alt="AU Portfolio 146"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-56/img-03.jpg" loading="lazy" alt="AU Portfolio 147"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-57/img-01.jpg" loading="lazy" alt="AU Portfolio 148"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-57/img-02.jpg" loading="lazy" alt="AU Portfolio 149"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-57/img-03.jpg" loading="lazy" alt="AU Portfolio 150"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-57/img-04.jpg" loading="lazy" alt="AU Portfolio 151"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-58/img-01.jpg" loading="lazy" alt="AU Portfolio 152"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-58/img-02.jpg" loading="lazy" alt="AU Portfolio 153"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-58/img-03.jpg" loading="lazy" alt="AU Portfolio 154"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-58/img-04.jpg" loading="lazy" alt="AU Portfolio 155"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-58/img-05.jpg" loading="lazy" alt="AU Portfolio 156"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-58/img-06.jpg" loading="lazy" alt="AU Portfolio 157"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-58/img-07.jpg" loading="lazy" alt="AU Portfolio 158"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-58/img-08.jpg" loading="lazy" alt="AU Portfolio 159"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-58/img-09.jpg" loading="lazy" alt="AU Portfolio 160"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-59/img-01.jpg" loading="lazy" alt="AU Portfolio 161"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-59/img-02.jpg" loading="lazy" alt="AU Portfolio 162"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-60/img-01.jpg" loading="lazy" alt="AU Portfolio 163"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-60/img-02.jpg" loading="lazy" alt="AU Portfolio 164"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-61/img-01.jpg" loading="lazy" alt="AU Portfolio 165"></div>
-      <div class="work-single reveal"><img src="./images/jobs/job-61/img-02.jpg" loading="lazy" alt="AU Portfolio 166"></div>
-    </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-02/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-02/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-03/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-03/img-06.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-03/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-03/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-03/img-04.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-03/img-05.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">6 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-04/img-01.jpg" loading="lazy" alt="AU Portfolio Job 04">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-05/img-01.jpg" loading="lazy" alt="AU Portfolio Job 05">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-06/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-06/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-06/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-07/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-07/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-08/img-01.jpg" loading="lazy" alt="AU Portfolio Job 08">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-09/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-09/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-10/img-01.jpg" loading="lazy" alt="AU Portfolio Job 10">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-11/img-01.jpg" loading="lazy" alt="AU Portfolio Job 11">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-12/img-01.jpg" loading="lazy" alt="AU Portfolio Job 12">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-13/img-01.jpg" loading="lazy" alt="AU Portfolio Job 13">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-14/img-01.jpg" loading="lazy" alt="AU Portfolio Job 14">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-15/img-01.jpg" loading="lazy" alt="AU Portfolio Job 15">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-16/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-16/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-16/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-17/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-17/img-05.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-17/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-17/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-17/img-04.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">5 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-18/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-18/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-19/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-19/img-04.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-19/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-19/img-03.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">4 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-20/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-20/img-04.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-20/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-20/img-03.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">4 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-21/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-21/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-21/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-22/img-01.jpg" loading="lazy" alt="AU Portfolio Job 22">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-23/img-01.jpg" loading="lazy" alt="AU Portfolio Job 23">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-24/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-24/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-24/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-25/img-01.jpg" loading="lazy" alt="AU Portfolio Job 25">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-26/img-01.jpg" loading="lazy" alt="AU Portfolio Job 26">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-27/img-01.jpg" loading="lazy" alt="AU Portfolio Job 27">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-28/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-28/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-28/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-29/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-29/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-29/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-30/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-30/img-05.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-30/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-30/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-30/img-04.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">5 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-31/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-31/img-04.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-31/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-31/img-03.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">4 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-32/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-32/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-32/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-33/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-33/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-33/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-34/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-34/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-34/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-35/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-35/img-07.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-35/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-35/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-35/img-04.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-35/img-05.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-35/img-06.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">7 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-36/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-36/img-05.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-36/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-36/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-36/img-04.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">5 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-37/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-37/img-05.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-37/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-37/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-37/img-04.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">5 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-38/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-38/img-05.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-38/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-38/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-38/img-04.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">5 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-39/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-39/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-40/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-40/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-41/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-41/img-05.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-41/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-41/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-41/img-04.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">5 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-42/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-42/img-04.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-42/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-42/img-03.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">4 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-43/img-01.jpg" loading="lazy" alt="AU Portfolio Job 43">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-44/img-01.jpg" loading="lazy" alt="AU Portfolio Job 44">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-45/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-45/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-45/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-46/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-46/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-47/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-47/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-47/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-48/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-48/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-48/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-49/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-49/img-05.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-49/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-49/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-49/img-04.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">5 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-50/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-50/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-51/img-01.jpg" loading="lazy" alt="AU Portfolio Job 51">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-52/img-01.jpg" loading="lazy" alt="AU Portfolio Job 52">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-53/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-53/img-04.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-53/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-53/img-03.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">4 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-single reveal">
-        <img src="./images/jobs/job-54/img-01.jpg" loading="lazy" alt="AU Portfolio Job 54">
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-55/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-55/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-55/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-56/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-56/img-03.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-56/img-02.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">3 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-57/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-57/img-04.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-57/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-57/img-03.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">4 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap job-multi reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-58/img-01.jpg" loading="lazy" alt="Start"></div>
-          <div class="compare-after"><img src="./images/jobs/job-58/img-09.jpg" loading="lazy" alt="Finish"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-thumbs">
-          <img src="./images/jobs/job-58/img-02.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-58/img-03.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-58/img-04.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-58/img-05.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-58/img-06.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-58/img-07.jpg" loading="lazy" alt="Stage">
-          <img src="./images/jobs/job-58/img-08.jpg" loading="lazy" alt="Stage">
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">9 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-59/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-59/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-60/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-60/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-61/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-61/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
-      </div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-001.jpg" loading="lazy" alt="Portfolio 001"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-002.jpg" loading="lazy" alt="Portfolio 002"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-003.jpg" loading="lazy" alt="Portfolio 003"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-004.jpg" loading="lazy" alt="Portfolio 004"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-005.jpg" loading="lazy" alt="Portfolio 005"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-006.jpg" loading="lazy" alt="Portfolio 006"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-007.jpg" loading="lazy" alt="Portfolio 007"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-008.jpg" loading="lazy" alt="Portfolio 008"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-009.jpg" loading="lazy" alt="Portfolio 009"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-010.jpg" loading="lazy" alt="Portfolio 010"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-011.jpg" loading="lazy" alt="Portfolio 011"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-012.jpg" loading="lazy" alt="Portfolio 012"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-013.jpg" loading="lazy" alt="Portfolio 013"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-014.jpg" loading="lazy" alt="Portfolio 014"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-015.jpg" loading="lazy" alt="Portfolio 015"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-016.jpg" loading="lazy" alt="Portfolio 016"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-017.jpg" loading="lazy" alt="Portfolio 017"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-018.jpg" loading="lazy" alt="Portfolio 018"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-019.jpg" loading="lazy" alt="Portfolio 019"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-020.jpg" loading="lazy" alt="Portfolio 020"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-021.jpg" loading="lazy" alt="Portfolio 021"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-022.jpg" loading="lazy" alt="Portfolio 022"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-023.jpg" loading="lazy" alt="Portfolio 023"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-024.jpg" loading="lazy" alt="Portfolio 024"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-025.jpg" loading="lazy" alt="Portfolio 025"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-026.jpg" loading="lazy" alt="Portfolio 026"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-027.jpg" loading="lazy" alt="Portfolio 027"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-028.jpg" loading="lazy" alt="Portfolio 028"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-029.jpg" loading="lazy" alt="Portfolio 029"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-030.jpg" loading="lazy" alt="Portfolio 030"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-031.jpg" loading="lazy" alt="Portfolio 031"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-032.jpg" loading="lazy" alt="Portfolio 032"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-033.jpg" loading="lazy" alt="Portfolio 033"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-034.jpg" loading="lazy" alt="Portfolio 034"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-035.jpg" loading="lazy" alt="Portfolio 035"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-036.jpg" loading="lazy" alt="Portfolio 036"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-037.jpg" loading="lazy" alt="Portfolio 037"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-038.jpg" loading="lazy" alt="Portfolio 038"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-039.jpg" loading="lazy" alt="Portfolio 039"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-040.jpg" loading="lazy" alt="Portfolio 040"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-041.jpg" loading="lazy" alt="Portfolio 041"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-042.jpg" loading="lazy" alt="Portfolio 042"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-043.jpg" loading="lazy" alt="Portfolio 043"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-044.jpg" loading="lazy" alt="Portfolio 044"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-045.jpg" loading="lazy" alt="Portfolio 045"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-046.jpg" loading="lazy" alt="Portfolio 046"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-047.jpg" loading="lazy" alt="Portfolio 047"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-048.jpg" loading="lazy" alt="Portfolio 048"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-049.jpg" loading="lazy" alt="Portfolio 049"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-050.jpg" loading="lazy" alt="Portfolio 050"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-051.jpg" loading="lazy" alt="Portfolio 051"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-052.jpg" loading="lazy" alt="Portfolio 052"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-053.jpg" loading="lazy" alt="Portfolio 053"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-054.jpg" loading="lazy" alt="Portfolio 054"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-055.jpg" loading="lazy" alt="Portfolio 055"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-056.jpg" loading="lazy" alt="Portfolio 056"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-057.jpg" loading="lazy" alt="Portfolio 057"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-058.jpg" loading="lazy" alt="Portfolio 058"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-059.jpg" loading="lazy" alt="Portfolio 059"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-060.jpg" loading="lazy" alt="Portfolio 060"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-061.jpg" loading="lazy" alt="Portfolio 061"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-062.jpg" loading="lazy" alt="Portfolio 062"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-063.jpg" loading="lazy" alt="Portfolio 063"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-064.jpg" loading="lazy" alt="Portfolio 064"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-065.jpg" loading="lazy" alt="Portfolio 065"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-066.jpg" loading="lazy" alt="Portfolio 066"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-067.jpg" loading="lazy" alt="Portfolio 067"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-068.jpg" loading="lazy" alt="Portfolio 068"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-069.jpg" loading="lazy" alt="Portfolio 069"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-070.jpg" loading="lazy" alt="Portfolio 070"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-071.jpg" loading="lazy" alt="Portfolio 071"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-072.jpg" loading="lazy" alt="Portfolio 072"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-073.jpg" loading="lazy" alt="Portfolio 073"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-074.jpg" loading="lazy" alt="Portfolio 074"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-075.jpg" loading="lazy" alt="Portfolio 075"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-076.jpg" loading="lazy" alt="Portfolio 076"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-077.jpg" loading="lazy" alt="Portfolio 077"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-078.jpg" loading="lazy" alt="Portfolio 078"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-079.jpg" loading="lazy" alt="Portfolio 079"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-080.jpg" loading="lazy" alt="Portfolio 080"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-081.jpg" loading="lazy" alt="Portfolio 081"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-082.jpg" loading="lazy" alt="Portfolio 082"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-083.jpg" loading="lazy" alt="Portfolio 083"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-084.jpg" loading="lazy" alt="Portfolio 084"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-085.jpg" loading="lazy" alt="Portfolio 085"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-086.jpg" loading="lazy" alt="Portfolio 086"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-087.jpg" loading="lazy" alt="Portfolio 087"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-088.jpg" loading="lazy" alt="Portfolio 088"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-089.jpg" loading="lazy" alt="Portfolio 089"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-090.jpg" loading="lazy" alt="Portfolio 090"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-091.jpg" loading="lazy" alt="Portfolio 091"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-092.jpg" loading="lazy" alt="Portfolio 092"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-093.jpg" loading="lazy" alt="Portfolio 093"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-094.jpg" loading="lazy" alt="Portfolio 094"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-095.jpg" loading="lazy" alt="Portfolio 095"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-096.jpg" loading="lazy" alt="Portfolio 096"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-097.jpg" loading="lazy" alt="Portfolio 097"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-098.jpg" loading="lazy" alt="Portfolio 098"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-099.jpg" loading="lazy" alt="Portfolio 099"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-100.jpg" loading="lazy" alt="Portfolio 100"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-101.jpg" loading="lazy" alt="Portfolio 101"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-102.jpg" loading="lazy" alt="Portfolio 102"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-103.jpg" loading="lazy" alt="Portfolio 103"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-104.jpg" loading="lazy" alt="Portfolio 104"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-105.jpg" loading="lazy" alt="Portfolio 105"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-106.jpg" loading="lazy" alt="Portfolio 106"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-107.jpg" loading="lazy" alt="Portfolio 107"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-108.jpg" loading="lazy" alt="Portfolio 108"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-109.jpg" loading="lazy" alt="Portfolio 109"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-110.jpg" loading="lazy" alt="Portfolio 110"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-111.jpg" loading="lazy" alt="Portfolio 111"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-112.jpg" loading="lazy" alt="Portfolio 112"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-113.jpg" loading="lazy" alt="Portfolio 113"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-114.jpg" loading="lazy" alt="Portfolio 114"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-115.jpg" loading="lazy" alt="Portfolio 115"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-116.jpg" loading="lazy" alt="Portfolio 116"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-117.jpg" loading="lazy" alt="Portfolio 117"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-118.jpg" loading="lazy" alt="Portfolio 118"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-119.jpg" loading="lazy" alt="Portfolio 119"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-120.jpg" loading="lazy" alt="Portfolio 120"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-121.jpg" loading="lazy" alt="Portfolio 121"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-122.jpg" loading="lazy" alt="Portfolio 122"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-123.jpg" loading="lazy" alt="Portfolio 123"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-124.jpg" loading="lazy" alt="Portfolio 124"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-125.jpg" loading="lazy" alt="Portfolio 125"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-126.jpg" loading="lazy" alt="Portfolio 126"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-127.jpg" loading="lazy" alt="Portfolio 127"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-128.jpg" loading="lazy" alt="Portfolio 128"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-129.jpg" loading="lazy" alt="Portfolio 129"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-130.jpg" loading="lazy" alt="Portfolio 130"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-131.jpg" loading="lazy" alt="Portfolio 131"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-132.jpg" loading="lazy" alt="Portfolio 132"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-133.jpg" loading="lazy" alt="Portfolio 133"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-134.jpg" loading="lazy" alt="Portfolio 134"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-135.jpg" loading="lazy" alt="Portfolio 135"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-136.jpg" loading="lazy" alt="Portfolio 136"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-137.jpg" loading="lazy" alt="Portfolio 137"></div>
+      <div class="work-single reveal"><img src="./images/jobs/solo/img-138.jpg" loading="lazy" alt="Portfolio 138"></div>
 
     </div>
   </section>

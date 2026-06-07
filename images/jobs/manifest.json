@@ -1,534 +1,55 @@
 [
     {
-        "job":  "job-01",
+        "group":  "grp-2",
         "count":  2,
         "images":  [
-                       "jobs/job-01/img-01.jpg",
-                       "jobs/job-01/img-02.jpg"
+                       "jobs/grp-2/img-01.jpg",
+                       "jobs/grp-2/img-02.jpg"
                    ]
     },
     {
-        "job":  "job-02",
-        "count":  2,
-        "images":  [
-                       "jobs/job-02/img-01.jpg",
-                       "jobs/job-02/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-03",
-        "count":  6,
-        "images":  [
-                       "jobs/job-03/img-01.jpg",
-                       "jobs/job-03/img-02.jpg",
-                       "jobs/job-03/img-03.jpg",
-                       "jobs/job-03/img-04.jpg",
-                       "jobs/job-03/img-05.jpg",
-                       "jobs/job-03/img-06.jpg"
-                   ]
-    },
-    {
-        "job":  "job-04",
-        "count":  1,
-        "images":  [
-                       "jobs/job-04/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-05",
-        "count":  1,
-        "images":  [
-                       "jobs/job-05/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-06",
-        "count":  3,
-        "images":  [
-                       "jobs/job-06/img-01.jpg",
-                       "jobs/job-06/img-02.jpg",
-                       "jobs/job-06/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-07",
-        "count":  2,
-        "images":  [
-                       "jobs/job-07/img-01.jpg",
-                       "jobs/job-07/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-08",
-        "count":  1,
-        "images":  [
-                       "jobs/job-08/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-09",
-        "count":  2,
-        "images":  [
-                       "jobs/job-09/img-01.jpg",
-                       "jobs/job-09/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-10",
-        "count":  1,
-        "images":  [
-                       "jobs/job-10/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-11",
-        "count":  1,
-        "images":  [
-                       "jobs/job-11/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-12",
-        "count":  1,
-        "images":  [
-                       "jobs/job-12/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-13",
-        "count":  1,
-        "images":  [
-                       "jobs/job-13/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-14",
-        "count":  1,
-        "images":  [
-                       "jobs/job-14/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-15",
-        "count":  1,
-        "images":  [
-                       "jobs/job-15/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-16",
-        "count":  3,
-        "images":  [
-                       "jobs/job-16/img-01.jpg",
-                       "jobs/job-16/img-02.jpg",
-                       "jobs/job-16/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-17",
-        "count":  5,
-        "images":  [
-                       "jobs/job-17/img-01.jpg",
-                       "jobs/job-17/img-02.jpg",
-                       "jobs/job-17/img-03.jpg",
-                       "jobs/job-17/img-04.jpg",
-                       "jobs/job-17/img-05.jpg"
-                   ]
-    },
-    {
-        "job":  "job-18",
-        "count":  2,
-        "images":  [
-                       "jobs/job-18/img-01.jpg",
-                       "jobs/job-18/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-19",
+        "group":  "grp-9",
         "count":  4,
         "images":  [
-                       "jobs/job-19/img-01.jpg",
-                       "jobs/job-19/img-02.jpg",
-                       "jobs/job-19/img-03.jpg",
-                       "jobs/job-19/img-04.jpg"
+                       "jobs/grp-9/img-01.jpg",
+                       "jobs/grp-9/img-02.jpg",
+                       "jobs/grp-9/img-03.jpg",
+                       "jobs/grp-9/img-04.jpg"
                    ]
     },
     {
-        "job":  "job-20",
-        "count":  4,
-        "images":  [
-                       "jobs/job-20/img-01.jpg",
-                       "jobs/job-20/img-02.jpg",
-                       "jobs/job-20/img-03.jpg",
-                       "jobs/job-20/img-04.jpg"
-                   ]
-    },
-    {
-        "job":  "job-21",
+        "group":  "grp-16",
         "count":  3,
         "images":  [
-                       "jobs/job-21/img-01.jpg",
-                       "jobs/job-21/img-02.jpg",
-                       "jobs/job-21/img-03.jpg"
+                       "jobs/grp-16/img-01.jpg",
+                       "jobs/grp-16/img-02.jpg",
+                       "jobs/grp-16/img-03.jpg"
                    ]
     },
     {
-        "job":  "job-22",
-        "count":  1,
-        "images":  [
-                       "jobs/job-22/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-23",
-        "count":  1,
-        "images":  [
-                       "jobs/job-23/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-24",
+        "group":  "grp-17",
         "count":  3,
         "images":  [
-                       "jobs/job-24/img-01.jpg",
-                       "jobs/job-24/img-02.jpg",
-                       "jobs/job-24/img-03.jpg"
+                       "jobs/grp-17/img-01.jpg",
+                       "jobs/grp-17/img-02.jpg",
+                       "jobs/grp-17/img-03.jpg"
                    ]
     },
     {
-        "job":  "job-25",
-        "count":  1,
-        "images":  [
-                       "jobs/job-25/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-26",
-        "count":  1,
-        "images":  [
-                       "jobs/job-26/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-27",
-        "count":  1,
-        "images":  [
-                       "jobs/job-27/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-28",
+        "group":  "grp-25",
         "count":  3,
         "images":  [
-                       "jobs/job-28/img-01.jpg",
-                       "jobs/job-28/img-02.jpg",
-                       "jobs/job-28/img-03.jpg"
+                       "jobs/grp-25/img-01.jpg",
+                       "jobs/grp-25/img-02.jpg",
+                       "jobs/grp-25/img-03.jpg"
                    ]
     },
     {
-        "job":  "job-29",
-        "count":  3,
-        "images":  [
-                       "jobs/job-29/img-01.jpg",
-                       "jobs/job-29/img-02.jpg",
-                       "jobs/job-29/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-30",
-        "count":  5,
-        "images":  [
-                       "jobs/job-30/img-01.jpg",
-                       "jobs/job-30/img-02.jpg",
-                       "jobs/job-30/img-03.jpg",
-                       "jobs/job-30/img-04.jpg",
-                       "jobs/job-30/img-05.jpg"
-                   ]
-    },
-    {
-        "job":  "job-31",
-        "count":  4,
-        "images":  [
-                       "jobs/job-31/img-01.jpg",
-                       "jobs/job-31/img-02.jpg",
-                       "jobs/job-31/img-03.jpg",
-                       "jobs/job-31/img-04.jpg"
-                   ]
-    },
-    {
-        "job":  "job-32",
-        "count":  3,
-        "images":  [
-                       "jobs/job-32/img-01.jpg",
-                       "jobs/job-32/img-02.jpg",
-                       "jobs/job-32/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-33",
-        "count":  3,
-        "images":  [
-                       "jobs/job-33/img-01.jpg",
-                       "jobs/job-33/img-02.jpg",
-                       "jobs/job-33/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-34",
-        "count":  3,
-        "images":  [
-                       "jobs/job-34/img-01.jpg",
-                       "jobs/job-34/img-02.jpg",
-                       "jobs/job-34/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-35",
-        "count":  7,
-        "images":  [
-                       "jobs/job-35/img-01.jpg",
-                       "jobs/job-35/img-02.jpg",
-                       "jobs/job-35/img-03.jpg",
-                       "jobs/job-35/img-04.jpg",
-                       "jobs/job-35/img-05.jpg",
-                       "jobs/job-35/img-06.jpg",
-                       "jobs/job-35/img-07.jpg"
-                   ]
-    },
-    {
-        "job":  "job-36",
-        "count":  5,
-        "images":  [
-                       "jobs/job-36/img-01.jpg",
-                       "jobs/job-36/img-02.jpg",
-                       "jobs/job-36/img-03.jpg",
-                       "jobs/job-36/img-04.jpg",
-                       "jobs/job-36/img-05.jpg"
-                   ]
-    },
-    {
-        "job":  "job-37",
-        "count":  5,
-        "images":  [
-                       "jobs/job-37/img-01.jpg",
-                       "jobs/job-37/img-02.jpg",
-                       "jobs/job-37/img-03.jpg",
-                       "jobs/job-37/img-04.jpg",
-                       "jobs/job-37/img-05.jpg"
-                   ]
-    },
-    {
-        "job":  "job-38",
-        "count":  5,
-        "images":  [
-                       "jobs/job-38/img-01.jpg",
-                       "jobs/job-38/img-02.jpg",
-                       "jobs/job-38/img-03.jpg",
-                       "jobs/job-38/img-04.jpg",
-                       "jobs/job-38/img-05.jpg"
-                   ]
-    },
-    {
-        "job":  "job-39",
+        "group":  "grp-32",
         "count":  2,
         "images":  [
-                       "jobs/job-39/img-01.jpg",
-                       "jobs/job-39/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-40",
-        "count":  2,
-        "images":  [
-                       "jobs/job-40/img-01.jpg",
-                       "jobs/job-40/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-41",
-        "count":  5,
-        "images":  [
-                       "jobs/job-41/img-01.jpg",
-                       "jobs/job-41/img-02.jpg",
-                       "jobs/job-41/img-03.jpg",
-                       "jobs/job-41/img-04.jpg",
-                       "jobs/job-41/img-05.jpg"
-                   ]
-    },
-    {
-        "job":  "job-42",
-        "count":  4,
-        "images":  [
-                       "jobs/job-42/img-01.jpg",
-                       "jobs/job-42/img-02.jpg",
-                       "jobs/job-42/img-03.jpg",
-                       "jobs/job-42/img-04.jpg"
-                   ]
-    },
-    {
-        "job":  "job-43",
-        "count":  1,
-        "images":  [
-                       "jobs/job-43/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-44",
-        "count":  1,
-        "images":  [
-                       "jobs/job-44/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-45",
-        "count":  3,
-        "images":  [
-                       "jobs/job-45/img-01.jpg",
-                       "jobs/job-45/img-02.jpg",
-                       "jobs/job-45/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-46",
-        "count":  2,
-        "images":  [
-                       "jobs/job-46/img-01.jpg",
-                       "jobs/job-46/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-47",
-        "count":  3,
-        "images":  [
-                       "jobs/job-47/img-01.jpg",
-                       "jobs/job-47/img-02.jpg",
-                       "jobs/job-47/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-48",
-        "count":  3,
-        "images":  [
-                       "jobs/job-48/img-01.jpg",
-                       "jobs/job-48/img-02.jpg",
-                       "jobs/job-48/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-49",
-        "count":  5,
-        "images":  [
-                       "jobs/job-49/img-01.jpg",
-                       "jobs/job-49/img-02.jpg",
-                       "jobs/job-49/img-03.jpg",
-                       "jobs/job-49/img-04.jpg",
-                       "jobs/job-49/img-05.jpg"
-                   ]
-    },
-    {
-        "job":  "job-50",
-        "count":  2,
-        "images":  [
-                       "jobs/job-50/img-01.jpg",
-                       "jobs/job-50/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-51",
-        "count":  1,
-        "images":  [
-                       "jobs/job-51/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-52",
-        "count":  1,
-        "images":  [
-                       "jobs/job-52/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-53",
-        "count":  4,
-        "images":  [
-                       "jobs/job-53/img-01.jpg",
-                       "jobs/job-53/img-02.jpg",
-                       "jobs/job-53/img-03.jpg",
-                       "jobs/job-53/img-04.jpg"
-                   ]
-    },
-    {
-        "job":  "job-54",
-        "count":  1,
-        "images":  [
-                       "jobs/job-54/img-01.jpg"
-                   ]
-    },
-    {
-        "job":  "job-55",
-        "count":  3,
-        "images":  [
-                       "jobs/job-55/img-01.jpg",
-                       "jobs/job-55/img-02.jpg",
-                       "jobs/job-55/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-56",
-        "count":  3,
-        "images":  [
-                       "jobs/job-56/img-01.jpg",
-                       "jobs/job-56/img-02.jpg",
-                       "jobs/job-56/img-03.jpg"
-                   ]
-    },
-    {
-        "job":  "job-57",
-        "count":  4,
-        "images":  [
-                       "jobs/job-57/img-01.jpg",
-                       "jobs/job-57/img-02.jpg",
-                       "jobs/job-57/img-03.jpg",
-                       "jobs/job-57/img-04.jpg"
-                   ]
-    },
-    {
-        "job":  "job-58",
-        "count":  9,
-        "images":  [
-                       "jobs/job-58/img-01.jpg",
-                       "jobs/job-58/img-02.jpg",
-                       "jobs/job-58/img-03.jpg",
-                       "jobs/job-58/img-04.jpg",
-                       "jobs/job-58/img-05.jpg",
-                       "jobs/job-58/img-06.jpg",
-                       "jobs/job-58/img-07.jpg",
-                       "jobs/job-58/img-08.jpg",
-                       "jobs/job-58/img-09.jpg"
-                   ]
-    },
-    {
-        "job":  "job-59",
-        "count":  2,
-        "images":  [
-                       "jobs/job-59/img-01.jpg",
-                       "jobs/job-59/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-60",
-        "count":  2,
-        "images":  [
-                       "jobs/job-60/img-01.jpg",
-                       "jobs/job-60/img-02.jpg"
-                   ]
-    },
-    {
-        "job":  "job-61",
-        "count":  2,
-        "images":  [
-                       "jobs/job-61/img-01.jpg",
-                       "jobs/job-61/img-02.jpg"
+                       "jobs/grp-32/img-01.jpg",
+                       "jobs/grp-32/img-02.jpg"
                    ]
     }
 ]
