@@ -3,8 +3,8 @@
         "group":  "grp-2",
         "count":  2,
         "images":  [
-                       "jobs/grp-2/img-01.jpg",
-                       "jobs/grp-2/img-02.jpg"
+                       "jobs/grp-2/img-02.jpg",
+                       "jobs/grp-2/img-01.jpg"
                    ]
     },
     {
@@ -48,8 +48,8 @@
         "group":  "grp-32",
         "count":  2,
         "images":  [
-                       "jobs/grp-32/img-01.jpg",
-                       "jobs/grp-32/img-02.jpg"
+                       "jobs/grp-32/img-02.jpg",
+                       "jobs/grp-32/img-01.jpg"
                    ]
     }
 ]
