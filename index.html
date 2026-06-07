@@ -121,10 +121,10 @@
     /* ── HOME: HERO ── */
     .hero {
       min-height: calc(100vh - 102px);
-      display: grid;
-      grid-template-columns: 1fr 42%;
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
     }
     .hero-text {
       padding: 5rem 4rem 5rem 3rem;
@@ -133,6 +133,8 @@
       justify-content: center;
       position: relative;
       z-index: 2;
+      max-width: 54%;
+      flex-shrink: 0;
     }
     .hero-eyebrow {
       font-family: var(--font-display);
@@ -201,21 +203,23 @@
     }
     .btn-ghost:hover { border-color: var(--cream); }
     .hero-photo {
-      position: relative;
+      position: absolute;
+      inset: 0;
       overflow: hidden;
     }
     .hero-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      filter: brightness(0.82) contrast(1.05);
+      object-position: 65% center;
+      filter: none;
       transition: transform 8s var(--ease);
     }
     .hero-photo:hover img { transform: scale(1.03); }
     .hero-photo-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, var(--black) 0%, rgba(10,10,8,0.5) 45%, transparent 65%);
+      background: linear-gradient(90deg, rgba(10,10,8,0.82) 0%, rgba(10,10,8,0.45) 32%, rgba(10,10,8,0.08) 56%, transparent 72%);
       z-index: 1;
     }
     .hero-stats {
@@ -421,8 +425,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
-      .hero { grid-template-columns: 1fr; }
-      .hero-photo { height: 45vw; }
+      .hero-text { max-width: 90%; }
       .about-grid { grid-template-columns: 1fr; gap: 3rem; }
       .services-grid { grid-template-columns: 1fr 1fr; }
       .contact-grid { grid-template-columns: 1fr; }
@@ -472,7 +475,11 @@
     .job-label { font-family: var(--font-display); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400); }
     .job-stages { font-family: var(--font-display); font-weight: 700; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
     @media (max-width: 900px) { .jobs-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .jobs-grid { grid-template-columns: 1fr; } }  </style>
+    @media (max-width: 480px) { .jobs-grid { grid-template-columns: 1fr; } }    .logo-wordmark { font-family: var(--font-display); font-weight: 900; font-size: 1.4rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream); cursor: pointer; }
+    .logo-dot { color: var(--orange); margin: 0 0.2em; font-size: 0.7em; vertical-align: middle; }
+    .nav-logo { display: flex; align-items: center; gap: 0; }
+    .nav-logo img:not([src]) { display: none; }
+  </style>
 </head>
 <body>
 
@@ -487,7 +494,7 @@
 
   <!-- NAV -->
   <nav id="main-nav">
-    <div class="nav-logo" onclick="showPage('home')"><img src="./images/logo-white.png" alt="Balfen Group" style="height:42px;display:block;cursor:pointer"></div>
+    <div class="nav-logo" onclick="showPage('home')"><img src="./images/logo-white.png" alt="" style="height:42px;display:block;cursor:pointer" onerror="this.remove()"><span class="logo-wordmark">BALFEN<span class="logo-dot">·</span>GROUP</span></div>
     <div class="nav-links" id="nav-links">
       <a href="#" onclick="showPage('work'); return false;" data-page="work">Work</a>
       <a href="#" onclick="showPage('services'); return false;" data-page="services">Services</a>
@@ -1449,7 +1456,7 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-brand"><img src="./images/logo-white.png" alt="Balfen Group" style="height:32px;display:block"></div>
+    <div class="footer-brand"><img src="./images/logo-white.png" alt="" style="height:30px;display:block" onerror="this.remove()"><span class="logo-wordmark" style="font-size:1.1rem">BALFEN<span class="logo-dot">·</span>GROUP</span></div>
     <div class="footer-links">
       <a href="#" onclick="showPage('work');return false;">Work</a>
       <a href="#" onclick="showPage('services');return false;">Services</a>
