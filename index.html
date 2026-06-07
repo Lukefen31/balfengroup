@@ -447,7 +447,14 @@
       footer { padding: 2rem 1.5rem; flex-direction: column; align-items: flex-start; gap: 1.25rem; }
       .form-row { grid-template-columns: 1fr; }
     }
-    /* ── JOB CARDS + COMPARE SLIDER ── */
+    /* ── AU PORTFOLIO SINGLES ── */
+    .work-singles-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; padding: 4px; }
+    .work-single { position: relative; overflow: hidden; aspect-ratio: 4/3; background: var(--grey-800); }
+    .work-single img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.82); transition: filter 0.4s, transform 0.6s var(--ease); }
+    .work-single:hover img { filter: brightness(1); transform: scale(1.04); }
+    @media (max-width: 1024px) { .work-singles-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px) { .work-singles-grid { grid-template-columns: repeat(2, 1fr); } }
+    /* ── OLD JOB CARDS ── */
     .jobs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; padding: 4px; }
     .job-card { position: relative; background: var(--grey-900); overflow: hidden; }
     .job-card.job-single img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; filter: brightness(0.85); transition: filter 0.4s; }
@@ -620,13 +627,174 @@
     </div>
     <!-- AU PORTFOLIO -->
     <div style="padding:3rem 3rem 1rem;border-top:1px solid var(--grey-800);"><div class="section-label">Melbourne, Australia · Portfolio</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">10+ Years of Work</div></div>
-    <div class="jobs-grid" id="au-portfolio">
-      <div class="job-card job-compare-wrap reveal">
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/job-01/img-01.jpg" loading="lazy" alt="Before"></div>
-          <div class="compare-after"><img src="./images/jobs/job-01/img-02.jpg" loading="lazy" alt="After"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
+    <div class="work-singles-grid" id="au-portfolio">
+      <div class="work-single reveal"><img src="./images/jobs/job-01/img-01.jpg" loading="lazy" alt="AU Portfolio 001"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-01/img-02.jpg" loading="lazy" alt="AU Portfolio 002"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-02/img-01.jpg" loading="lazy" alt="AU Portfolio 003"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-02/img-02.jpg" loading="lazy" alt="AU Portfolio 004"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-03/img-01.jpg" loading="lazy" alt="AU Portfolio 005"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-03/img-02.jpg" loading="lazy" alt="AU Portfolio 006"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-03/img-03.jpg" loading="lazy" alt="AU Portfolio 007"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-03/img-04.jpg" loading="lazy" alt="AU Portfolio 008"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-03/img-05.jpg" loading="lazy" alt="AU Portfolio 009"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-03/img-06.jpg" loading="lazy" alt="AU Portfolio 010"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-04/img-01.jpg" loading="lazy" alt="AU Portfolio 011"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-05/img-01.jpg" loading="lazy" alt="AU Portfolio 012"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-06/img-01.jpg" loading="lazy" alt="AU Portfolio 013"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-06/img-02.jpg" loading="lazy" alt="AU Portfolio 014"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-06/img-03.jpg" loading="lazy" alt="AU Portfolio 015"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-07/img-01.jpg" loading="lazy" alt="AU Portfolio 016"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-07/img-02.jpg" loading="lazy" alt="AU Portfolio 017"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-08/img-01.jpg" loading="lazy" alt="AU Portfolio 018"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-09/img-01.jpg" loading="lazy" alt="AU Portfolio 019"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-09/img-02.jpg" loading="lazy" alt="AU Portfolio 020"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-10/img-01.jpg" loading="lazy" alt="AU Portfolio 021"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-11/img-01.jpg" loading="lazy" alt="AU Portfolio 022"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-12/img-01.jpg" loading="lazy" alt="AU Portfolio 023"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-13/img-01.jpg" loading="lazy" alt="AU Portfolio 024"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-14/img-01.jpg" loading="lazy" alt="AU Portfolio 025"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-15/img-01.jpg" loading="lazy" alt="AU Portfolio 026"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-16/img-01.jpg" loading="lazy" alt="AU Portfolio 027"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-16/img-02.jpg" loading="lazy" alt="AU Portfolio 028"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-16/img-03.jpg" loading="lazy" alt="AU Portfolio 029"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-17/img-01.jpg" loading="lazy" alt="AU Portfolio 030"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-17/img-02.jpg" loading="lazy" alt="AU Portfolio 031"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-17/img-03.jpg" loading="lazy" alt="AU Portfolio 032"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-17/img-04.jpg" loading="lazy" alt="AU Portfolio 033"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-17/img-05.jpg" loading="lazy" alt="AU Portfolio 034"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-18/img-01.jpg" loading="lazy" alt="AU Portfolio 035"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-18/img-02.jpg" loading="lazy" alt="AU Portfolio 036"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-19/img-01.jpg" loading="lazy" alt="AU Portfolio 037"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-19/img-02.jpg" loading="lazy" alt="AU Portfolio 038"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-19/img-03.jpg" loading="lazy" alt="AU Portfolio 039"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-19/img-04.jpg" loading="lazy" alt="AU Portfolio 040"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-20/img-01.jpg" loading="lazy" alt="AU Portfolio 041"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-20/img-02.jpg" loading="lazy" alt="AU Portfolio 042"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-20/img-03.jpg" loading="lazy" alt="AU Portfolio 043"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-20/img-04.jpg" loading="lazy" alt="AU Portfolio 044"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-21/img-01.jpg" loading="lazy" alt="AU Portfolio 045"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-21/img-02.jpg" loading="lazy" alt="AU Portfolio 046"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-21/img-03.jpg" loading="lazy" alt="AU Portfolio 047"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-22/img-01.jpg" loading="lazy" alt="AU Portfolio 048"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-23/img-01.jpg" loading="lazy" alt="AU Portfolio 049"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-24/img-01.jpg" loading="lazy" alt="AU Portfolio 050"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-24/img-02.jpg" loading="lazy" alt="AU Portfolio 051"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-24/img-03.jpg" loading="lazy" alt="AU Portfolio 052"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-25/img-01.jpg" loading="lazy" alt="AU Portfolio 053"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-26/img-01.jpg" loading="lazy" alt="AU Portfolio 054"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-27/img-01.jpg" loading="lazy" alt="AU Portfolio 055"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-28/img-01.jpg" loading="lazy" alt="AU Portfolio 056"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-28/img-02.jpg" loading="lazy" alt="AU Portfolio 057"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-28/img-03.jpg" loading="lazy" alt="AU Portfolio 058"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-29/img-01.jpg" loading="lazy" alt="AU Portfolio 059"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-29/img-02.jpg" loading="lazy" alt="AU Portfolio 060"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-29/img-03.jpg" loading="lazy" alt="AU Portfolio 061"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-30/img-01.jpg" loading="lazy" alt="AU Portfolio 062"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-30/img-02.jpg" loading="lazy" alt="AU Portfolio 063"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-30/img-03.jpg" loading="lazy" alt="AU Portfolio 064"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-30/img-04.jpg" loading="lazy" alt="AU Portfolio 065"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-30/img-05.jpg" loading="lazy" alt="AU Portfolio 066"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-31/img-01.jpg" loading="lazy" alt="AU Portfolio 067"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-31/img-02.jpg" loading="lazy" alt="AU Portfolio 068"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-31/img-03.jpg" loading="lazy" alt="AU Portfolio 069"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-31/img-04.jpg" loading="lazy" alt="AU Portfolio 070"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-32/img-01.jpg" loading="lazy" alt="AU Portfolio 071"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-32/img-02.jpg" loading="lazy" alt="AU Portfolio 072"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-32/img-03.jpg" loading="lazy" alt="AU Portfolio 073"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-33/img-01.jpg" loading="lazy" alt="AU Portfolio 074"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-33/img-02.jpg" loading="lazy" alt="AU Portfolio 075"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-33/img-03.jpg" loading="lazy" alt="AU Portfolio 076"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-34/img-01.jpg" loading="lazy" alt="AU Portfolio 077"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-34/img-02.jpg" loading="lazy" alt="AU Portfolio 078"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-34/img-03.jpg" loading="lazy" alt="AU Portfolio 079"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-35/img-01.jpg" loading="lazy" alt="AU Portfolio 080"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-35/img-02.jpg" loading="lazy" alt="AU Portfolio 081"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-35/img-03.jpg" loading="lazy" alt="AU Portfolio 082"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-35/img-04.jpg" loading="lazy" alt="AU Portfolio 083"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-35/img-05.jpg" loading="lazy" alt="AU Portfolio 084"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-35/img-06.jpg" loading="lazy" alt="AU Portfolio 085"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-35/img-07.jpg" loading="lazy" alt="AU Portfolio 086"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-36/img-01.jpg" loading="lazy" alt="AU Portfolio 087"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-36/img-02.jpg" loading="lazy" alt="AU Portfolio 088"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-36/img-03.jpg" loading="lazy" alt="AU Portfolio 089"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-36/img-04.jpg" loading="lazy" alt="AU Portfolio 090"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-36/img-05.jpg" loading="lazy" alt="AU Portfolio 091"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-37/img-01.jpg" loading="lazy" alt="AU Portfolio 092"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-37/img-02.jpg" loading="lazy" alt="AU Portfolio 093"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-37/img-03.jpg" loading="lazy" alt="AU Portfolio 094"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-37/img-04.jpg" loading="lazy" alt="AU Portfolio 095"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-37/img-05.jpg" loading="lazy" alt="AU Portfolio 096"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-38/img-01.jpg" loading="lazy" alt="AU Portfolio 097"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-38/img-02.jpg" loading="lazy" alt="AU Portfolio 098"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-38/img-03.jpg" loading="lazy" alt="AU Portfolio 099"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-38/img-04.jpg" loading="lazy" alt="AU Portfolio 100"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-38/img-05.jpg" loading="lazy" alt="AU Portfolio 101"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-39/img-01.jpg" loading="lazy" alt="AU Portfolio 102"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-39/img-02.jpg" loading="lazy" alt="AU Portfolio 103"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-40/img-01.jpg" loading="lazy" alt="AU Portfolio 104"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-40/img-02.jpg" loading="lazy" alt="AU Portfolio 105"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-41/img-01.jpg" loading="lazy" alt="AU Portfolio 106"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-41/img-02.jpg" loading="lazy" alt="AU Portfolio 107"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-41/img-03.jpg" loading="lazy" alt="AU Portfolio 108"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-41/img-04.jpg" loading="lazy" alt="AU Portfolio 109"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-41/img-05.jpg" loading="lazy" alt="AU Portfolio 110"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-42/img-01.jpg" loading="lazy" alt="AU Portfolio 111"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-42/img-02.jpg" loading="lazy" alt="AU Portfolio 112"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-42/img-03.jpg" loading="lazy" alt="AU Portfolio 113"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-42/img-04.jpg" loading="lazy" alt="AU Portfolio 114"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-43/img-01.jpg" loading="lazy" alt="AU Portfolio 115"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-44/img-01.jpg" loading="lazy" alt="AU Portfolio 116"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-45/img-01.jpg" loading="lazy" alt="AU Portfolio 117"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-45/img-02.jpg" loading="lazy" alt="AU Portfolio 118"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-45/img-03.jpg" loading="lazy" alt="AU Portfolio 119"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-46/img-01.jpg" loading="lazy" alt="AU Portfolio 120"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-46/img-02.jpg" loading="lazy" alt="AU Portfolio 121"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-47/img-01.jpg" loading="lazy" alt="AU Portfolio 122"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-47/img-02.jpg" loading="lazy" alt="AU Portfolio 123"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-47/img-03.jpg" loading="lazy" alt="AU Portfolio 124"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-48/img-01.jpg" loading="lazy" alt="AU Portfolio 125"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-48/img-02.jpg" loading="lazy" alt="AU Portfolio 126"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-48/img-03.jpg" loading="lazy" alt="AU Portfolio 127"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-49/img-01.jpg" loading="lazy" alt="AU Portfolio 128"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-49/img-02.jpg" loading="lazy" alt="AU Portfolio 129"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-49/img-03.jpg" loading="lazy" alt="AU Portfolio 130"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-49/img-04.jpg" loading="lazy" alt="AU Portfolio 131"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-49/img-05.jpg" loading="lazy" alt="AU Portfolio 132"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-50/img-01.jpg" loading="lazy" alt="AU Portfolio 133"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-50/img-02.jpg" loading="lazy" alt="AU Portfolio 134"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-51/img-01.jpg" loading="lazy" alt="AU Portfolio 135"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-52/img-01.jpg" loading="lazy" alt="AU Portfolio 136"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-53/img-01.jpg" loading="lazy" alt="AU Portfolio 137"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-53/img-02.jpg" loading="lazy" alt="AU Portfolio 138"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-53/img-03.jpg" loading="lazy" alt="AU Portfolio 139"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-53/img-04.jpg" loading="lazy" alt="AU Portfolio 140"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-54/img-01.jpg" loading="lazy" alt="AU Portfolio 141"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-55/img-01.jpg" loading="lazy" alt="AU Portfolio 142"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-55/img-02.jpg" loading="lazy" alt="AU Portfolio 143"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-55/img-03.jpg" loading="lazy" alt="AU Portfolio 144"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-56/img-01.jpg" loading="lazy" alt="AU Portfolio 145"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-56/img-02.jpg" loading="lazy" alt="AU Portfolio 146"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-56/img-03.jpg" loading="lazy" alt="AU Portfolio 147"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-57/img-01.jpg" loading="lazy" alt="AU Portfolio 148"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-57/img-02.jpg" loading="lazy" alt="AU Portfolio 149"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-57/img-03.jpg" loading="lazy" alt="AU Portfolio 150"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-57/img-04.jpg" loading="lazy" alt="AU Portfolio 151"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-58/img-01.jpg" loading="lazy" alt="AU Portfolio 152"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-58/img-02.jpg" loading="lazy" alt="AU Portfolio 153"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-58/img-03.jpg" loading="lazy" alt="AU Portfolio 154"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-58/img-04.jpg" loading="lazy" alt="AU Portfolio 155"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-58/img-05.jpg" loading="lazy" alt="AU Portfolio 156"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-58/img-06.jpg" loading="lazy" alt="AU Portfolio 157"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-58/img-07.jpg" loading="lazy" alt="AU Portfolio 158"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-58/img-08.jpg" loading="lazy" alt="AU Portfolio 159"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-58/img-09.jpg" loading="lazy" alt="AU Portfolio 160"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-59/img-01.jpg" loading="lazy" alt="AU Portfolio 161"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-59/img-02.jpg" loading="lazy" alt="AU Portfolio 162"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-60/img-01.jpg" loading="lazy" alt="AU Portfolio 163"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-60/img-02.jpg" loading="lazy" alt="AU Portfolio 164"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-61/img-01.jpg" loading="lazy" alt="AU Portfolio 165"></div>
+      <div class="work-single reveal"><img src="./images/jobs/job-61/img-02.jpg" loading="lazy" alt="AU Portfolio 166"></div>
+    </div>
         <div class="job-meta"><span class="job-label">Melbourne � AU</span><span class="job-stages">2 stages � drag to compare</span></div>
       </div>
       <div class="job-card job-compare-wrap reveal">
@@ -1326,7 +1494,6 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
       history.pushState(null, '', '#' + name);
       triggerReveal();
-      if (name === 'work') setTimeout(initCompareSliders, 100);
     }
 
     // HANDLE HASH ON LOAD
@@ -1366,7 +1533,6 @@
 
     // INIT
     loadFromHash();
-    initCompareSliders();
     window.addEventListener('popstate', loadFromHash);
   </script>
 </body>
