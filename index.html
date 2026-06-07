@@ -510,20 +510,22 @@
     .job-group { width: 100%; margin-bottom: 4px; background: var(--grey-900); }
     .job-group-meta { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border-bottom: 1px solid var(--grey-800); }
     .job-group-hint { font-family: var(--font-display); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
-    .compare-slider { position: relative; overflow: hidden; aspect-ratio: 21/9; cursor: ew-resize; user-select: none; touch-action: none; width: 100%; }
+    .compare-slider { position: relative; overflow: hidden; aspect-ratio: 21/9; cursor: col-resize; user-select: none; touch-action: pan-y; width: 100%; }
     .compare-before, .compare-after { position: absolute; inset: 0; }
     .compare-after { clip-path: inset(0 50% 0 0); }
     .compare-before img, .compare-after img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
     .compare-divider { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: rgba(255,255,255,0.9); transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 12px rgba(0,0,0,0.5); }
     .compare-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 48px; height: 48px; border-radius: 50%; background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; color: #333; }
-        .job-group-strip { display: grid; gap: 2px; width: 100%; }
-    .job-group-strip.strip-3 { grid-template-columns: repeat(3, 1fr); }
-    .job-group-strip.strip-4 { grid-template-columns: repeat(4, 1fr); }
-    .strip-cell { aspect-ratio: 4/3; overflow: hidden; background: var(--grey-800); }
-    .strip-cell img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.85); transition: filter 0.4s, transform 0.6s var(--ease); }
-    .strip-cell:hover img { filter: brightness(1); transform: scale(1.04); }
+        .job-group-strip { display: flex; gap: 2px; width: 100%; height: 520px; }
+    .strip-cell { flex: 1; overflow: hidden; position: relative; cursor: pointer; transition: flex 0.6s cubic-bezier(0.16, 1, 0.3, 1); background: var(--grey-800); }
+    .strip-cell:hover { flex: 4; }
+    .strip-cell img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.7) saturate(0.85); transition: filter 0.5s, transform 0.7s var(--ease); transform: scale(1.05); }
+    .strip-cell:hover img { filter: brightness(1) saturate(1); transform: scale(1); }
+    .strip-cell::after { content: attr(data-stage); position: absolute; top: 1rem; left: 1rem; font-family: var(--font-display); font-weight: 900; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); background: rgba(0,0,0,0.6); padding: 0.35rem 0.65rem; backdrop-filter: blur(8px); border-left: 2px solid var(--orange); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
+    .strip-cell:hover::after { opacity: 1; }
     @media (max-width: 768px) {
-      .job-group-strip.strip-3, .job-group-strip.strip-4 { grid-template-columns: repeat(2, 1fr); }
+      .job-group-strip { height: 380px; }
+      .strip-cell:hover { flex: 3; }
     }
     .job-group-stages { display: flex; gap: 2px; padding: 2px 0; background: var(--grey-800); }
     .job-group-stages img { flex: 1; height: 140px; object-fit: cover; filter: brightness(0.85); transition: filter 0.3s; min-width: 0; }
@@ -679,7 +681,7 @@
     <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Australia &middot; 10+ years</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">Multi-Stage Jobs &mdash; Drag to Compare</div></div>
     <div class="work-groups">
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-2 &middot; before / after</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="job-group-meta"><span class="section-label">grp-2 &middot; before / after</span><span class="job-group-hint">Hover to compare &harr;</span></div>
         <div class="compare-slider">
           <div class="compare-before"><img src="./images/jobs/grp-2/img-01.jpg" loading="lazy" alt="Before"></div>
           <div class="compare-after"><img src="./images/jobs/grp-2/img-02.jpg" loading="lazy" alt="After"></div>
@@ -687,47 +689,46 @@
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-9 &middot; 4 stages</span></div>
+        <div class="job-group-meta"><span class="section-label">grp-9 &middot; 4 stages</span><span class="job-group-hint">Hover to expand</span></div>
         <div class="job-group-strip strip-4">
-          <div class="strip-cell"><img src="./images/jobs/grp-9/img-01.jpg" loading="lazy" alt="Stage"></div>
-          <div class="strip-cell"><img src="./images/jobs/grp-9/img-02.jpg" loading="lazy" alt="Stage"></div>
-          <div class="strip-cell"><img src="./images/jobs/grp-9/img-03.jpg" loading="lazy" alt="Stage"></div>
-          <div class="strip-cell"><img src="./images/jobs/grp-9/img-04.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell" data-stage="Stage 1"><img src="./images/jobs/grp-9/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="strip-cell" data-stage="Stage 2"><img src="./images/jobs/grp-9/img-02.jpg" loading="lazy" alt="Stage 2"></div>
+          <div class="strip-cell" data-stage="Stage 3"><img src="./images/jobs/grp-9/img-03.jpg" loading="lazy" alt="Stage 3"></div>
+          <div class="strip-cell" data-stage="Stage 4"><img src="./images/jobs/grp-9/img-04.jpg" loading="lazy" alt="Stage 4"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-16 &middot; 3 stages</span></div>
+        <div class="job-group-meta"><span class="section-label">grp-16 &middot; 3 stages</span><span class="job-group-hint">Hover to expand</span></div>
         <div class="job-group-strip strip-3">
-          <div class="strip-cell"><img src="./images/jobs/grp-16/img-01.jpg" loading="lazy" alt="Stage"></div>
-          <div class="strip-cell"><img src="./images/jobs/grp-16/img-02.jpg" loading="lazy" alt="Stage"></div>
-          <div class="strip-cell"><img src="./images/jobs/grp-16/img-03.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell" data-stage="Stage 1"><img src="./images/jobs/grp-16/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="strip-cell" data-stage="Stage 2"><img src="./images/jobs/grp-16/img-02.jpg" loading="lazy" alt="Stage 2"></div>
+          <div class="strip-cell" data-stage="Stage 3"><img src="./images/jobs/grp-16/img-03.jpg" loading="lazy" alt="Stage 3"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-17 &middot; 3 stages</span></div>
+        <div class="job-group-meta"><span class="section-label">grp-17 &middot; 3 stages</span><span class="job-group-hint">Hover to expand</span></div>
         <div class="job-group-strip strip-3">
-          <div class="strip-cell"><img src="./images/jobs/grp-17/img-01.jpg" loading="lazy" alt="Stage"></div>
-          <div class="strip-cell"><img src="./images/jobs/grp-17/img-02.jpg" loading="lazy" alt="Stage"></div>
-          <div class="strip-cell"><img src="./images/jobs/grp-17/img-03.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell" data-stage="Stage 1"><img src="./images/jobs/grp-17/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="strip-cell" data-stage="Stage 2"><img src="./images/jobs/grp-17/img-02.jpg" loading="lazy" alt="Stage 2"></div>
+          <div class="strip-cell" data-stage="Stage 3"><img src="./images/jobs/grp-17/img-03.jpg" loading="lazy" alt="Stage 3"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-25 &middot; 3 stages</span></div>
+        <div class="job-group-meta"><span class="section-label">grp-25 &middot; 3 stages</span><span class="job-group-hint">Hover to expand</span></div>
         <div class="job-group-strip strip-3">
-          <div class="strip-cell"><img src="./images/jobs/grp-25/img-01.jpg" loading="lazy" alt="Stage"></div>
-          <div class="strip-cell"><img src="./images/jobs/grp-25/img-02.jpg" loading="lazy" alt="Stage"></div>
-          <div class="strip-cell"><img src="./images/jobs/grp-25/img-03.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell" data-stage="Stage 1"><img src="./images/jobs/grp-25/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="strip-cell" data-stage="Stage 2"><img src="./images/jobs/grp-25/img-02.jpg" loading="lazy" alt="Stage 2"></div>
+          <div class="strip-cell" data-stage="Stage 3"><img src="./images/jobs/grp-25/img-03.jpg" loading="lazy" alt="Stage 3"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-32 &middot; before / after</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="job-group-meta"><span class="section-label">grp-32 &middot; before / after</span><span class="job-group-hint">Hover to compare &harr;</span></div>
         <div class="compare-slider">
           <div class="compare-before"><img src="./images/jobs/grp-32/img-01.jpg" loading="lazy" alt="Before"></div>
           <div class="compare-after"><img src="./images/jobs/grp-32/img-02.jpg" loading="lazy" alt="After"></div>
           <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
         </div>
       </div>
-
     </div>
 
     <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Australia &middot; The Archive</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">138 Individual Jobs</div></div>
@@ -1014,37 +1015,37 @@
         const after = comp.querySelector('.compare-after');
         const divider = comp.querySelector('.compare-divider');
         if (!after || !divider) return;
-        let dragging = false;
+
         function setPos(pct) {
           pct = Math.max(0, Math.min(100, pct));
           after.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
           divider.style.left = pct + '%';
         }
-        function pctFromX(clientX) {
+
+        function fromEvent(e) {
           const r = comp.getBoundingClientRect();
           if (r.width === 0) return 50;
-          return ((clientX - r.left) / r.width) * 100;
+          const x = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
+          return ((x - r.left) / r.width) * 100;
         }
-        function onDown(e) {
-          dragging = true;
-          const x = e.touches ? e.touches[0].clientX : e.clientX;
-          setPos(pctFromX(x));
-          if (e.cancelable) e.preventDefault();
-        }
-        function onMove(e) {
-          if (!dragging) return;
-          const x = e.touches ? e.touches[0].clientX : e.clientX;
-          setPos(pctFromX(x));
-          if (e.cancelable) e.preventDefault();
-        }
-        function onUp() { dragging = false; }
-        comp.addEventListener('mousedown', onDown);
-        comp.addEventListener('touchstart', onDown, { passive: false });
-        document.addEventListener('mousemove', onMove);
-        document.addEventListener('touchmove', onMove, { passive: false });
-        document.addEventListener('mouseup', onUp);
-        document.addEventListener('touchend', onUp);
-        document.addEventListener('touchcancel', onUp);
+
+        // Hover-controlled: divider follows cursor
+        comp.addEventListener('mousemove', e => setPos(fromEvent(e)));
+        comp.addEventListener('mouseleave', () => {
+          // Smooth ease back to center
+          divider.style.transition = 'left 0.5s cubic-bezier(0.16,1,0.3,1)';
+          after.style.transition = 'clip-path 0.5s cubic-bezier(0.16,1,0.3,1)';
+          setPos(50);
+          setTimeout(() => {
+            divider.style.transition = '';
+            after.style.transition = '';
+          }, 500);
+        });
+
+        // Touch: drag-style for mobile (hover doesn't exist on touch)
+        comp.addEventListener('touchstart', e => { setPos(fromEvent(e)); }, { passive: true });
+        comp.addEventListener('touchmove', e => { setPos(fromEvent(e)); if (e.cancelable) e.preventDefault(); }, { passive: false });
+
         setPos(50);
       });
     }    // PAGE NAVIGATION
