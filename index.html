@@ -521,8 +521,6 @@
     .strip-cell:hover { flex: 4; }
     .strip-cell img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.7) saturate(0.85); transition: filter 0.5s, transform 0.7s var(--ease); transform: scale(1.05); }
     .strip-cell:hover img { filter: brightness(1) saturate(1); transform: scale(1); }
-    .strip-cell::after { content: attr(data-stage); position: absolute; top: 1rem; left: 1rem; font-family: var(--font-display); font-weight: 900; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white); background: rgba(0,0,0,0.6); padding: 0.35rem 0.65rem; backdrop-filter: blur(8px); border-left: 2px solid var(--orange); opacity: 0; transition: opacity 0.4s; pointer-events: none; }
-    .strip-cell:hover::after { opacity: 1; }
     @media (max-width: 768px) {
       .job-group-strip { height: 380px; }
       .strip-cell:hover { flex: 3; }
@@ -682,10 +680,9 @@
       <div class="work-item"><img src="./images/pour-4.jpg" alt="Pour finished" onerror="this.parentElement.style.background='#2C2C28'"></div>
     </div>
 
-    <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Australia &middot; 10+ years</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">Multi-Stage Jobs &mdash; Drag to Compare</div></div>
+    <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Start to Finish</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">Professional &amp; High End</div></div>
     <div class="work-groups">
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-2 &middot; before / after</span><span class="job-group-hint">Hover to compare &harr;</span></div>
         <div class="compare-slider">
           <div class="compare-before"><img src="./images/jobs/grp-2/img-01.jpg" loading="lazy" alt="Before"></div>
           <div class="compare-after"><img src="./images/jobs/grp-2/img-02.jpg" loading="lazy" alt="After"></div>
@@ -693,7 +690,6 @@
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-32 &middot; before / after</span><span class="job-group-hint">Hover to compare &harr;</span></div>
         <div class="compare-slider">
           <div class="compare-before"><img src="./images/jobs/grp-32/img-01.jpg" loading="lazy" alt="Before"></div>
           <div class="compare-after"><img src="./images/jobs/grp-32/img-02.jpg" loading="lazy" alt="After"></div>
@@ -701,41 +697,37 @@
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-16 &middot; 3 stages</span><span class="job-group-hint">Hover to expand</span></div>
         <div class="job-group-strip strip-3">
-          <div class="strip-cell" data-stage="Stage 1"><img src="./images/jobs/grp-16/img-01.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="strip-cell" data-stage="Stage 2"><img src="./images/jobs/grp-16/img-02.jpg" loading="lazy" alt="Stage 2"></div>
-          <div class="strip-cell" data-stage="Stage 3"><img src="./images/jobs/grp-16/img-03.jpg" loading="lazy" alt="Stage 3"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-16/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-16/img-02.jpg" loading="lazy" alt="Stage 2"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-16/img-03.jpg" loading="lazy" alt="Stage 3"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-17 &middot; 3 stages</span><span class="job-group-hint">Hover to expand</span></div>
         <div class="job-group-strip strip-3">
-          <div class="strip-cell" data-stage="Stage 1"><img src="./images/jobs/grp-17/img-01.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="strip-cell" data-stage="Stage 2"><img src="./images/jobs/grp-17/img-02.jpg" loading="lazy" alt="Stage 2"></div>
-          <div class="strip-cell" data-stage="Stage 3"><img src="./images/jobs/grp-17/img-03.jpg" loading="lazy" alt="Stage 3"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-17/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-17/img-02.jpg" loading="lazy" alt="Stage 2"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-17/img-03.jpg" loading="lazy" alt="Stage 3"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-25 &middot; 3 stages</span><span class="job-group-hint">Hover to expand</span></div>
         <div class="job-group-strip strip-3">
-          <div class="strip-cell" data-stage="Stage 1"><img src="./images/jobs/grp-25/img-01.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="strip-cell" data-stage="Stage 2"><img src="./images/jobs/grp-25/img-02.jpg" loading="lazy" alt="Stage 2"></div>
-          <div class="strip-cell" data-stage="Stage 3"><img src="./images/jobs/grp-25/img-03.jpg" loading="lazy" alt="Stage 3"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-25/img-01.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-25/img-02.jpg" loading="lazy" alt="Stage 2"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-25/img-03.jpg" loading="lazy" alt="Stage 3"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-9 &middot; 4 stages</span><span class="job-group-hint">Hover to expand</span></div>
         <div class="job-group-strip strip-4">
-          <div class="strip-cell" data-stage="Stage 1"><img src="./images/jobs/grp-9/img-04.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="strip-cell" data-stage="Stage 2"><img src="./images/jobs/grp-9/img-03.jpg" loading="lazy" alt="Stage 2"></div>
-          <div class="strip-cell" data-stage="Stage 3"><img src="./images/jobs/grp-9/img-02.jpg" loading="lazy" alt="Stage 3"></div>
-          <div class="strip-cell" data-stage="Stage 4"><img src="./images/jobs/grp-9/img-01.jpg" loading="lazy" alt="Stage 4"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-9/img-04.jpg" loading="lazy" alt="Stage 1"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-9/img-03.jpg" loading="lazy" alt="Stage 2"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-9/img-02.jpg" loading="lazy" alt="Stage 3"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-9/img-01.jpg" loading="lazy" alt="Stage 4"></div>
         </div>
       </div>
     </div>
 
-    <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Australia &middot; The Archive</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">138 Individual Jobs</div></div>
+    <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Plenty of Experience</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">In a place where it matters</div></div>
     <div class="work-singles-grid" id="au-portfolio">
       <div class="work-single reveal"><img src="./images/jobs/solo/img-001.jpg" loading="lazy" alt="Portfolio 001"></div>
       <div class="work-single reveal"><img src="./images/jobs/solo/img-002.jpg" loading="lazy" alt="Portfolio 002"></div>
