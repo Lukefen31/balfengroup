@@ -536,6 +536,10 @@
       .compare-slider { aspect-ratio: 16/9; }
       .job-group-stages img { height: 80px; }
     }
+    /* Group image alignment: subtle uniform zoom for visual consistency */
+    .compare-before img, .compare-after img,
+    .strip-cell img { transform: scale(1.08); transform-origin: center center; }
+    .strip-cell:hover img { transform: scale(1); }
   </style>
 </head>
 <body>
