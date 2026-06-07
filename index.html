@@ -516,6 +516,15 @@
     .compare-before img, .compare-after img { width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
     .compare-divider { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: rgba(255,255,255,0.9); transform: translateX(-50%); pointer-events: none; box-shadow: 0 0 12px rgba(0,0,0,0.5); }
     .compare-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 48px; height: 48px; border-radius: 50%; background: white; box-shadow: 0 2px 20px rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; color: #333; }
+        .job-group-strip { display: grid; gap: 2px; width: 100%; }
+    .job-group-strip.strip-3 { grid-template-columns: repeat(3, 1fr); }
+    .job-group-strip.strip-4 { grid-template-columns: repeat(4, 1fr); }
+    .strip-cell { aspect-ratio: 4/3; overflow: hidden; background: var(--grey-800); }
+    .strip-cell img { width: 100%; height: 100%; object-fit: cover; display: block; filter: brightness(0.85); transition: filter 0.4s, transform 0.6s var(--ease); }
+    .strip-cell:hover img { filter: brightness(1); transform: scale(1.04); }
+    @media (max-width: 768px) {
+      .job-group-strip.strip-3, .job-group-strip.strip-4 { grid-template-columns: repeat(2, 1fr); }
+    }
     .job-group-stages { display: flex; gap: 2px; padding: 2px 0; background: var(--grey-800); }
     .job-group-stages img { flex: 1; height: 140px; object-fit: cover; filter: brightness(0.85); transition: filter 0.3s; min-width: 0; }
     .job-group-stages img:hover { filter: brightness(1); }
@@ -670,63 +679,51 @@
     <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Australia &middot; 10+ years</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">Multi-Stage Jobs &mdash; Drag to Compare</div></div>
     <div class="work-groups">
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-2 &middot; 2 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="job-group-meta"><span class="section-label">grp-2 &middot; before / after</span><span class="job-group-hint">Drag to compare &harr;</span></div>
         <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/grp-2/img-01.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="compare-after"><img src="./images/jobs/grp-2/img-02.jpg" loading="lazy" alt="Final stage"></div>
+          <div class="compare-before"><img src="./images/jobs/grp-2/img-01.jpg" loading="lazy" alt="Before"></div>
+          <div class="compare-after"><img src="./images/jobs/grp-2/img-02.jpg" loading="lazy" alt="After"></div>
           <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-9 &middot; 4 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/grp-9/img-01.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="compare-after"><img src="./images/jobs/grp-9/img-04.jpg" loading="lazy" alt="Final stage"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-group-stages">
-          <img src="./images/jobs/grp-9/img-02.jpg" loading="lazy" alt="Stage 2">
-          <img src="./images/jobs/grp-9/img-03.jpg" loading="lazy" alt="Stage 3">
+        <div class="job-group-meta"><span class="section-label">grp-9 &middot; 4 stages</span></div>
+        <div class="job-group-strip strip-4">
+          <div class="strip-cell"><img src="./images/jobs/grp-9/img-01.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-9/img-02.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-9/img-03.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-9/img-04.jpg" loading="lazy" alt="Stage"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-16 &middot; 3 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/grp-16/img-01.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="compare-after"><img src="./images/jobs/grp-16/img-03.jpg" loading="lazy" alt="Final stage"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-group-stages">
-          <img src="./images/jobs/grp-16/img-02.jpg" loading="lazy" alt="Stage 2">
+        <div class="job-group-meta"><span class="section-label">grp-16 &middot; 3 stages</span></div>
+        <div class="job-group-strip strip-3">
+          <div class="strip-cell"><img src="./images/jobs/grp-16/img-01.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-16/img-02.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-16/img-03.jpg" loading="lazy" alt="Stage"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-17 &middot; 3 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/grp-17/img-01.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="compare-after"><img src="./images/jobs/grp-17/img-03.jpg" loading="lazy" alt="Final stage"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-group-stages">
-          <img src="./images/jobs/grp-17/img-02.jpg" loading="lazy" alt="Stage 2">
+        <div class="job-group-meta"><span class="section-label">grp-17 &middot; 3 stages</span></div>
+        <div class="job-group-strip strip-3">
+          <div class="strip-cell"><img src="./images/jobs/grp-17/img-01.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-17/img-02.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-17/img-03.jpg" loading="lazy" alt="Stage"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-25 &middot; 3 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
-        <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/grp-25/img-01.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="compare-after"><img src="./images/jobs/grp-25/img-03.jpg" loading="lazy" alt="Final stage"></div>
-          <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
-        </div>
-        <div class="job-group-stages">
-          <img src="./images/jobs/grp-25/img-02.jpg" loading="lazy" alt="Stage 2">
+        <div class="job-group-meta"><span class="section-label">grp-25 &middot; 3 stages</span></div>
+        <div class="job-group-strip strip-3">
+          <div class="strip-cell"><img src="./images/jobs/grp-25/img-01.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-25/img-02.jpg" loading="lazy" alt="Stage"></div>
+          <div class="strip-cell"><img src="./images/jobs/grp-25/img-03.jpg" loading="lazy" alt="Stage"></div>
         </div>
       </div>
       <div class="job-group reveal">
-        <div class="job-group-meta"><span class="section-label">grp-32 &middot; 2 stages</span><span class="job-group-hint">Drag to compare &harr;</span></div>
+        <div class="job-group-meta"><span class="section-label">grp-32 &middot; before / after</span><span class="job-group-hint">Drag to compare &harr;</span></div>
         <div class="compare-slider">
-          <div class="compare-before"><img src="./images/jobs/grp-32/img-01.jpg" loading="lazy" alt="Stage 1"></div>
-          <div class="compare-after"><img src="./images/jobs/grp-32/img-02.jpg" loading="lazy" alt="Final stage"></div>
+          <div class="compare-before"><img src="./images/jobs/grp-32/img-01.jpg" loading="lazy" alt="Before"></div>
+          <div class="compare-after"><img src="./images/jobs/grp-32/img-02.jpg" loading="lazy" alt="After"></div>
           <div class="compare-divider"><div class="compare-handle"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div></div>
         </div>
       </div>
@@ -1012,6 +1009,8 @@
     // COMPARE SLIDERS
     function initCompareSliders() {
       document.querySelectorAll('.compare-slider').forEach(comp => {
+        if (comp.dataset.initialized === '1') return;
+        comp.dataset.initialized = '1';
         const after = comp.querySelector('.compare-after');
         const divider = comp.querySelector('.compare-divider');
         let dragging = false;
@@ -1020,17 +1019,29 @@
           after.style.clipPath = 'inset(0 ' + (100-pct) + '% 0 0)';
           divider.style.left = pct + '%';
         }
-        const getX = e => {
+        function getX(e) {
           const r = comp.getBoundingClientRect();
-          const cx = e.touches ? e.touches[0].clientX : e.clientX;
+          if (r.width === 0) return 50;
+          const cx = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
           return ((cx - r.left) / r.width) * 100;
-        };
-        comp.addEventListener('mousedown', e => { dragging = true; setPos(getX(e)); e.preventDefault(); });
-        comp.addEventListener('touchstart', e => { dragging = true; setPos(getX(e)); }, {passive:true});
-        window.addEventListener('mousemove', e => { if (dragging) setPos(getX(e)); });
-        window.addEventListener('touchmove', e => { if (dragging) setPos(getX(e)); }, {passive:true});
-        window.addEventListener('mouseup', () => dragging = false);
-        window.addEventListener('touchend', () => dragging = false);
+        }
+        comp.addEventListener('pointerdown', e => {
+          dragging = true;
+          comp.setPointerCapture(e.pointerId);
+          setPos(getX(e));
+          e.preventDefault();
+        });
+        comp.addEventListener('pointermove', e => {
+          if (dragging) { setPos(getX(e)); e.preventDefault(); }
+        });
+        comp.addEventListener('pointerup', e => {
+          dragging = false;
+          try { comp.releasePointerCapture(e.pointerId); } catch(_) {}
+        });
+        comp.addEventListener('pointercancel', () => { dragging = false; });
+        comp.addEventListener('mousemove', e => {
+          if (!dragging) setPos(getX(e));
+        });
         setPos(50);
       });
     }    // PAGE NAVIGATION
