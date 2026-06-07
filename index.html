@@ -1009,39 +1009,42 @@
     // COMPARE SLIDERS
     function initCompareSliders() {
       document.querySelectorAll('.compare-slider').forEach(comp => {
-        if (comp.dataset.initialized === '1') return;
-        comp.dataset.initialized = '1';
+        if (comp.dataset.init === '1') return;
+        comp.dataset.init = '1';
         const after = comp.querySelector('.compare-after');
         const divider = comp.querySelector('.compare-divider');
+        if (!after || !divider) return;
         let dragging = false;
         function setPos(pct) {
-          pct = Math.max(2, Math.min(98, pct));
-          after.style.clipPath = 'inset(0 ' + (100-pct) + '% 0 0)';
+          pct = Math.max(0, Math.min(100, pct));
+          after.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
           divider.style.left = pct + '%';
         }
-        function getX(e) {
+        function pctFromX(clientX) {
           const r = comp.getBoundingClientRect();
           if (r.width === 0) return 50;
-          const cx = (e.touches && e.touches[0]) ? e.touches[0].clientX : e.clientX;
-          return ((cx - r.left) / r.width) * 100;
+          return ((clientX - r.left) / r.width) * 100;
         }
-        comp.addEventListener('pointerdown', e => {
+        function onDown(e) {
           dragging = true;
-          comp.setPointerCapture(e.pointerId);
-          setPos(getX(e));
-          e.preventDefault();
-        });
-        comp.addEventListener('pointermove', e => {
-          if (dragging) { setPos(getX(e)); e.preventDefault(); }
-        });
-        comp.addEventListener('pointerup', e => {
-          dragging = false;
-          try { comp.releasePointerCapture(e.pointerId); } catch(_) {}
-        });
-        comp.addEventListener('pointercancel', () => { dragging = false; });
-        comp.addEventListener('mousemove', e => {
-          if (!dragging) setPos(getX(e));
-        });
+          const x = e.touches ? e.touches[0].clientX : e.clientX;
+          setPos(pctFromX(x));
+          if (e.cancelable) e.preventDefault();
+        }
+        function onMove(e) {
+          if (!dragging) return;
+          const x = e.touches ? e.touches[0].clientX : e.clientX;
+          setPos(pctFromX(x));
+          if (e.cancelable) e.preventDefault();
+        }
+        function onUp() { dragging = false; }
+        comp.addEventListener('mousedown', onDown);
+        comp.addEventListener('touchstart', onDown, { passive: false });
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('touchmove', onMove, { passive: false });
+        document.addEventListener('mouseup', onUp);
+        document.addEventListener('touchend', onUp);
+        document.addEventListener('touchcancel', onUp);
         setPos(50);
       });
     }    // PAGE NAVIGATION
@@ -1054,6 +1057,7 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
       history.pushState(null, '', '#' + name);
       triggerReveal();
+      if (name === 'work') setTimeout(initCompareSliders, 50);
     }
 
     // HANDLE HASH ON LOAD
@@ -1093,6 +1097,7 @@
 
     // INIT
     loadFromHash();
+    setTimeout(initCompareSliders, 100);
     window.addEventListener('popstate', loadFromHash);
   </script>
 </body>
