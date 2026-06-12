@@ -538,6 +538,13 @@
     .compare-before img, .compare-after img,
     .strip-cell img { transform: scale(1.08); transform-origin: center center; }
     .strip-cell:hover img { transform: scale(1); }
+    /* MALTA MASONRY */
+    .malta-masonry { column-count: 3; column-gap: 4px; padding: 0 4px; }
+    .masonry-cell { break-inside: avoid; margin-bottom: 4px; overflow: hidden; position: relative; background: var(--grey-800); }
+    .masonry-cell img { width: 100%; height: auto; display: block; filter: brightness(0.85); transition: filter 0.4s, transform 0.6s var(--ease); }
+    .masonry-cell:hover img { filter: brightness(1); transform: scale(1.03); }
+    @media (max-width: 900px) { .malta-masonry { column-count: 2; } }
+    @media (max-width: 540px) { .malta-masonry { column-count: 1; } }
   </style>
 </head>
 <body>
@@ -678,6 +685,17 @@
       <div class="work-item"><img src="./images/pour-1.jpg" alt="Pour detail" onerror="this.parentElement.style.background='#2C2C28'"></div>
       <div class="work-item"><img src="./images/pour-3.jpg" alt="Pour setup" onerror="this.parentElement.style.background='#1E1E1A'"></div>
       <div class="work-item"><img src="./images/pour-4.jpg" alt="Pour finished" onerror="this.parentElement.style.background='#2C2C28'"></div>
+
+    <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Malta &middot; Recent</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">More From Malta</div></div>
+    <div class="malta-masonry">
+      <div class="masonry-cell"><img src="./images/malta-05.jpg" loading="lazy" alt=""></div>
+      <div class="masonry-cell"><img src="./images/malta-06.jpg" loading="lazy" alt=""></div>
+      <div class="masonry-cell"><img src="./images/malta-07.jpg" loading="lazy" alt=""></div>
+      <div class="masonry-cell"><img src="./images/malta-08.jpg" loading="lazy" alt=""></div>
+      <div class="masonry-cell"><img src="./images/malta-09.jpg" loading="lazy" alt=""></div>
+      <div class="masonry-cell"><img src="./images/malta-10.jpg" loading="lazy" alt=""></div>
+      <div class="masonry-cell"><img src="./images/malta-11.jpg" loading="lazy" alt=""></div>
+    </div>
     </div>
 
     <div style="padding:3rem 3rem 1.5rem;"><div class="section-label">Start to Finish</div><div style="font-family:var(--font-display);font-weight:900;font-size:1.5rem;text-transform:uppercase;color:var(--white);">Professional &amp; High End</div></div>
