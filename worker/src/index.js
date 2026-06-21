@@ -96,7 +96,7 @@ export default {
     const resendApiKey = env.RESEND_API_KEY;
     const jwtSecret = env.JWT_SECRET;
     const webhookSecret = env.WEBHOOK_SECRET;
-    const allowedAdminEmails = (env.ALLOWED_ADMIN_EMAILS || "balfengroup@gmail.com,info@balfen.com").split(",");
+    const allowedAdminEmails = (env.ALLOWED_ADMIN_EMAILS || "balfengroup@gmail.com,info@balfen.com,lukefenech31@gmail.com").split(",");
 
     // Supabase request helper
     const supabaseFetch = async (endpoint, method = "GET", body = null, headers = {}) => {
