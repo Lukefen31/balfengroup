@@ -117,7 +117,8 @@ export default {
         const errorText = await res.text();
         throw new Error(`Supabase Error: ${res.status} - ${errorText}`);
       }
-      return res.json();
+      const text = await res.text();
+      return text ? JSON.parse(text) : {};
     };
 
     try {
