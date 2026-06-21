@@ -463,18 +463,46 @@ export default {
           
           const resendData = await resendRes.json();
           
+          // Log the sent email in our received_emails table so it appears in the thread history
+          let resolvedThreadId = resendData.id;
+          
           // Optional: Mark the replied email in our database as read/replied
           if (replyToId) {
             // Find received email by resend_email_id and update status
-            await fetch(`${supabaseUrl}/rest/v1/received_emails?resend_email_id=eq.${encodeURIComponent(replyToId)}`, {
-              method: "PATCH",
-              headers: {
-                "apikey": supabaseKey,
-                "Authorization": `Bearer ${supabaseKey}`,
-                "Content-Type": "application/json"
-              },
-              body: JSON.stringify({ is_read: true })
+            try {
+              const originalMsgs = await supabaseFetch(`received_emails?resend_email_id=eq.${encodeURIComponent(replyToId)}`);
+              if (originalMsgs.length > 0) {
+                resolvedThreadId = originalMsgs[0].thread_id || originalMsgs[0].resend_email_id || resendData.id;
+              }
+              
+              await fetch(`${supabaseUrl}/rest/v1/received_emails?resend_email_id=eq.${encodeURIComponent(replyToId)}`, {
+                method: "PATCH",
+                headers: {
+                  "apikey": supabaseKey,
+                  "Authorization": `Bearer ${supabaseKey}`,
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ is_read: true })
+              });
+            } catch (err) {
+              // Fail silently
+            }
+          }
+
+          try {
+            await supabaseFetch("received_emails", "POST", {
+              resend_email_id: resendData.id,
+              sender_email: "info@balfen.com",
+              sender_name: "Balfen Group",
+              subject: subject,
+              body_text: plainBody || "",
+              body_html: styledHtmlBody,
+              thread_id: resolvedThreadId,
+              is_read: true,
+              received_at: new Date().toISOString()
             });
+          } catch (dbErr) {
+            // Fail silently so the email send status is still returned successfully
           }
           
           return new Response(JSON.stringify({ success: true, data: resendData }), {
