@@ -247,18 +247,47 @@ export default {
         // Resend triggers webhook for 'email.received'
         if (payload.type === "email.received" && payload.data) {
           const emailData = payload.data;
+          const emailId = emailData.email_id || emailData.id;
           
+          if (!emailId) {
+            throw new Error("No email_id found in webhook payload data");
+          }
+
+          // Fetch the full content of the email from Resend API
+          const resendFetch = await fetch(`https://api.resend.com/emails/${emailId}`, {
+            method: "GET",
+            headers: {
+              "Authorization": `Bearer ${resendApiKey}`
+            }
+          });
+
+          if (!resendFetch.ok) {
+            const errText = await resendFetch.text();
+            throw new Error(`Failed to fetch email content from Resend: ${resendFetch.status} - ${errText}`);
+          }
+
+          const emailContent = await resendFetch.json();
+          
+          // Parse "From" string to extract clean name and email
+          let senderEmail = emailContent.from || "";
+          let senderName = "";
+          const fromMatch = senderEmail.match(/^(.*?)\s*<(.*?)>$/);
+          if (fromMatch) {
+            senderName = fromMatch[1].replace(/['"]/g, "").trim();
+            senderEmail = fromMatch[2].trim();
+          }
+
           // Insert received email to Supabase
           await supabaseFetch("received_emails", "POST", {
-            resend_email_id: emailData.id,
-            sender_email: emailData.from.email || emailData.from.value || emailData.from,
-            sender_name: emailData.from.name || "",
-            subject: emailData.subject,
-            body_text: emailData.text || "",
-            body_html: emailData.html || "",
-            thread_id: emailData.thread_id || emailData.id,
+            resend_email_id: emailId,
+            sender_email: senderEmail,
+            sender_name: senderName || senderEmail,
+            subject: emailContent.subject || "",
+            body_text: emailContent.text || "",
+            body_html: emailContent.html || "",
+            thread_id: emailContent.thread_id || emailId,
             is_read: false,
-            received_at: emailData.created_at || new Date().toISOString()
+            received_at: emailContent.created_at || new Date().toISOString()
           });
         }
         
