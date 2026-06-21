@@ -235,12 +235,18 @@ export default {
       if (path === "/api/inbound-webhook" && request.method === "POST") {
         // Authenticate webhook via query secret
         const secret = url.searchParams.get("secret");
+        
+        console.log(`[Webhook Auth Check] Provided: "${secret}" (length: ${secret ? secret.length : 0})`);
+        console.log(`[Webhook Auth Check] Stored: "${webhookSecret}" (length: ${webhookSecret ? webhookSecret.length : 0})`);
+        
         if (secret !== webhookSecret) {
+          console.log("[Webhook Auth Check] Authentication FAILED");
           return new Response(JSON.stringify({ error: "Unauthorized webhook access" }), {
             status: 401,
             headers: { "Content-Type": "application/json", ...cors }
           });
         }
+        console.log("[Webhook Auth Check] Authentication SUCCESS");
         
         const payload = await request.json();
         
