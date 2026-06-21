@@ -92,10 +92,10 @@ export default {
     
     // Setup Supabase and Resend API configs from environment bindings
     const supabaseUrl = env.SUPABASE_URL;
-    const supabaseKey = env.SUPABASE_SERVICE_ROLE_KEY; // Use Service Role Key for admin backend access
-    const resendApiKey = env.RESEND_API_KEY;
-    const jwtSecret = env.JWT_SECRET;
-    const webhookSecret = env.WEBHOOK_SECRET;
+    const supabaseKey = (env.SUPABASE_SERVICE_ROLE_KEY || "").trim(); // Use Service Role Key for admin backend access
+    const resendApiKey = (env.RESEND_API_KEY || "").trim();
+    const jwtSecret = (env.JWT_SECRET || "").trim();
+    const webhookSecret = (env.WEBHOOK_SECRET || "").trim();
     const allowedAdminEmails = (env.ALLOWED_ADMIN_EMAILS || "balfengroup@gmail.com,info@balfen.com,lukefenech31@gmail.com").split(",");
 
     // Supabase request helper
