@@ -1340,6 +1340,7 @@
   <script>
     // Global State
     let currentApiUrl = localStorage.getItem('balfen_api_url') || 'https://balfen-api.YOURSUBDOMAIN.workers.dev'; // User can override
+    if (currentApiUrl.endsWith('/')) currentApiUrl = currentApiUrl.slice(0, -1);
     let sessionToken = localStorage.getItem('balfen_session_token') || '';
     let sessionEmail = localStorage.getItem('balfen_session_email') || '';
     
@@ -1355,7 +1356,9 @@
       // Load stored API URL into setting panel
       document.getElementById('api-url-input').value = currentApiUrl;
       document.getElementById('api-url-input').addEventListener('input', (e) => {
-        currentApiUrl = e.target.value.trim();
+        let val = e.target.value.trim();
+        if (val.endsWith('/')) val = val.slice(0, -1);
+        currentApiUrl = val;
         localStorage.setItem('balfen_api_url', currentApiUrl);
       });
 
