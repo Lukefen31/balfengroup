@@ -1,0 +1,13 @@
+{
+  "name": "balfen-api",
+  "version": "1.0.0",
+  "description": "Balfen Group Admin Portal Backend Cloudflare Worker",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^3.57.1"
+  }
+}

@@ -1,0 +1,2179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Balfen Group — Admin Portal</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+  
+  <!-- html2pdf for Invoice Download -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+  <style>
+    :root {
+      --orange: #FF5A00;
+      --orange-rgb: 255, 90, 0;
+      --black: #0B0B09;
+      --grey-950: #12120F;
+      --grey-900: #1E1E1A;
+      --grey-800: #2C2C27;
+      --grey-700: #3F3F39;
+      --grey-400: #8D8D85;
+      --grey-200: #C2C2BA;
+      --white: #F5F5F0;
+      
+      --font-sans: 'Inter', sans-serif;
+      --font-display: 'Outfit', sans-serif;
+      --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--black);
+      color: var(--white);
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+
+    input, textarea, select, button {
+      font-family: inherit;
+      color: inherit;
+    }
+
+    /* ─── LOGIN WALL ─── */
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      background: radial-gradient(circle at top right, rgba(var(--orange-rgb), 0.08), transparent 45%);
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 400px;
+      background: var(--grey-900);
+      border: 1px solid var(--grey-800);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .logo-container {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .logo-text {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--white);
+    }
+
+    .logo-text span {
+      color: var(--orange);
+    }
+
+    .logo-sub {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--grey-400);
+      margin-top: 4px;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--grey-200);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--grey-950);
+      border: 1px solid var(--grey-800);
+      border-radius: 8px;
+      padding: 0.85rem 1rem;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 8px;
+      padding: 0.95rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+
+    .btn-submit:hover {
+      background: #e04f00;
+    }
+
+    .btn-submit:disabled {
+      background: var(--grey-800);
+      color: var(--grey-400);
+      cursor: not-allowed;
+    }
+
+    .settings-trigger {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--grey-400);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .api-settings-panel {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: var(--grey-950);
+      border: 1px solid var(--grey-800);
+      border-radius: 8px;
+    }
+
+    /* ─── MAIN LAYOUT ─── */
+    .app-container {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+      padding-bottom: 70px; /* Space for bottom nav */
+    }
+
+    header {
+      background: var(--grey-950);
+      border-bottom: 1px solid var(--grey-800);
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .header-logo span {
+      color: var(--orange);
+    }
+
+    .btn-logout {
+      background: transparent;
+      border: 1px solid var(--grey-800);
+      border-radius: 6px;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      color: var(--grey-200);
+    }
+
+    .btn-logout:hover {
+      background: var(--grey-800);
+      color: var(--white);
+    }
+
+    /* ─── NAVIGATION ─── */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 65px;
+      background: var(--grey-950);
+      border-top: 1px solid var(--grey-800);
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+    }
+
+    .nav-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      height: 100%;
+      color: var(--grey-400);
+      text-decoration: none;
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: color 0.3s;
+    }
+
+    .nav-tab.active {
+      color: var(--orange);
+    }
+
+    .nav-tab svg {
+      width: 22px;
+      height: 22px;
+      margin-bottom: 4px;
+      fill: currentColor;
+    }
+
+    /* ─── TABS CONTENT ─── */
+    .tab-content {
+      display: none;
+      padding: 1.5rem;
+      animation: fadeIn 0.4s var(--ease);
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    /* ─── CALENDAR TAB ─── */
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .calendar-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    .calendar-nav-btn {
+      background: var(--grey-900);
+      border: 1px solid var(--grey-800);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 4px;
+      background: var(--grey-900);
+      border: 1px solid var(--grey-800);
+      border-radius: 12px;
+      padding: 6px;
+      margin-bottom: 1.5rem;
+    }
+
+    .calendar-day-header {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--grey-400);
+      padding: 8px 0;
+      text-transform: uppercase;
+    }
+
+    .calendar-cell {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px;
+      background: var(--grey-950);
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--grey-200);
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .calendar-cell:hover {
+      background: var(--grey-800);
+    }
+
+    .calendar-cell.today {
+      border: 1.5px solid var(--orange);
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .calendar-cell.other-month {
+      opacity: 0.3;
+    }
+
+    .calendar-event-dots {
+      display: flex;
+      gap: 2px;
+      justify-content: center;
+      width: 100%;
+      height: 6px;
+    }
+
+    .event-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    .event-dot.completed {
+      background: #00C853;
+    }
+
+    .event-dot.cancelled {
+      background: #D50000;
+    }
+
+    .job-list {
+      margin-top: 1.5rem;
+    }
+
+    .job-list-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+      color: var(--grey-200);
+    }
+
+    .job-card {
+      background: var(--grey-900);
+      border: 1px solid var(--grey-800);
+      border-radius: 10px;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .job-card:active {
+      transform: scale(0.98);
+    }
+
+    .job-card-info h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+
+    .job-card-info p {
+      font-size: 0.8rem;
+      color: var(--grey-400);
+      margin-top: 2px;
+    }
+
+    .job-status-badge {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      background: rgba(255, 90, 0, 0.15);
+      color: var(--orange);
+    }
+
+    .job-status-badge.completed {
+      background: rgba(0, 200, 83, 0.15);
+      color: #00C853;
+    }
+
+    .job-status-badge.cancelled {
+      background: rgba(213, 0, 0, 0.15);
+      color: #D50000;
+    }
+
+    .fab-btn {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--orange);
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 15px rgba(var(--orange-rgb), 0.4);
+      cursor: pointer;
+      z-index: 99;
+      color: var(--white);
+    }
+
+    /* ─── EMAIL INBOX TAB ─── */
+    .inbox-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-compose {
+      background: var(--orange);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .email-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .email-item {
+      background: var(--grey-900);
+      border: 1px solid var(--grey-800);
+      border-radius: 10px;
+      padding: 1rem;
+      cursor: pointer;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .email-item:hover {
+      background: var(--grey-800);
+    }
+
+    .email-item.unread {
+      border-left: 3px solid var(--orange);
+    }
+
+    .email-item-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.25rem;
+    }
+
+    .email-sender {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--white);
+    }
+
+    .email-item.unread .email-sender {
+      color: var(--orange);
+    }
+
+    .email-date {
+      font-size: 0.75rem;
+      color: var(--grey-400);
+    }
+
+    .email-subject {
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      color: var(--grey-200);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .email-item.unread .email-subject {
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .email-snippet {
+      font-size: 0.8rem;
+      color: var(--grey-400);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ─── INVOICE TAB ─── */
+    .invoice-form {
+      background: var(--grey-900);
+      border: 1px solid var(--grey-800);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .invoice-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .invoice-items-title {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      margin-top: 1.5rem;
+      margin-bottom: 0.75rem;
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid var(--grey-800);
+      color: var(--grey-200);
+    }
+
+    .invoice-item-row {
+      display: grid;
+      grid-template-columns: 3fr 1fr 1.5fr 1.5fr auto;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      align-items: center;
+    }
+
+    .invoice-btn-add {
+      background: transparent;
+      border: 1px dashed var(--orange);
+      color: var(--orange);
+      border-radius: 6px;
+      padding: 0.5rem;
+      width: 100%;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .invoice-btn-add:hover {
+      background: rgba(255, 90, 0, 0.05);
+    }
+
+    .invoice-totals {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .invoice-total-row {
+      display: flex;
+      justify-content: space-between;
+      width: 200px;
+      font-size: 0.9rem;
+      color: var(--grey-200);
+    }
+
+    .invoice-total-row.grand-total {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--white);
+      border-top: 1px solid var(--grey-800);
+      padding-top: 0.5rem;
+    }
+
+    .invoice-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .invoice-btn-action {
+      background: var(--grey-800);
+      border: 1px solid var(--grey-700);
+      border-radius: 8px;
+      padding: 0.85rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .invoice-btn-action:hover {
+      background: var(--grey-700);
+    }
+
+    .invoice-btn-action.primary {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--white);
+    }
+
+    .invoice-btn-action.primary:hover {
+      background: #e04f00;
+    }
+
+    /* ─── MODAL WINDOWS ─── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      z-index: 10000;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .modal-card {
+      background: var(--grey-900);
+      border: 1px solid var(--grey-800);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 500px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--grey-800);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .modal-close {
+      background: transparent;
+      border: none;
+      font-size: 1.5rem;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--grey-400);
+    }
+
+    .modal-close:hover {
+      color: var(--white);
+    }
+
+    .modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--grey-800);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--grey-700);
+      color: var(--grey-200);
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-secondary:hover {
+      background: var(--grey-800);
+    }
+
+    .btn-danger {
+      background: #D50000;
+      border: none;
+      color: var(--white);
+      padding: 0.6rem 1.2rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .btn-danger:hover {
+      background: #b30000;
+    }
+
+    /* ─── EMAIL THREAD VIEW MODAL ─── */
+    .thread-view {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .thread-subject {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--white);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--grey-800);
+    }
+
+    .thread-messages {
+      max-height: 350px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding-right: 0.25rem;
+    }
+
+    .thread-message {
+      background: var(--grey-950);
+      border: 1px solid var(--grey-800);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .message-meta {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--grey-400);
+    }
+
+    .message-sender {
+      font-weight: 600;
+      color: var(--orange);
+    }
+
+    .message-body {
+      font-size: 0.85rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: var(--grey-200);
+    }
+
+    .reply-form {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--grey-800);
+    }
+
+    /* ─── PRINT INVOICE TEMPLATE (HIDDEN BY DEFAULT) ─── */
+    #invoice-print-container {
+      display: none;
+    }
+    
+    .invoice-pdf {
+      padding: 40px;
+      background: white;
+      color: #1E1E1A;
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .invoice-pdf-header {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 3px solid #FF5A00;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+
+    .invoice-pdf-logo h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 28px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin: 0;
+      letter-spacing: 1px;
+    }
+
+    .invoice-pdf-logo p {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: #FF5A00;
+      margin-top: 4px;
+    }
+
+    .invoice-pdf-meta {
+      text-align: right;
+    }
+
+    .invoice-pdf-meta h2 {
+      font-size: 24px;
+      text-transform: uppercase;
+      margin: 0;
+      color: #FF5A00;
+    }
+
+    .invoice-pdf-meta p {
+      font-size: 13px;
+      margin: 3px 0;
+      color: #555;
+    }
+
+    .invoice-pdf-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .invoice-pdf-col h3 {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #888;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 4px;
+    }
+
+    .invoice-pdf-col p {
+      font-size: 14px;
+      margin: 4px 0;
+    }
+
+    .invoice-pdf-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    .invoice-pdf-table th {
+      background: #1E1E1A;
+      color: white;
+      text-align: left;
+      padding: 10px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .invoice-pdf-table td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #eee;
+      font-size: 14px;
+    }
+
+    .invoice-pdf-table tr:last-child td {
+      border-bottom: 2px solid #FF5A00;
+    }
+
+    .invoice-pdf-summary {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-bottom: 50px;
+    }
+
+    .invoice-pdf-summary-row {
+      display: flex;
+      justify-content: space-between;
+      width: 250px;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .invoice-pdf-summary-row.total {
+      font-size: 18px;
+      font-weight: bold;
+      border-top: 1px solid #ddd;
+      padding-top: 8px;
+      color: #FF5A00;
+    }
+
+    .invoice-pdf-footer {
+      text-align: center;
+      border-top: 1px solid #eee;
+      padding-top: 20px;
+      font-size: 12px;
+      color: #888;
+    }
+
+    /* ─── TOAST NOTIFICATIONS ─── */
+    .toast {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-100px);
+      background: var(--grey-900);
+      border: 1px solid var(--orange);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      z-index: 100000;
+      transition: transform 0.3s var(--ease);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      pointer-events: none;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Action completed!</div>
+
+  <!-- ─── LOGIN WALL ─── -->
+  <div id="login-screen" class="login-container">
+    <div class="login-card">
+      <div class="logo-container">
+        <div class="logo-text">Balfen<span>.</span></div>
+        <div class="logo-sub">Admin Portal</div>
+      </div>
+      
+      <div id="email-step">
+        <div class="form-group">
+          <label class="form-label">Email Address</label>
+          <input type="email" id="login-email" class="form-input" placeholder="info@balfen.com" required>
+        </div>
+        <button id="btn-send-otp" class="btn-submit" onclick="sendOTP()">Send Login Code</button>
+      </div>
+
+      <div id="otp-step" style="display:none;">
+        <p style="font-size: 0.85rem; color: var(--grey-200); margin-bottom: 1.5rem; text-align: center;">
+          A 6-digit login code has been sent to <span id="sent-email-label" style="color:var(--orange);"></span>.
+        </p>
+        <div class="form-group">
+          <label class="form-label">Verification Code</label>
+          <input type="text" id="login-otp" class="form-input" placeholder="123456" pattern="\d{6}" maxlength="6" required>
+        </div>
+        <button id="btn-verify-otp" class="btn-submit" onclick="verifyOTP()">Verify &amp; Login</button>
+        <div style="text-align: center; margin-top: 1rem;">
+          <a style="font-size: 0.8rem; color: var(--grey-400); cursor: pointer;" onclick="toggleLoginSteps(false)">Change email</a>
+        </div>
+      </div>
+
+      <div class="settings-trigger" onclick="toggleApiSettings()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        API Settings
+      </div>
+      
+      <div id="api-settings-panel" class="api-settings-panel">
+        <div class="form-group" style="margin-bottom:0;">
+          <label class="form-label" style="font-size:0.65rem;">Cloudflare Worker URL</label>
+          <input type="text" id="api-url-input" class="form-input" style="padding:0.6rem 0.8rem; font-size:0.85rem;" placeholder="https://balfen-api.YOURSUBDOMAIN.workers.dev">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MAIN PORTAL APPLICATION ─── -->
+  <div id="app-screen" class="app-container">
+    <header>
+      <div class="header-logo">Balfen<span>.</span></div>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </header>
+
+    <!-- Bottom Tab Navigation -->
+    <nav class="bottom-nav">
+      <div class="nav-tab active" onclick="switchTab('calendar')">
+        <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+        Calendar
+      </div>
+      <div class="nav-tab" onclick="switchTab('inbox')">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        Inbox
+      </div>
+      <div class="nav-tab" onclick="switchTab('invoices')">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>
+        Invoices
+      </div>
+    </nav>
+
+    <!-- TAB: CALENDAR -->
+    <div id="tab-calendar" class="tab-content active">
+      <div class="section-title">Work Calendar</div>
+      
+      <div class="calendar-header">
+        <button class="calendar-nav-btn" onclick="prevMonth()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div id="calendar-month-year" class="calendar-title">June 2026</div>
+        <button class="calendar-nav-btn" onclick="nextMonth()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+
+      <div id="calendar-grid" class="calendar-grid">
+        <!-- Generated Dynamically -->
+      </div>
+
+      <div class="job-list">
+        <div class="job-list-title" id="job-list-date-title">Jobs Today</div>
+        <div id="job-list-container">
+          <!-- Jobs list dynamically loaded -->
+          <div style="text-align:center; padding: 2rem; color:var(--grey-400); font-size:0.9rem;">No jobs scheduled for this date.</div>
+        </div>
+      </div>
+      
+      <!-- Floating Action Button to Add Job -->
+      <button class="fab-btn" onclick="openAddJobModal()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+      </button>
+    </div>
+
+    <!-- TAB: INBOX -->
+    <div id="tab-inbox" class="tab-content">
+      <div class="inbox-controls">
+        <div class="section-title" style="margin-bottom:0;">Email Client</div>
+        <button class="btn-compose" onclick="openComposeModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+          Compose
+        </button>
+      </div>
+
+      <div id="email-list-container" class="email-list">
+        <!-- Emails loaded dynamically -->
+        <div style="text-align:center; padding: 3rem; color:var(--grey-400); font-size:0.9rem;">Loading emails...</div>
+      </div>
+    </div>
+
+    <!-- TAB: INVOICES -->
+    <div id="tab-invoices" class="tab-content">
+      <div class="section-title">Create Invoice</div>
+
+      <div class="invoice-form">
+        <div class="invoice-row">
+          <div class="form-group">
+            <label class="form-label">Invoice Number</label>
+            <input type="text" id="inv-number" class="form-input" placeholder="BF-2026-001">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Issue Date</label>
+            <input type="date" id="inv-date-issued" class="form-input">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Due Date</label>
+            <input type="date" id="inv-date-due" class="form-input">
+          </div>
+        </div>
+
+        <div class="invoice-row">
+          <div class="form-group" style="grid-column: span 2;">
+            <label class="form-label">Client Name</label>
+            <input type="text" id="inv-client-name" class="form-input" placeholder="Joe Borg">
+          </div>
+          <div class="form-group" style="grid-column: span 2;">
+            <label class="form-label">Client Email</label>
+            <input type="email" id="inv-client-email" class="form-input" placeholder="joe.borg@example.com">
+          </div>
+        </div>
+
+        <div class="invoice-items-title">Items</div>
+        <div id="invoice-items-container">
+          <!-- Line items inserted dynamically -->
+        </div>
+        
+        <button class="invoice-btn-add" onclick="addInvoiceItemRow()">+ Add Line Item</button>
+
+        <div class="invoice-totals">
+          <div class="invoice-total-row">
+            <span>Subtotal</span>
+            <span id="inv-subtotal">&euro;0.00</span>
+          </div>
+          <div class="invoice-total-row">
+            <span>Taxes (18% VAT)</span>
+            <span id="inv-tax">&euro;0.00</span>
+          </div>
+          <div class="invoice-total-row grand-total">
+            <span>Total</span>
+            <span id="inv-total">&euro;0.00</span>
+          </div>
+        </div>
+
+        <div class="invoice-actions">
+          <button class="invoice-btn-action" onclick="downloadInvoicePDF()">Download PDF</button>
+          <button class="invoice-btn-action primary" onclick="emailInvoiceToClient()">Email to Client</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MODAL: ADD / EDIT JOB ─── -->
+  <div id="job-modal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'job-modal')">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="job-modal-title">Add Work Job</div>
+        <button class="modal-close" onclick="closeModal('job-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" id="job-id-field">
+        <div class="form-group">
+          <label class="form-label">Date</label>
+          <input type="date" id="job-date" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Client Name</label>
+          <input type="text" id="job-client" class="form-input" placeholder="Client Name" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Job / Description</label>
+          <input type="text" id="job-type" class="form-input" placeholder="e.g. Driveway Pour" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Location / Address</label>
+          <input type="text" id="job-address" class="form-input" placeholder="e.g. Mosta">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Notes</label>
+          <textarea id="job-notes" class="form-input" rows="3" placeholder="Additional details..."></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Status</label>
+          <select id="job-status" class="form-input">
+            <option value="scheduled">Scheduled</option>
+            <option value="completed">Completed</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" id="job-btn-invoice" style="display:none;" onclick="createInvoiceFromJob()">Create Invoice</button>
+        <button class="btn-danger" id="job-btn-delete" style="display:none;" onclick="deleteJob()">Delete</button>
+        <button class="btn-secondary" onclick="closeModal('job-modal')">Cancel</button>
+        <button class="btn-submit" style="width:auto; padding: 0.6rem 1.5rem;" onclick="saveJob()">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MODAL: COMPOSE NEW EMAIL ─── -->
+  <div id="compose-modal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'compose-modal')">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">New Email</div>
+        <button class="modal-close" onclick="closeModal('compose-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">To</label>
+          <input type="email" id="compose-to" class="form-input" placeholder="client@example.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Subject</label>
+          <input type="text" id="compose-subject" class="form-input" placeholder="Balfen Group Concreting Quote" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message</label>
+          <textarea id="compose-body" class="form-input" rows="8" placeholder="Hi Joe,..." required></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" onclick="closeModal('compose-modal')">Cancel</button>
+        <button class="btn-submit" style="width:auto; padding: 0.6rem 1.5rem;" onclick="sendComposeEmail()">Send Email</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── MODAL: EMAIL THREAD VIEW ─── -->
+  <div id="thread-modal" class="modal-overlay" onclick="closeModalOnOverlay(event, 'thread-modal')">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title">Conversation</div>
+        <button class="modal-close" onclick="closeModal('thread-modal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="thread-view">
+          <div id="thread-subject-label" class="thread-subject">Email Subject</div>
+          <div id="thread-messages-container" class="thread-messages">
+            <!-- Messages inserted dynamically -->
+          </div>
+          <div class="reply-form">
+            <div class="form-group">
+              <label class="form-label">Reply Message</label>
+              <textarea id="reply-body" class="form-input" rows="4" placeholder="Type your reply here..."></textarea>
+            </div>
+            <button class="btn-submit" onclick="sendReplyEmail()">Send Reply</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── PRINT INVOICE TEMPLATE (HIDDEN DOM ELEMENT FOR PDF RENDER) ─── -->
+  <div id="invoice-print-container">
+    <div class="invoice-pdf" id="invoice-pdf-el">
+      <div class="invoice-pdf-header">
+        <div class="invoice-pdf-logo">
+          <h1>Balfen Group</h1>
+          <p>Concreting Specialists</p>
+        </div>
+        <div class="invoice-pdf-meta">
+          <h2>INVOICE</h2>
+          <p><strong>Invoice #:</strong> <span id="pdf-inv-num">BF-2026-001</span></p>
+          <p><strong>Date Issued:</strong> <span id="pdf-inv-issued">21-06-2026</span></p>
+          <p><strong>Due Date:</strong> <span id="pdf-inv-due">28-06-2026</span></p>
+        </div>
+      </div>
+      
+      <div class="invoice-pdf-details">
+        <div class="invoice-pdf-col">
+          <h3>From</h3>
+          <p><strong>Balfen Group</strong></p>
+          <p>Email: info@balfen.com</p>
+          <p>Web: balfen.com</p>
+          <p>Malta</p>
+        </div>
+        <div class="invoice-pdf-col">
+          <h3>Bill To</h3>
+          <p><strong id="pdf-client-name">Joe Borg</strong></p>
+          <p id="pdf-client-email">joe.borg@example.com</p>
+        </div>
+      </div>
+
+      <table class="invoice-pdf-table">
+        <thead>
+          <tr>
+            <th style="width: 50%;">Description</th>
+            <th style="width: 15%; text-align: center;">Qty</th>
+            <th style="width: 15%; text-align: right;">Rate</th>
+            <th style="width: 20%; text-align: right;">Amount</th>
+          </tr>
+        </thead>
+        <tbody id="pdf-items-tbody">
+          <!-- Items inserted dynamically -->
+        </tbody>
+      </table>
+
+      <div class="invoice-pdf-summary">
+        <div class="invoice-pdf-summary-row">
+          <span>Subtotal:</span>
+          <span id="pdf-subtotal">&euro;0.00</span>
+        </div>
+        <div class="invoice-pdf-summary-row">
+          <span>VAT (18%):</span>
+          <span id="pdf-tax">&euro;0.00</span>
+        </div>
+        <div class="invoice-pdf-summary-row total">
+          <span>Total Due:</span>
+          <span id="pdf-total">&euro;0.00</span>
+        </div>
+      </div>
+
+      <div class="invoice-pdf-footer">
+        <p>Thank you for your business!</p>
+        <p>For bank transfer payments, please include the Invoice Number as reference.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── JAVASCRIPT APPLICATION LOGIC ─── -->
+  <script>
+    // Global State
+    let currentApiUrl = localStorage.getItem('balfen_api_url') || 'https://balfen-api.YOURSUBDOMAIN.workers.dev'; // User can override
+    let sessionToken = localStorage.getItem('balfen_session_token') || '';
+    let sessionEmail = localStorage.getItem('balfen_session_email') || '';
+    
+    let currentDate = new Date();
+    let selectedDate = new Date();
+    let jobsList = [];
+    let emailsList = [];
+    let activeThreadId = null;
+    let activeReplyToEmailId = null;
+
+    // Document Ready
+    document.addEventListener("DOMContentLoaded", () => {
+      // Load stored API URL into setting panel
+      document.getElementById('api-url-input').value = currentApiUrl;
+      document.getElementById('api-url-input').addEventListener('input', (e) => {
+        currentApiUrl = e.target.value.trim();
+        localStorage.setItem('balfen_api_url', currentApiUrl);
+      });
+
+      // Check Session
+      if (sessionToken) {
+        showApp();
+      } else {
+        showLogin();
+      }
+      
+      // Setup default dates for Invoice
+      const todayStr = new Date().toISOString().split('T')[0];
+      document.getElementById('inv-date-issued').value = todayStr;
+      
+      const due = new Date();
+      due.setDate(due.getDate() + 7);
+      document.getElementById('inv-date-due').value = due.toISOString().split('T')[0];
+      
+      // Add one empty row to invoice
+      addInvoiceItemRow();
+    });
+
+    // ─── AUTH LOGIC ───
+    function toggleApiSettings() {
+      const panel = document.getElementById('api-settings-panel');
+      panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function toggleLoginSteps(showOtp) {
+      document.getElementById('email-step').style.display = showOtp ? 'none' : 'block';
+      document.getElementById('otp-step').style.display = showOtp ? 'block' : 'none';
+    }
+
+    async function sendOTP() {
+      const email = document.getElementById('login-email').value.trim();
+      if (!email) return showToast("Please enter your email");
+      
+      const btn = document.getElementById('btn-send-otp');
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+      
+      try {
+        const res = await fetch(`${currentApiUrl}/api/auth/send-otp`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email })
+        });
+        
+        const data = await res.json();
+        if (res.ok && data.success) {
+          sessionEmail = email;
+          document.getElementById('sent-email-label').textContent = email;
+          toggleLoginSteps(true);
+          showToast("Verification code sent!");
+        } else {
+          showToast(data.error || "Failed to send code");
+        }
+      } catch (e) {
+        showToast("Error connecting to API. Verify API settings!");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Send Login Code";
+      }
+    }
+
+    async function verifyOTP() {
+      const otp = document.getElementById('login-otp').value.trim();
+      if (otp.length !== 6) return showToast("Please enter 6-digit code");
+      
+      const btn = document.getElementById('btn-verify-otp');
+      btn.disabled = true;
+      btn.textContent = "Verifying...";
+      
+      try {
+        const res = await fetch(`${currentApiUrl}/api/auth/verify-otp`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: sessionEmail, otp })
+        });
+        
+        const data = await res.json();
+        if (res.ok && data.success) {
+          sessionToken = data.token;
+          localStorage.setItem('balfen_session_token', sessionToken);
+          localStorage.setItem('balfen_session_email', sessionEmail);
+          showApp();
+          showToast("Welcome back!");
+        } else {
+          showToast(data.error || "Incorrect login code");
+        }
+      } catch (e) {
+        showToast("Verification failed. Try again.");
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Verify & Login";
+      }
+    }
+
+    function showApp() {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app-screen').style.display = 'flex';
+      switchTab('calendar');
+    }
+
+    function showLogin() {
+      document.getElementById('login-screen').style.display = 'flex';
+      document.getElementById('app-screen').style.display = 'none';
+      toggleLoginSteps(false);
+    }
+
+    function logout() {
+      sessionToken = '';
+      sessionEmail = '';
+      localStorage.removeItem('balfen_session_token');
+      localStorage.removeItem('balfen_session_email');
+      showLogin();
+    }
+
+    // API fetch wrapper with token
+    async function apiFetch(endpoint, method = "GET", body = null) {
+      const headers = {
+        "Authorization": `Bearer ${sessionToken}`
+      };
+      if (body) {
+        headers["Content-Type"] = "application/json";
+      }
+      
+      const options = { method, headers };
+      if (body) options.body = JSON.stringify(body);
+      
+      const res = await fetch(`${currentApiUrl}/api/${endpoint}`, options);
+      if (res.status === 401) {
+        logout();
+        throw new Error("Session expired. Please log in again.");
+      }
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `HTTP error ${res.status}`);
+      }
+      return res.json();
+    }
+
+    // ─── TAB NAVIGATION ───
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.nav-tab').forEach(n => n.classList.remove('active'));
+      
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+      
+      // Find matching nav tab
+      const tabIndex = tabId === 'calendar' ? 0 : tabId === 'inbox' ? 1 : 2;
+      document.querySelectorAll('.nav-tab')[tabIndex].classList.add('active');
+      
+      // Load corresponding tab data
+      if (tabId === 'calendar') {
+        loadCalendarData();
+      } else if (tabId === 'inbox') {
+        loadInboxData();
+      }
+    }
+
+    // ─── CALENDAR TAB LOGIC ───
+    async function loadCalendarData() {
+      try {
+        const year = currentDate.getFullYear();
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+        
+        // Fetch jobs for current month
+        jobsList = await apiFetch(`calendar?date=gte.${year}-${month}-01&date=lte.${year}-${month}-31`);
+        renderCalendar();
+        renderJobList();
+      } catch (e) {
+        showToast(e.message);
+      }
+    }
+
+    function renderCalendar() {
+      const monthLabel = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
+      document.getElementById('calendar-month-year').textContent = monthLabel;
+
+      const grid = document.getElementById('calendar-grid');
+      grid.innerHTML = '';
+
+      // Add weekday headers
+      const daysOfWeek = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+      daysOfWeek.forEach(day => {
+        const h = document.createElement('div');
+        h.className = 'calendar-day-header';
+        h.textContent = day;
+        grid.appendChild(h);
+      });
+
+      // Get calendar offset info
+      const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+      const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+      const prevMonthLastDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+      
+      const startDayIndex = firstDay.getDay(); // 0 is Sunday
+      const totalDays = lastDay.getDate();
+      const prevDaysCount = prevMonthLastDay.getDate();
+
+      // Render previous month overflow cells
+      for (let i = startDayIndex - 1; i >= 0; i--) {
+        const cell = document.createElement('div');
+        cell.className = 'calendar-cell other-month';
+        cell.textContent = prevDaysCount - i;
+        grid.appendChild(cell);
+      }
+
+      // Render current month days
+      const today = new Date();
+      for (let day = 1; day <= totalDays; day++) {
+        const cell = document.createElement('div');
+        cell.className = 'calendar-cell';
+        
+        const cellDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+        const cellDateStr = cellDate.toISOString().split('T')[0];
+        
+        cell.textContent = day;
+        
+        if (cellDate.toDateString() === today.toDateString()) {
+          cell.classList.add('today');
+        }
+        
+        // Check if selected date
+        if (cellDate.toDateString() === selectedDate.toDateString()) {
+          cell.style.background = 'var(--grey-800)';
+        }
+
+        // Add dots for jobs on this day
+        const dayJobs = jobsList.filter(j => j.date === cellDateStr);
+        if (dayJobs.length > 0) {
+          const dotsContainer = document.createElement('div');
+          dotsContainer.className = 'calendar-event-dots';
+          
+          dayJobs.slice(0, 3).forEach(job => {
+            const dot = document.createElement('div');
+            dot.className = `event-dot ${job.status}`;
+            dotsContainer.appendChild(dot);
+          });
+          cell.appendChild(dotsContainer);
+        }
+
+        cell.onclick = () => {
+          selectedDate = cellDate;
+          // Render selected styling
+          document.querySelectorAll('.calendar-cell').forEach(c => {
+            if (!c.classList.contains('other-month')) {
+              c.style.background = '';
+            }
+          });
+          cell.style.background = 'var(--grey-800)';
+          renderJobList();
+        };
+
+        grid.appendChild(cell);
+      }
+    }
+
+    function renderJobList() {
+      const dateStr = selectedDate.toISOString().split('T')[0];
+      const formattedDate = selectedDate.toLocaleDateString('default', { weekday: 'long', month: 'short', day: 'numeric' });
+      document.getElementById('job-list-date-title').textContent = `Jobs: ${formattedDate}`;
+
+      const container = document.getElementById('job-list-container');
+      container.innerHTML = '';
+
+      const dayJobs = jobsList.filter(j => j.date === dateStr);
+      
+      if (dayJobs.length === 0) {
+        container.innerHTML = `<div style="text-align:center; padding: 2rem; color:var(--grey-400); font-size:0.9rem;">No jobs scheduled for this date.</div>`;
+        return;
+      }
+
+      dayJobs.forEach(job => {
+        const card = document.createElement('div');
+        card.className = 'job-card';
+        card.onclick = () => openEditJobModal(job);
+        
+        card.innerHTML = `
+          <div class="job-card-info">
+            <h4>${job.client_name}</h4>
+            <p>${job.job_type} ${job.address ? `&bull; ${job.address}` : ''}</p>
+          </div>
+          <div class="job-status-badge ${job.status}">${job.status}</div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function prevMonth() {
+      currentDate.setMonth(currentDate.getMonth() - 1);
+      loadCalendarData();
+    }
+
+    function nextMonth() {
+      currentDate.setMonth(currentDate.getMonth() + 1);
+      loadCalendarData();
+    }
+
+    // Modal Helpers
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function closeModalOnOverlay(e, id) {
+      if (e.target === document.getElementById(id)) {
+        closeModal(id);
+      }
+    }
+
+    // Add / Edit Job Modal
+    function openAddJobModal() {
+      document.getElementById('job-modal-title').textContent = "Add Work Job";
+      document.getElementById('job-id-field').value = '';
+      document.getElementById('job-date').value = selectedDate.toISOString().split('T')[0];
+      document.getElementById('job-client').value = '';
+      document.getElementById('job-type').value = '';
+      document.getElementById('job-address').value = '';
+      document.getElementById('job-notes').value = '';
+      document.getElementById('job-status').value = 'scheduled';
+      
+      document.getElementById('job-btn-delete').style.display = 'none';
+      document.getElementById('job-btn-invoice').style.display = 'none';
+      
+      openModal('job-modal');
+    }
+
+    function openEditJobModal(job) {
+      document.getElementById('job-modal-title').textContent = "Edit Work Job";
+      document.getElementById('job-id-field').value = job.id;
+      document.getElementById('job-date').value = job.date;
+      document.getElementById('job-client').value = job.client_name;
+      document.getElementById('job-type').value = job.job_type;
+      document.getElementById('job-address').value = job.address || '';
+      document.getElementById('job-notes').value = job.notes || '';
+      document.getElementById('job-status').value = job.status;
+      
+      document.getElementById('job-btn-delete').style.display = 'block';
+      document.getElementById('job-btn-invoice').style.display = 'block';
+      
+      openModal('job-modal');
+    }
+
+    async function saveJob() {
+      const id = document.getElementById('job-id-field').value;
+      const date = document.getElementById('job-date').value;
+      const client = document.getElementById('job-client').value.trim();
+      const type = document.getElementById('job-type').value.trim();
+      const address = document.getElementById('job-address').value.trim();
+      const notes = document.getElementById('job-notes').value.trim();
+      const status = document.getElementById('job-status').value;
+
+      if (!date || !client || !type) {
+        return showToast("Date, Client, and Description are required");
+      }
+
+      const jobData = { date, client_name: client, job_type: type, address, notes, status };
+
+      try {
+        if (id) {
+          // Edit existing
+          await apiFetch(`calendar?id=${id}`, "PUT", jobData);
+          showToast("Job updated successfully!");
+        } else {
+          // Create new
+          await apiFetch("calendar", "POST", jobData);
+          showToast("Job added to calendar!");
+        }
+        closeModal('job-modal');
+        loadCalendarData();
+      } catch (e) {
+        showToast(e.message);
+      }
+    }
+
+    async function deleteJob() {
+      const id = document.getElementById('job-id-field').value;
+      if (!id) return;
+
+      if (!confirm("Are you sure you want to delete this job?")) return;
+
+      try {
+        await apiFetch(`calendar?id=${id}`, "DELETE");
+        showToast("Job deleted");
+        closeModal('job-modal');
+        loadCalendarData();
+      } catch (e) {
+        showToast(e.message);
+      }
+    }
+
+    function createInvoiceFromJob() {
+      const client = document.getElementById('job-client').value;
+      const type = document.getElementById('job-type').value;
+      
+      // Auto-switch to Invoices tab and fill details
+      document.getElementById('inv-client-name').value = client;
+      
+      // Add custom line item for this job
+      const itemsContainer = document.getElementById('invoice-items-container');
+      itemsContainer.innerHTML = ''; // Clear old rows
+      addInvoiceItemRow(type, 1, 0); // Quantity 1, rate 0 (let user specify)
+      
+      // Set default invoice number
+      const dateCode = new Date().toISOString().slice(2,10).replace(/-/g,'');
+      document.getElementById('inv-number').value = `BF-${dateCode}`;
+
+      closeModal('job-modal');
+      switchTab('invoices');
+      showToast("Invoice form prepopulated!");
+    }
+
+    // ─── INBOX TAB LOGIC ───
+    async function loadInboxData() {
+      const container = document.getElementById('email-list-container');
+      
+      try {
+        emailsList = await apiFetch("emails?order=received_at.desc");
+        container.innerHTML = '';
+        
+        if (emailsList.length === 0) {
+          container.innerHTML = `<div style="text-align:center; padding: 3rem; color:var(--grey-400); font-size:0.9rem;">Your inbox is empty.</div>`;
+          return;
+        }
+
+        emailsList.forEach(email => {
+          const item = document.createElement('div');
+          item.className = `email-item ${email.is_read ? '' : 'unread'}`;
+          item.onclick = () => openEmailThread(email);
+          
+          const date = new Date(email.received_at).toLocaleDateString('default', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+          
+          item.innerHTML = `
+            <div class="email-item-header">
+              <span class="email-sender">${email.sender_name || email.sender_email}</span>
+              <span class="email-date">${date}</span>
+            </div>
+            <div class="email-subject">${email.subject || '(No Subject)'}</div>
+            <div class="email-snippet">${email.body_text ? email.body_text.slice(0, 100) : ''}...</div>
+          `;
+          container.appendChild(item);
+        });
+      } catch (e) {
+        container.innerHTML = `<div style="text-align:center; padding: 2rem; color:#D50000; font-size:0.9rem;">${e.message}</div>`;
+      }
+    }
+
+    // Open conversation thread modal
+    async function openEmailThread(email) {
+      activeThreadId = email.thread_id;
+      activeReplyToEmailId = email.resend_email_id;
+      
+      document.getElementById('thread-subject-label').textContent = email.subject || '(No Subject)';
+      document.getElementById('reply-body').value = '';
+      
+      const container = document.getElementById('thread-messages-container');
+      container.innerHTML = '<div style="text-align:center; padding:2rem;">Loading thread...</div>';
+      
+      openModal('thread-modal');
+      
+      try {
+        // Mark as read in local & DB
+        if (!email.is_read) {
+          email.is_read = true;
+          apiFetch(`emails?id=${email.id}`, "PUT", { is_read: true }).then(() => loadInboxData());
+        }
+
+        // Fetch all messages in the same thread
+        const threadMessages = await apiFetch(`emails?thread_id=eq.${encodeURIComponent(activeThreadId)}&order=received_at.asc`);
+        
+        container.innerHTML = '';
+        threadMessages.forEach(msg => {
+          const msgDiv = document.createElement('div');
+          msgDiv.className = 'thread-message';
+          
+          const date = new Date(msg.received_at).toLocaleString('default', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+          
+          msgDiv.innerHTML = `
+            <div class="message-meta">
+              <span class="message-sender">${msg.sender_name || msg.sender_email}</span>
+              <span>${date}</span>
+            </div>
+            <div class="message-body">${msg.body_text || '(Empty Body)'}</div>
+          `;
+          container.appendChild(msgDiv);
+        });
+        
+        // Scroll to bottom
+        container.scrollTop = container.scrollHeight;
+      } catch (e) {
+        container.innerHTML = `<div style="color:#D50000; padding:1rem; text-align:center;">${e.message}</div>`;
+      }
+    }
+
+    // Reply email submit
+    async function sendReplyEmail() {
+      const bodyText = document.getElementById('reply-body').value.trim();
+      if (!bodyText) return showToast("Reply body cannot be empty");
+
+      const replyBtn = document.querySelector('#thread-modal .btn-submit');
+      replyBtn.disabled = true;
+      replyBtn.textContent = "Sending reply...";
+
+      const emailSubject = document.getElementById('thread-subject-label').textContent;
+      const targetEmail = emailsList.find(e => e.thread_id === activeThreadId)?.sender_email;
+
+      if (!targetEmail) {
+        replyBtn.disabled = false;
+        replyBtn.textContent = "Send Reply";
+        return showToast("Failed to resolve recipient email");
+      }
+
+      // Format reply HTML nicely (keeping original paragraph styling)
+      const formattedHtml = bodyText.replace(/\n/g, '<br>');
+
+      try {
+        await apiFetch("emails/send", "POST", {
+          to: targetEmail,
+          subject: emailSubject.startsWith("Re:") ? emailSubject : `Re: ${emailSubject}`,
+          htmlBody: `<p>${formattedHtml}</p>`,
+          plainBody: bodyText,
+          replyToId: activeReplyToEmailId
+        });
+        
+        showToast("Reply sent successfully!");
+        closeModal('thread-modal');
+        loadInboxData();
+      } catch (e) {
+        showToast(e.message);
+      } finally {
+        replyBtn.disabled = false;
+        replyBtn.textContent = "Send Reply";
+      }
+    }
+
+    // Compose New Email Modal
+    function openComposeModal() {
+      document.getElementById('compose-to').value = '';
+      document.getElementById('compose-subject').value = '';
+      document.getElementById('compose-body').value = '';
+      openModal('compose-modal');
+    }
+
+    async function sendComposeEmail() {
+      const to = document.getElementById('compose-to').value.trim();
+      const subject = document.getElementById('compose-subject').value.trim();
+      const body = document.getElementById('compose-body').value.trim();
+
+      if (!to || !subject || !body) return showToast("All fields are required");
+
+      const btn = document.querySelector('#compose-modal .btn-submit');
+      btn.disabled = true;
+      btn.textContent = "Sending...";
+
+      const formattedHtml = body.replace(/\n/g, '<br>');
+
+      try {
+        await apiFetch("emails/send", "POST", {
+          to,
+          subject,
+          htmlBody: `<p>${formattedHtml}</p>`,
+          plainBody: body
+        });
+        
+        showToast("Email dispatched!");
+        closeModal('compose-modal');
+      } catch (e) {
+        showToast(e.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Send Email";
+      }
+    }
+
+    // ─── INVOICE TAB LOGIC ───
+    function addInvoiceItemRow(desc = '', qty = 1, rate = 0) {
+      const container = document.getElementById('invoice-items-container');
+      const rowId = 'inv-row-' + Date.now() + Math.random().toString(36).substr(2, 5);
+      
+      const row = document.createElement('div');
+      row.className = 'invoice-item-row';
+      row.id = rowId;
+      
+      row.innerHTML = `
+        <input type="text" class="form-input inv-item-desc" style="padding:0.6rem; font-size:0.85rem;" placeholder="Item Description" value="${desc}">
+        <input type="number" class="form-input inv-item-qty" style="padding:0.6rem; font-size:0.85rem; text-align:center;" min="1" value="${qty}" oninput="recalcInvoice()">
+        <input type="number" class="form-input inv-item-rate" style="padding:0.6rem; font-size:0.85rem; text-align:right;" min="0" step="any" placeholder="0.00" value="${rate}" oninput="recalcInvoice()">
+        <span class="inv-item-amount" style="text-align:right; font-weight:600; font-size:0.9rem;">&euro;0.00</span>
+        <button onclick="removeInvoiceItemRow('${rowId}')" style="background:transparent; border:none; color:#D50000; cursor:pointer; font-size:1.2rem; padding:0 0.25rem;">&times;</button>
+      `;
+      
+      container.appendChild(row);
+      recalcInvoice();
+    }
+
+    function removeInvoiceItemRow(rowId) {
+      const row = document.getElementById(rowId);
+      if (row) row.remove();
+      recalcInvoice();
+    }
+
+    function recalcInvoice() {
+      let subtotal = 0;
+      
+      document.querySelectorAll('.invoice-item-row').forEach(row => {
+        const qty = parseFloat(row.querySelector('.inv-item-qty').value) || 0;
+        const rate = parseFloat(row.querySelector('.inv-item-rate').value) || 0;
+        const amount = qty * rate;
+        
+        row.querySelector('.inv-item-amount').innerHTML = `&euro;${amount.toFixed(2)}`;
+        subtotal += amount;
+      });
+
+      const tax = subtotal * 0.18; // 18% VAT standard in Malta
+      const total = subtotal + tax;
+
+      document.getElementById('inv-subtotal').innerHTML = `&euro;${subtotal.toFixed(2)}`;
+      document.getElementById('inv-tax').innerHTML = `&euro;${tax.toFixed(2)}`;
+      document.getElementById('inv-total').innerHTML = `&euro;${total.toFixed(2)}`;
+    }
+
+    function collectInvoiceData() {
+      const number = document.getElementById('inv-number').value.trim() || 'BF-INV';
+      const dateIssued = document.getElementById('inv-date-issued').value;
+      const dateDue = document.getElementById('inv-date-due').value;
+      const clientName = document.getElementById('inv-client-name').value.trim();
+      const clientEmail = document.getElementById('inv-client-email').value.trim();
+
+      if (!clientName || !clientEmail) {
+        showToast("Client details are required");
+        return null;
+      }
+
+      const items = [];
+      document.querySelectorAll('.invoice-item-row').forEach(row => {
+        const desc = row.querySelector('.inv-item-desc').value.trim();
+        const qty = parseFloat(row.querySelector('.inv-item-qty').value) || 0;
+        const rate = parseFloat(row.querySelector('.inv-item-rate').value) || 0;
+        
+        if (desc) {
+          items.push({ desc, qty, rate, amount: qty * rate });
+        }
+      });
+
+      if (items.length === 0) {
+        showToast("Please add at least one item");
+        return null;
+      }
+
+      const subtotal = items.reduce((acc, i) => acc + i.amount, 0);
+      const tax = subtotal * 0.18;
+      const total = subtotal + tax;
+
+      return {
+        number,
+        dateIssued,
+        dateDue,
+        clientName,
+        clientEmail,
+        items,
+        subtotal,
+        tax,
+        total
+      };
+    }
+
+    // Bind data to the print HTML element before rendering PDF
+    function prepareInvoicePrintDOM(data) {
+      document.getElementById('pdf-inv-num').textContent = data.number;
+      
+      // Formatting dates
+      const options = { year: 'numeric', month: 'short', day: 'numeric' };
+      document.getElementById('pdf-inv-issued').textContent = new Date(data.dateIssued).toLocaleDateString('default', options);
+      document.getElementById('pdf-inv-due').textContent = new Date(data.dateDue).toLocaleDateString('default', options);
+      
+      document.getElementById('pdf-client-name').textContent = data.clientName;
+      document.getElementById('pdf-client-email').textContent = data.clientEmail;
+
+      const tbody = document.getElementById('pdf-items-tbody');
+      tbody.innerHTML = '';
+      
+      data.items.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${item.desc}</td>
+          <td style="text-align: center;">${item.qty}</td>
+          <td style="text-align: right;">&euro;${item.rate.toFixed(2)}</td>
+          <td style="text-align: right;">&euro;${item.amount.toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('pdf-subtotal').innerHTML = `&euro;${data.subtotal.toFixed(2)}`;
+      document.getElementById('pdf-tax').innerHTML = `&euro;${data.tax.toFixed(2)}`;
+      document.getElementById('pdf-total').innerHTML = `&euro;${data.total.toFixed(2)}`;
+    }
+
+    // PDF generation and download in browser using html2pdf
+    function downloadInvoicePDF() {
+      const data = collectInvoiceData();
+      if (!data) return;
+
+      prepareInvoicePrintDOM(data);
+
+      const element = document.getElementById('invoice-pdf-el');
+      const opt = {
+        margin:       10,
+        filename:     `Invoice_${data.number}.pdf`,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true },
+        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      showToast("Generating PDF...");
+      html2pdf().set(opt).from(element).save().then(() => {
+        showToast("PDF downloaded!");
+      });
+    }
+
+    // Send Invoice via Resend
+    async function emailInvoiceToClient() {
+      const data = collectInvoiceData();
+      if (!data) return;
+
+      const btn = document.querySelector('.invoice-btn-action.primary');
+      btn.disabled = true;
+      btn.textContent = "Sending Email...";
+
+      // Format items table for email body
+      let itemsTableRows = '';
+      data.items.forEach(item => {
+        itemsTableRows += `
+          <tr>
+            <td style="padding: 10px; border-bottom: 1px solid #eeeeee;">${item.desc}</td>
+            <td style="padding: 10px; text-align: center; border-bottom: 1px solid #eeeeee;">${item.qty}</td>
+            <td style="padding: 10px; text-align: right; border-bottom: 1px solid #eeeeee;">&euro;${item.rate.toFixed(2)}</td>
+            <td style="padding: 10px; text-align: right; border-bottom: 1px solid #eeeeee;">&euro;${item.amount.toFixed(2)}</td>
+          </tr>
+        `;
+      });
+
+      // Construct a beautiful HTML body summarizing the invoice
+      const invoiceEmailHtml = `
+        <h3 style="color: #FF5A00; text-transform: uppercase;">Invoice #${data.number}</h3>
+        <p>Dear ${data.clientName},</p>
+        <p>Please find below the invoice details for recent concreting services provided by Balfen Group.</p>
+        
+        <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
+          <thead>
+            <tr style="background: #1E1E1A; color: #ffffff;">
+              <th style="padding: 10px; text-align: left;">Description</th>
+              <th style="padding: 10px; text-align: center;">Qty</th>
+              <th style="padding: 10px; text-align: right;">Rate</th>
+              <th style="padding: 10px; text-align: right;">Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${itemsTableRows}
+          </tbody>
+        </table>
+
+        <div style="text-align: right; font-size: 15px; margin-top: 15px;">
+          <p>Subtotal: <strong>&euro;${data.subtotal.toFixed(2)}</strong></p>
+          <p>VAT (18%): <strong>&euro;${data.tax.toFixed(2)}</strong></p>
+          <p style="font-size: 18px; color: #FF5A00;">Total Due: <strong>&euro;${data.total.toFixed(2)}</strong></p>
+        </div>
+
+        <div style="background: #fafafa; padding: 15px; border-left: 3px solid #FF5A00; border-radius: 4px; margin-top: 25px;">
+          <p style="margin: 0; font-size: 13px;"><strong>Due Date:</strong> ${new Date(data.dateDue).toLocaleDateString('default', { year: 'numeric', month: 'short', day: 'numeric' })}</p>
+          <p style="margin: 5px 0 0 0; font-size: 13px;">Please use <strong>Invoice #${data.number}</strong> as the payment reference when making a bank transfer.</p>
+        </div>
+      `;
+
+      try {
+        // Send email via worker proxy
+        await apiFetch("emails/send", "POST", {
+          to: data.clientEmail,
+          subject: `Invoice #${data.number} from Balfen Group`,
+          htmlBody: invoiceEmailHtml,
+          plainBody: `Invoice #${data.number} from Balfen Group. Total Due: €${data.total.toFixed(2)}. Please pay by bank transfer before the due date.`
+        });
+        
+        // Save invoice to Supabase db
+        await apiFetch("invoices", "POST", {
+          invoice_number: data.number,
+          client_name: data.clientName,
+          client_email: data.clientEmail,
+          date_issued: data.dateIssued,
+          date_due: data.dateDue,
+          line_items: data.items,
+          total_amount: data.total,
+          status: 'sent'
+        });
+
+        showToast("Invoice emailed & saved!");
+      } catch (e) {
+        showToast(e.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "Email to Client";
+      }
+    }
+
+    // ─── TOAST NOTIFICATION HELPERS ───
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('show');
+      
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3500);
+    }
+  </script>
+</body>
+</html>

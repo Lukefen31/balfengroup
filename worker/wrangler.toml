@@ -1,0 +1,16 @@
+# worker/wrangler.toml
+name = "balfen-api"
+main = "src/index.js"
+compatibility_date = "2024-03-01"
+
+# Environment Variables (Public)
+[vars]
+SUPABASE_URL = "https://your-project.supabase.co" # Replace with your Supabase project URL
+ALLOWED_ADMIN_EMAILS = "balfengroup@gmail.com,info@balfen.com"
+
+# Note: Sensitive credentials must be uploaded as Cloudflare Secrets:
+# Run these commands in the terminal inside your worker directory:
+# npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+# npx wrangler secret put RESEND_API_KEY
+# npx wrangler secret put JWT_SECRET
+# npx wrangler secret put WEBHOOK_SECRET
