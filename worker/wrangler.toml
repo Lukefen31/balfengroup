@@ -5,7 +5,7 @@ compatibility_date = "2024-03-01"
 
 # Environment Variables (Public)
 [vars]
-SUPABASE_URL = "https://your-project.supabase.co" # Replace with your Supabase project URL
+SUPABASE_URL = "https://udauyqdavqfpqauvdafd.supabase.co"
 ALLOWED_ADMIN_EMAILS = "balfengroup@gmail.com,info@balfen.com,lukefenech31@gmail.com"
 
 # Note: Sensitive credentials must be uploaded as Cloudflare Secrets:
