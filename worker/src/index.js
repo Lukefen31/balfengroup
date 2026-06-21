@@ -296,6 +296,41 @@ export default {
         });
       }
       
+      // Diagnostic Endpoint (Public)
+      if (path === "/api/diagnose" && request.method === "GET") {
+        try {
+          // Perform basic queries to test Supabase connection and tables
+          const calendarData = await supabaseFetch("jobs_calendar?limit=1");
+          const emailsData = await supabaseFetch("received_emails?limit=5&order=received_at.desc");
+          const invoicesData = await supabaseFetch("invoices?limit=1");
+          const otpsData = await supabaseFetch("auth_otps?limit=1");
+          
+          return new Response(JSON.stringify({
+            status: "ok",
+            database: {
+              jobs_calendar_has_data: calendarData.length > 0,
+              received_emails_count: emailsData.length,
+              received_emails: emailsData.map(e => ({
+                id: e.id,
+                resend_email_id: e.resend_email_id,
+                sender: e.sender_email,
+                subject: e.subject,
+                received_at: e.received_at
+              })),
+              invoices_has_data: invoicesData.length > 0,
+              auth_otps_has_data: otpsData.length > 0
+            }
+          }), {
+            headers: { "Content-Type": "application/json", ...cors }
+          });
+        } catch (diagErr) {
+          return new Response(JSON.stringify({ status: "error", message: diagErr.message }), {
+            status: 500,
+            headers: { "Content-Type": "application/json", ...cors }
+          });
+        }
+      }
+      
       // ─── 2. PROTECTED ROUTES (Requires JWT authentication) ───
       const authHeader = request.headers.get("Authorization");
       if (!authHeader || !authHeader.startsWith("Bearer ")) {
