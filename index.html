@@ -490,21 +490,32 @@
     .nav-logo { display: flex; align-items: center; gap: 0; }
     .nav-logo img:not([src]) { display: none; }
     /* ── WORK PAGE: GROUPS + SOLOS ── */
-    .work-malta-gallery {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      grid-template-rows: repeat(3, 1fr);
+    .job-gallery-flex {
+      display: flex;
+      flex-wrap: wrap;
       gap: 4px;
-      height: 600px;
-      margin: 0 4px 4rem;
+      background: var(--grey-950);
+      justify-content: center;
+      padding: 4px;
     }
-    .work-malta-gallery .work-item { overflow: hidden; position: relative; cursor: pointer; aspect-ratio: auto; }
-    .work-malta-gallery .work-item:first-child { grid-row: 1 / 4; }
-    .work-malta-gallery .work-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.85); transition: transform 0.6s var(--ease), filter 0.4s; }
-    .work-malta-gallery .work-item:hover img { transform: scale(1.04); filter: brightness(1); }
-    .work-malta-gallery .work-item-info { position: absolute; bottom: 0; left: 0; right: 0; padding: 1.25rem; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: var(--white); }
-    .work-malta-gallery .work-item-sub { font-family: var(--font-display); font-weight: 700; font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); }
-    .work-malta-gallery .work-item-title { font-family: var(--font-display); font-weight: 900; font-size: 1rem; text-transform: uppercase; margin-top: 0.25rem; }
+    .job-gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+    }
+    .job-gallery-item img {
+      display: block;
+      height: 450px;
+      width: auto;
+      max-width: 100%;
+      object-fit: contain;
+      transition: transform 0.5s var(--ease), filter 0.3s;
+      filter: brightness(0.9);
+    }
+    .job-gallery-item:hover img {
+      transform: scale(1.02);
+      filter: brightness(1);
+    }
 
     .work-groups { padding: 0 4px; margin-bottom: 4px; }
     .job-group { width: 100%; margin-bottom: 4px; background: var(--grey-900); }
@@ -530,19 +541,14 @@
     .job-group-stages img:hover { filter: brightness(1); }
 
     @media (max-width: 768px) {
-      .work-malta-gallery { height: 480px; }
       .compare-slider { aspect-ratio: 16/9; }
       .job-group-stages img { height: 80px; }
+      .job-gallery-item img { height: 300px; }
     }
     /* Group image alignment: subtle uniform zoom for visual consistency */
     .compare-before img, .compare-after img,
     .strip-cell img { transform: scale(1.08); transform-origin: center center; }
     .strip-cell:hover img { transform: scale(1); }
-    /* MALTA MASONRY */
-    .malta-masonry { column-count: 3; column-gap: 4px; padding: 0 4px; }
-    .masonry-cell { break-inside: avoid; margin-bottom: 4px; overflow: hidden; position: relative; background: var(--grey-800); }
-    .masonry-cell img { width: 100%; height: auto; display: block; filter: brightness(0.85); transition: filter 0.4s, transform 0.6s var(--ease); }
-    .masonry-cell:hover img { filter: brightness(1); transform: scale(1.03); }
     @media (max-width: 900px) { .malta-masonry { column-count: 2; } }
     @media (max-width: 540px) { .malta-masonry { column-count: 1; } }
   </style>
@@ -688,11 +694,11 @@
           <div style="font-family:var(--font-display);font-weight:700;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--white);">Road and kerb repairs</div>
           <div class="job-group-hint">Mosta, Malta</div>
         </div>
-        <div class="job-group-strip strip-4">
-          <div class="strip-cell"><img src="./images/jobs/malta-mosta/img-01.jpg" loading="lazy" alt="Road and kerb repairs Mosta"></div>
-          <div class="strip-cell"><img src="./images/jobs/malta-mosta/img-02.jpg" loading="lazy" alt="Road and kerb repairs Mosta"></div>
-          <div class="strip-cell"><img src="./images/jobs/malta-mosta/img-03.jpg" loading="lazy" alt="Road and kerb repairs Mosta"></div>
-          <div class="strip-cell"><img src="./images/jobs/malta-mosta/img-04.jpg" loading="lazy" alt="Road and kerb repairs Mosta"></div>
+        <div class="job-gallery-flex">
+          <div class="job-gallery-item"><img src="./images/jobs/malta-mosta/img-01.jpg" loading="lazy" alt="Road and kerb repairs Mosta"></div>
+          <div class="job-gallery-item"><img src="./images/jobs/malta-mosta/img-02.jpg" loading="lazy" alt="Road and kerb repairs Mosta"></div>
+          <div class="job-gallery-item"><img src="./images/jobs/malta-mosta/img-03.jpg" loading="lazy" alt="Road and kerb repairs Mosta"></div>
+          <div class="job-gallery-item"><img src="./images/jobs/malta-mosta/img-04.jpg" loading="lazy" alt="Road and kerb repairs Mosta"></div>
         </div>
       </div>
 
@@ -702,10 +708,10 @@
           <div style="font-family:var(--font-display);font-weight:700;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--white);">Lightweight concrete on roof space for tiles</div>
           <div class="job-group-hint">Malta</div>
         </div>
-        <div class="job-group-strip strip-3">
-          <div class="strip-cell"><img src="./images/jobs/malta-roof/img-01.jpg" loading="lazy" alt="Lightweight concrete on roof space for tiles"></div>
-          <div class="strip-cell"><img src="./images/jobs/malta-roof/img-02.jpg" loading="lazy" alt="Lightweight concrete on roof space for tiles"></div>
-          <div class="strip-cell"><img src="./images/jobs/malta-roof/img-03.jpg" loading="lazy" alt="Lightweight concrete on roof space for tiles"></div>
+        <div class="job-gallery-flex">
+          <div class="job-gallery-item"><img src="./images/jobs/malta-roof/img-01.jpg" loading="lazy" alt="Lightweight concrete on roof space for tiles"></div>
+          <div class="job-gallery-item"><img src="./images/jobs/malta-roof/img-02.jpg" loading="lazy" alt="Lightweight concrete on roof space for tiles"></div>
+          <div class="job-gallery-item"><img src="./images/jobs/malta-roof/img-03.jpg" loading="lazy" alt="Lightweight concrete on roof space for tiles"></div>
         </div>
       </div>
 
@@ -715,9 +721,9 @@
           <div style="font-family:var(--font-display);font-weight:700;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--white);">Footpaths and kerb</div>
           <div class="job-group-hint">Mosta, Malta</div>
         </div>
-        <div class="job-group-strip strip-2">
-          <div class="strip-cell"><img src="./images/malta-08.jpg" loading="lazy" alt="Footpaths and kerb in Mosta"></div>
-          <div class="strip-cell"><img src="./images/malta-09.jpg" loading="lazy" alt="Footpaths and kerb in Mosta"></div>
+        <div class="job-gallery-flex">
+          <div class="job-gallery-item"><img src="./images/malta-08.jpg" loading="lazy" alt="Footpaths and kerb in Mosta"></div>
+          <div class="job-gallery-item"><img src="./images/malta-09.jpg" loading="lazy" alt="Footpaths and kerb in Mosta"></div>
         </div>
       </div>
 
@@ -727,12 +733,12 @@
           <div style="font-family:var(--font-display);font-weight:700;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--white);">Another job done with bull float finish</div>
           <div class="job-group-hint">Malta</div>
         </div>
-        <div class="job-group-strip strip-5">
-          <div class="strip-cell"><img src="./images/malta-10.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
-          <div class="strip-cell"><img src="./images/malta-11.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
-          <div class="strip-cell"><img src="./images/malta-06.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
-          <div class="strip-cell"><img src="./images/malta-07.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
-          <div class="strip-cell"><img src="./images/malta-05.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
+        <div class="job-gallery-flex">
+          <div class="job-gallery-item"><img src="./images/malta-10.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
+          <div class="job-gallery-item"><img src="./images/malta-11.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
+          <div class="job-gallery-item"><img src="./images/malta-06.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
+          <div class="job-gallery-item"><img src="./images/malta-07.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
+          <div class="job-gallery-item"><img src="./images/malta-05.jpg" loading="lazy" alt="Another job done with bull float finish"></div>
         </div>
       </div>
 
@@ -742,11 +748,11 @@
           <div style="font-family:var(--font-display);font-weight:700;font-size:0.95rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--white);">First pour on the island</div>
           <div class="job-group-hint">Malta</div>
         </div>
-        <div class="job-group-strip strip-4">
-          <div class="strip-cell"><img src="./images/pour-2.jpg" loading="lazy" alt="First pour on the island"></div>
-          <div class="strip-cell"><img src="./images/pour-1.jpg" loading="lazy" alt="First pour on the island"></div>
-          <div class="strip-cell"><img src="./images/pour-3.jpg" loading="lazy" alt="First pour on the island"></div>
-          <div class="strip-cell"><img src="./images/pour-4.jpg" loading="lazy" alt="First pour on the island"></div>
+        <div class="job-gallery-flex">
+          <div class="job-gallery-item"><img src="./images/pour-2.jpg" loading="lazy" alt="First pour on the island"></div>
+          <div class="job-gallery-item"><img src="./images/pour-1.jpg" loading="lazy" alt="First pour on the island"></div>
+          <div class="job-gallery-item"><img src="./images/pour-3.jpg" loading="lazy" alt="First pour on the island"></div>
+          <div class="job-gallery-item"><img src="./images/pour-4.jpg" loading="lazy" alt="First pour on the island"></div>
         </div>
       </div>
     </div>
