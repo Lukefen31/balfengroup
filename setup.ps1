@@ -1,8 +1,8 @@
-# setup.ps1 - Balfen Admin Portal Auto-Deployment Script
+# setup.ps1 - Nathan Fenech Concreting Admin Portal Auto-Deployment Script
 # Run this script in PowerShell to deploy the Cloudflare Worker and configure secrets.
 
 Write-Host "=============================================" -ForegroundColor Yellow
-Write-Host "   BALFEN GROUP WORKER DEPLOYMENT HELPER" -ForegroundColor Yellow
+Write-Host "   NFC WORKER DEPLOYMENT HELPER" -ForegroundColor Yellow
 Write-Host "=============================================" -ForegroundColor Yellow
 Write-Host ""
 
@@ -61,7 +61,7 @@ if ($deployOutput -match 'https://[a-zA-Z0-9\-\.]+\.workers\.dev') {
 if (-not $workerUrl) {
     # Fallback to asking or warning
     Write-Host "Could not automatically determine the deployed Worker URL from output." -ForegroundColor Yellow
-    $workerUrl = Read-Host "Enter the deployed Worker URL printed above (e.g., https://balfen-api.subdomain.workers.dev)"
+    $workerUrl = Read-Host "Enter the deployed Worker URL printed above (e.g., https://nfc-api.subdomain.workers.dev)"
     $workerUrl = $workerUrl.Trim()
 }
 

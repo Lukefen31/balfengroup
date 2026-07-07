@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Balfen Group — Concreting Malta</title>
-  <meta name="description" content="Malta's concreting specialists. Slabs, driveways, foundations, decorative concrete. Australian standards, Maltese ground.">
+  <title>Nathan Fenech Concreting - Concreting Malta</title>
+  <meta name="description" content="Nathan Fenech Concreting provides slabs, driveways, foundations, site cuts and decorative concrete across Malta. Australian standards, Maltese ground.">
+  <link rel="canonical" href="https://nathanfenech.com/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@400;700;900&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet">
@@ -58,6 +59,8 @@
       align-items: center;
       justify-content: center;
       gap: 1.5rem;
+      text-align: center;
+      line-height: 1.25;
       position: relative;
       z-index: 200;
     }
@@ -154,7 +157,7 @@
       font-weight: 900;
       font-size: clamp(4.5rem, 8vw, 9rem);
       line-height: 0.9;
-      letter-spacing: -0.01em;
+      letter-spacing: 0;
       text-transform: uppercase;
       color: var(--white);
       margin-bottom: 1.75rem;
@@ -447,6 +450,8 @@
       .nav-hamburger { display: flex; }
       .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 64px; left: 0; right: 0; background: var(--grey-900); padding: 2rem; border-bottom: 1px solid var(--grey-800); gap: 1.5rem; }
       .hero-text { padding: 3.5rem 1.5rem; }
+      .hero-headline { font-size: clamp(3.1rem, 17vw, 5rem); }
+      .hero-subhead { font-size: 1.05rem; }
       .hero-stats { left: 1.5rem; gap: 1.5rem; }
       .section { padding: 4rem 1.5rem; }
       .services-grid { grid-template-columns: 1fr; }
@@ -483,9 +488,9 @@
     .job-label { font-family: var(--font-display); font-weight: 700; font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--grey-400); }
     .job-stages { font-family: var(--font-display); font-weight: 700; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); }
     @media (max-width: 900px) { .jobs-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 480px) { .jobs-grid { grid-template-columns: 1fr; } }    .logo-img { height: 44px; display: block; cursor: pointer; filter: invert(1); transition: opacity 0.2s; }
+    @media (max-width: 480px) { .jobs-grid { grid-template-columns: 1fr; } }    .logo-img { height: 44px; width: auto; display: block; cursor: pointer; transition: opacity 0.2s; }
     .logo-img:hover { opacity: 0.8; }
-    .logo-wordmark { font-family: var(--font-display); font-weight: 900; font-size: 1.4rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream); cursor: pointer; }
+    .logo-wordmark { font-family: var(--font-display); font-weight: 900; font-size: 1.15rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cream); cursor: pointer; }
     .logo-dot { color: var(--orange); margin: 0 0.2em; font-size: 0.7em; vertical-align: middle; }
     .nav-logo { display: flex; align-items: center; gap: 0; }
     .nav-logo img:not([src]) { display: none; }
@@ -534,14 +539,14 @@
   <div class="announce">
     <span class="announce-dot"></span>
     <a href="#" onclick="showPage('work'); return false;">
-      BALFEN LANDS IN MALTA — FIRST POUR COMPLETE · JUNE 2026 · SEE THE WORK →
+      NATHAN FENECH CONCRETING NOW IN MALTA - FIRST POUR COMPLETE - SEE THE WORK
     </a>
     <span class="announce-dot"></span>
   </div>
 
   <!-- NAV -->
   <nav id="main-nav">
-    <div class="nav-logo" onclick="showPage('home')"><img src="./images/logo-black.png" alt="Balfen Group" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-wordmark" style="display:none">BALFEN<span class="logo-dot">·</span>GROUP</span></div>
+    <div class="nav-logo" onclick="showPage('home')"><img src="./images/nfc-logo.svg" alt="Nathan Fenech Concreting" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-wordmark" style="display:none">NATHAN FENECH<span class="logo-dot">.</span>CONCRETING</span></div>
     <div class="nav-links" id="nav-links">
       <a href="#" onclick="showPage('work'); return false;" data-page="work">Work</a>
       <a href="#" onclick="showPage('services'); return false;" data-page="services">Services</a>
@@ -559,15 +564,14 @@
     <!-- HERO -->
     <div class="hero">
       <div class="hero-text">
-        <div class="hero-eyebrow">Malta's Concreting Specialists</div>
+        <div class="hero-eyebrow">Malta's Concreting Specialist</div>
         <h1 class="hero-headline">
-          MALTESE<br>GROUND.<br><em>AUSTRALIAN</em><br>STANDARD.
+          NATHAN<br>FENECH<br><em>CONCRETING.</em>
         </h1>
         <p class="hero-subhead">
-          Balfen Group brings Australian-grade concreting expertise to Malta — 
-          every slab poured with precision, every finish built to last.
+          Nathan brings Australian-grade concreting experience to Malta - every slab poured with precision, every finish built to last.
         </p>
-        <p class="hero-wave">"The wave has started."</p>
+        <p class="hero-wave">Slabs, foundations, site cuts, paving and concrete finishes.</p>
         <div class="hero-actions">
           <a href="#" class="btn-primary" onclick="showPage('work'); return false;">Our Work →</a>
           <a href="#" class="btn-ghost" onclick="showPage('contact'); return false;">Get a Quote</a>
@@ -575,8 +579,7 @@
       </div>
       <div class="hero-photo">
         <div class="hero-photo-overlay"></div>
-        <!-- REPLACE: ./images/hero-illustration.jpg with your best first-pour photo -->
-        <img src="./images/hero-illustration.jpg" alt="Balfen Group — Malta meets Australia" onerror="this.parentElement.style.background='linear-gradient(135deg,#1E1E1A 0%,#2C2C28 100%)'">
+        <img src="./images/pour-2.jpg" alt="Concrete pump truck on a Nathan Fenech Concreting project" onerror="this.parentElement.style.background='linear-gradient(135deg,#1E1E1A 0%,#2C2C28 100%)'">
       </div>
 
     </div>
@@ -586,11 +589,11 @@
       <div class="ticker-track">
         <span class="ticker-item"><strong>FIRST POUR ·</strong> MALTA · JUNE 2026</span>
         <span class="ticker-item">HOUSE SLABS · DRIVEWAYS · FOUNDATIONS · DECORATIVE CONCRETE</span>
-        <span class="ticker-item"><strong>BALFEN GROUP ·</strong> BUILT ON AUSTRALIAN STANDARDS</span>
+        <span class="ticker-item"><strong>NATHAN FENECH CONCRETING ·</strong> BUILT ON AUSTRALIAN STANDARDS</span>
         <span class="ticker-item">SERVING ALL OF MALTA · FREE QUOTES</span>
         <span class="ticker-item"><strong>FIRST POUR ·</strong> MALTA · JUNE 2026</span>
         <span class="ticker-item">HOUSE SLABS · DRIVEWAYS · FOUNDATIONS · DECORATIVE CONCRETE</span>
-        <span class="ticker-item"><strong>BALFEN GROUP ·</strong> BUILT ON AUSTRALIAN STANDARDS</span>
+        <span class="ticker-item"><strong>NATHAN FENECH CONCRETING ·</strong> BUILT ON AUSTRALIAN STANDARDS</span>
         <span class="ticker-item">SERVING ALL OF MALTA · FREE QUOTES</span>
       </div>
     </div>
@@ -599,14 +602,14 @@
     <div class="section" style="background: var(--grey-900);">
       <div class="about-grid reveal">
         <div class="about-photo">
-          <img src="./images/pour-1.jpg" alt="Balfen at work" onerror="this.style.background='#1E1E1A';this.style.height='300px'">
+          <img src="./images/pour-1.jpg" alt="Nathan Fenech Concreting at work" onerror="this.style.background='#1E1E1A';this.style.height='300px'">
           <div class="about-badge">FIRST POUR<br>MALTA 2026</div>
         </div>
         <div class="about-text">
           <div class="section-label">Our Story</div>
           <h2 class="section-title">FOUNDED<br>IN THE FIELD.</h2>
-          <p><em>Nathan Fenech</em> has spent over a decade pouring concrete across Melbourne — house slabs, driveways, commercial hardstands, decorative finishes. <em>Aaron Baldacchino</em> brings the business backbone, with roots in Malta and a sharp eye for what the local market needs.</p>
-          <p>Together they founded Balfen Group and made the move. Australian standards, Maltese ground. If you want concrete work that lasts a generation, we're the team to call.</p>
+          <p><em>Nathan Fenech</em> is a second-generation concreter with years of hands-on experience across Melbourne - house slabs, driveways, commercial hardstands, site cuts, piers and decorative finishes.</p>
+          <p>Now serving Malta, Nathan brings the same old-school workmanship, honest advice and clean finish to every job. If you want concrete work that lasts, call Nathan.</p>
           <a href="#" class="btn-primary" onclick="showPage('services'); return false;" style="margin-top:0.5rem;display:inline-flex">What We Do →</a>
         </div>
       </div>
@@ -994,13 +997,15 @@
         </div>
         <div class="contact-detail">
           <span style="color:var(--orange);font-family:var(--font-display);font-weight:700;">✦</span>
-          <span><strong>Email:</strong> <a href="mailto:info@balfen.com" style="color:var(--cream);">info@balfen.com</a></span>
+          <span><strong>Email:</strong> <a href="mailto:info@nathanfenech.com" style="color:var(--cream);">info@nathanfenech.com</a></span>
         </div>
         <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--grey-700);">
           <div class="section-label" style="margin-bottom:0.75rem;">Follow the Work</div>
-          <div style="display:flex;gap:1rem;">
-            <a href="https://www.facebook.com/profile.php?id=61572789267995" target="_blank" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">Facebook →</a>
-            <a href="#" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">Instagram →</a>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+            <a href="https://www.facebook.com/p/Nathan-Fenech-Concreting-pty-ltd-61572789267995/" target="_blank" rel="noopener" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">Facebook →</a>
+            <a href="https://www.instagram.com/nathan_fenech_concreting/" target="_blank" rel="noopener" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">Instagram →</a>
+            <a href="https://hipages.com.au/connect/nathanfenechconcreting" target="_blank" rel="noopener" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">hipages →</a>
+            <a href="https://www.serviceseeking.com.au/profile/217403-nathan-fenech-concreting" target="_blank" rel="noopener" style="font-family:var(--font-display);font-weight:700;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;border:1.5px solid var(--grey-600);padding:0.5rem 1.1rem;color:var(--grey-200);transition:color 0.3s,border-color 0.3s;" onmouseover="this.style.color='var(--cream)';this.style.borderColor='var(--orange)'" onmouseout="this.style.color='';this.style.borderColor=''">ServiceSeeking →</a>
           </div>
         </div>
       </div>
@@ -1008,8 +1013,8 @@
         <div class="section-label" style="margin-bottom:1.5rem;">Free Quote Request</div>
         <form onsubmit="handleForm(event)">
           <div class="form-row">
-            <div class="form-group"><label>First Name</label><input type="text" placeholder="Nathan" required></div>
-            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Fenech" required></div>
+            <div class="form-group"><label>First Name</label><input type="text" placeholder="Joe" required></div>
+            <div class="form-group"><label>Last Name</label><input type="text" placeholder="Borg" required></div>
           </div>
           <div class="form-row">
             <div class="form-group"><label>Phone</label><input type="tel" placeholder="+356 XXXX XXXX" required></div>
@@ -1044,13 +1049,13 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-brand"><img src="./images/logo-black.png" alt="Balfen Group" class="logo-img" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-wordmark" style="display:none;font-size:1.1rem">BALFEN<span class="logo-dot">·</span>GROUP</span></div>
+    <div class="footer-brand"><img src="./images/nfc-logo.svg" alt="Nathan Fenech Concreting" class="logo-img" style="height:28px" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><span class="logo-wordmark" style="display:none;font-size:1.1rem">NATHAN FENECH<span class="logo-dot">.</span>CONCRETING</span></div>
     <div class="footer-links">
       <a href="#" onclick="showPage('work');return false;">Work</a>
       <a href="#" onclick="showPage('services');return false;">Services</a>
       <a href="#" onclick="showPage('contact');return false;">Contact</a>
     </div>
-    <div class="footer-copy">© 2026 Balfen Group. Malta.</div>
+    <div class="footer-copy">© 2026 Nathan Fenech Concreting. Malta.</div>
   </footer>
 
   <script>

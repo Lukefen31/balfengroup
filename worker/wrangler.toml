@@ -1,12 +1,12 @@
 # worker/wrangler.toml
-name = "balfen-api"
+name = "nfc-api"
 main = "src/index.js"
 compatibility_date = "2024-03-01"
 
 # Environment Variables (Public)
 [vars]
 SUPABASE_URL = "https://udauyqdavqfpqauvdafd.supabase.co"
-ALLOWED_ADMIN_EMAILS = "balfengroup@gmail.com,info@balfen.com,lukefenech31@gmail.com"
+ALLOWED_ADMIN_EMAILS = "info@nathanfenech.com,lukefenech31@gmail.com"
 
 # Note: Sensitive credentials must be uploaded as Cloudflare Secrets:
 # Run these commands in the terminal inside your worker directory:

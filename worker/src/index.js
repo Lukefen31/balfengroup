@@ -1,5 +1,5 @@
 // worker/src/index.js
-// Standalone Cloudflare Worker for Balfen Admin Portal API
+// Standalone Cloudflare Worker for Nathan Fenech Concreting Admin Portal API
 // No dependencies required! Deploy directly using Wrangler.
 
 const JWT_HEADER = { alg: "HS256", typ: "JWT" };
@@ -71,7 +71,7 @@ async function verifyJWT(token, secret) {
 // Helper for CORS headers
 function corsHeaders(env) {
   return {
-    "Access-Control-Allow-Origin": "*", // You can restrict this to https://balfen.com in production
+    "Access-Control-Allow-Origin": "*", // You can restrict this to https://nathanfenech.com in production
     "Access-Control-Allow-Methods": "GET, HEAD, POST, PUT, DELETE, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, Authorization",
     "Access-Control-Max-Age": "86400",
@@ -96,7 +96,7 @@ export default {
     const resendApiKey = (env.RESEND_API_KEY || "").trim();
     const jwtSecret = (env.JWT_SECRET || "").trim();
     const webhookSecret = (env.WEBHOOK_SECRET || "").trim();
-    const allowedAdminEmails = (env.ALLOWED_ADMIN_EMAILS || "balfengroup@gmail.com,info@balfen.com,lukefenech31@gmail.com").split(",");
+    const allowedAdminEmails = (env.ALLOWED_ADMIN_EMAILS || "info@nathanfenech.com,lukefenech31@gmail.com").split(",");
 
     // Supabase request helper
     const supabaseFetch = async (endpoint, method = "GET", body = null, headers = {}) => {
@@ -151,7 +151,7 @@ export default {
         const emailBody = `
           <div style="font-family: sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #eee; border-radius: 10px; background: #fafafa;">
             <div style="text-align: center; margin-bottom: 20px;">
-              <h2 style="color: #FF5A00; margin: 0; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">BALFEN GROUP</h2>
+              <h2 style="color: #FF5A00; margin: 0; text-transform: uppercase; font-weight: 900; letter-spacing: 1px;">NATHAN FENECH CONCRETING</h2>
               <div style="font-size: 12px; color: #888; margin-top: 5px;">Admin Portal Login</div>
             </div>
             <p>Your one-time password (OTP) is:</p>
@@ -169,9 +169,9 @@ export default {
             "Content-Type": "application/json"
           },
           body: JSON.stringify({
-            from: "Balfen Group <info@balfen.com>",
+            from: "Nathan Fenech Concreting <info@nathanfenech.com>",
             to: trimmedEmail,
-            subject: `${otpCode} is your Balfen Login Code`,
+            subject: `${otpCode} is your Nathan Fenech Concreting login code`,
             html: emailBody
           })
         });
@@ -464,7 +464,7 @@ export default {
         if (request.method === "POST" && path === "/api/emails/send") {
           const { to, subject, htmlBody, plainBody, replyToId } = await request.json();
           
-          // Auto applied HTML professional template for Balfen Group
+          // Auto applied HTML professional template for Nathan Fenech Concreting
           const styledHtmlBody = `
             <!DOCTYPE html>
             <html>
@@ -485,16 +485,16 @@ export default {
             <body>
               <div class="container">
                 <div class="header">
-                  <div class="logo-text">Balfen Group</div>
+                  <div class="logo-text">Nathan Fenech Concreting</div>
                   <div class="logo-sub">Concreting Specialists &bull; Malta</div>
                 </div>
                 <div class="content">
                   ${htmlBody}
                 </div>
                 <div class="footer">
-                  <p><strong>Balfen Group</strong> | Concreting Specialists</p>
+                  <p><strong>Nathan Fenech Concreting</strong> | Concreting Specialists</p>
                   <p>Free Quotes &bull; Serving all of Malta &amp; Gozo</p>
-                  <p style="font-size:11px;color:#aaa;margin-top:15px;">© 2026 Balfen Group. All rights reserved.</p>
+                  <p style="font-size:11px;color:#aaa;margin-top:15px;">© 2026 Nathan Fenech Concreting. All rights reserved.</p>
                 </div>
               </div>
             </body>
@@ -502,7 +502,7 @@ export default {
           `;
           
           const resendPayload = {
-            from: "Balfen Group <info@balfen.com>",
+            from: "Nathan Fenech Concreting <info@nathanfenech.com>",
             to,
             subject,
             html: styledHtmlBody,
@@ -562,8 +562,8 @@ export default {
           try {
             await supabaseFetch("received_emails", "POST", {
               resend_email_id: resendData.id,
-              sender_email: "info@balfen.com",
-              sender_name: "Balfen Group",
+              sender_email: "info@nathanfenech.com",
+              sender_name: "Nathan Fenech Concreting",
               subject: subject,
               body_text: plainBody || "",
               body_html: styledHtmlBody,
